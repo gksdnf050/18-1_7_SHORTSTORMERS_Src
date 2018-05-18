@@ -1,39 +1,46 @@
 package se.smu;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class Login extends JFrame{
-	MainProcess main;
+public class Login extends JPanel{
 	private JTextField id = new JTextField(20);
 	private JPasswordField pw= new JPasswordField("",15);
+	private ToDoList_Main win;
+	private String SavedID;
+	
 	public Login() {
-		this.setLayout(null);
-		Font default_font = new Font("���� ���",Font.BOLD,20);
+		
+	}
+	
+	public Login(ToDoList_Main win) {
+		this.win = win;
+		
+		setLayout(null);
+		Font default_font = new Font("맑은 고딕",Font.BOLD,20);
 		Color default_color = new Color(0,32,96);		
 		
 		JLabel Title_label = new JLabel("SMU To do List");
-		Title_label.setFont(new Font("HY�߰��",Font.BOLD,30));
+		Title_label.setFont(new Font("HY견고딕",Font.BOLD,30));
 		Title_label.setForeground(default_color);
 		
-		JLabel ID_label= new JLabel("���̵�");
+		JLabel ID_label= new JLabel("아이디");
 		ID_label.setFont(default_font);
 		ID_label.setForeground(default_color);
 		
-		JLabel PW_label= new JLabel("��й�ȣ");
+		JLabel PW_label= new JLabel("비밀번호");
 		PW_label.setFont(default_font);
 		PW_label.setForeground(default_color);
 		
-		JButton btn1 = new JButton("�α���");
+		JButton btn1 = new JButton("로그인");
 		btn1.setFont(default_font);
 		btn1.setBackground(default_color);
 		btn1.setForeground(new Color(255,255,255));
@@ -53,29 +60,28 @@ public class Login extends JFrame{
 		add(Title_label);
 		add(btn1);
 
-		setSize(650,750);
-		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(0,0,650,750);
 	}
-	public static void main(String [] args) {
-
+	
+	public String getID() {
+		return SavedID;
 	}
+	
 	class MyActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
+			//JButton b = (JButton)e.getSource();
 			String ID = id.getText();
 			String PW = new String(pw.getPassword());
 			if(ID.equals("") || PW.equals(""))
-				JOptionPane.showMessageDialog(null , "���̵� ��й�ȣ�� �ʼ��Է»����Դϴ�.");
+				JOptionPane.showMessageDialog(null , "아이디, 비밀번호를 입력해주세요.");
 			else if(ID.equals("stormers") && PW.equals("stormers")) {
-				main.change();
+				SavedID = "stormers";
+				win.change("Mainpage");
 			}
 			else 
-				JOptionPane.showMessageDialog(null , "���̵� �Ǵ� ��й�ȣ�� Ʋ�Ƚ��ϴ�.");
+				JOptionPane.showMessageDialog(null , "아이디, 비밀번호를 확인해주세요.");
 			
 		}
-		
-	}
-	public void setMain(MainProcess main) {
-		this.main=main;
 	}
 }
+
