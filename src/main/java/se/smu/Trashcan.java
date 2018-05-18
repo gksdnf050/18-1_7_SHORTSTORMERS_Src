@@ -22,6 +22,7 @@ public class Trashcan extends JDialog {
 	JButton restore,remove;
 	XSSFSheet sheet;
 	XSSFWorkbook workbook;
+
 	Font default_font = new Font("¸¼Àº °íµñ",Font.BOLD,20);
 	Color default_color = new Color(0,32,96);
 	

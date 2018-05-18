@@ -31,6 +31,7 @@ public class ShowAll_Todo extends JFrame {
 	XSSFCell cell;
     Boolean Is_import;
     File file;
+
     ToDoList_Main win;
     
     //////////¸É¹ö ÇÊµå
@@ -274,14 +275,13 @@ public class ShowAll_Todo extends JFrame {
             	test.MP = new Mainpage(test);
             	
             	test.add(test.MP);
-            	//test.MP.RefreshSubjectTable();
+            	test.MP.RefreshSubjectTable();
             	test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                test.setSize(650, 750);
-                test.setVisible(true);
-                test.setResizable(false);
+            test.setSize(650, 750);
+            test.setVisible(true);
+            test.setResizable(false);
             }
         });
     }
 }
-
 

@@ -1,4 +1,5 @@
 package se.smu;
+
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -812,7 +813,7 @@ class Mainpage extends JPanel{
 				
 				if(r >= 0 && c >0) {
 					int row = t.convertColumnIndexToModel(r);
-					System.out.println(row);
+					win.change("ToDoList", Subject_Table.getValueAt(row, 1).toString());
 				}
 			}
 		}
@@ -829,6 +830,8 @@ public class ToDoList_Main extends JFrame{
 	public Login Log = null;
 	public Trashcan TC = null;
 	public ShowAll_Todo SA = null;
+	public Todolist TD = null;
+	
 	
 	public void change(String panelName)	{
 		// 과목 페이지 전환
@@ -840,13 +843,27 @@ public class ToDoList_Main extends JFrame{
 			revalidate();
 			repaint();
 		}
+		//전체 To Do List보기 전환
 		else if(panelName.equals("ShowAll_Todo")) {
 			this.setVisible(false);
 			this.SA = new ShowAll_Todo(this);
 			SA.setVisible(true);
 		}
 		
+		
 	}
+	// 특정 과목의 To Do List보기 전환
+	public void change(String panelName, String Subject_Name) {
+		if(panelName.equals("ToDoList")) {
+			this.setVisible(false);
+			this.TD = new Todolist(Subject_Name);
+			this.TD.setSubject_Name(Subject_Name);
+			this.TD.revalidate();
+			this.TD.repaint();
+			this.TD.setVisible(true);
+		}
+	}
+	
 	// 수정 페이지 전환
 	public void change(String panelName, int SelectedRowNum, String[] Reg_Info) {
 		//선택된 과목의 줄수 전달
