@@ -1,3 +1,5 @@
+package se.smu;
+
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
