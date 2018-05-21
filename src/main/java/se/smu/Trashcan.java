@@ -12,7 +12,7 @@ import java.io.IOException;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -24,28 +24,32 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class Trashcan extends JDialog {
-	DefaultTableCellRenderer dcr;
+public class Trashcan extends JFrame {
+	DefaultTableCellRenderer dcr,check;
 	DefaultTableModel model;
 	JTable Table;
 	JScrollPane jscollPane;
 	JButton restore,remove;
 	XSSFSheet sheet;
 	XSSFWorkbook workbook;
-
-	Font default_font = new Font("���� ���",Font.BOLD,20);
+	Font default_font = new Font("占쏙옙占쏙옙 占쏙옙占�",Font.BOLD,20);
 	Color default_color = new Color(0,32,96);
 	
 	public Trashcan() {
-		
 		TableSetting();
 		TableColumnSetting();
 		ButtonSetting();
 		
+		try {
+			DataSetting();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		setLayout(null);
 		
-		JLabel Title_label = new JLabel("������");
-		Title_label.setFont(new Font("HY�߰��",Font.BOLD,30));
+		JLabel Title_label = new JLabel("占쏙옙占쏙옙占쏙옙");
+		Title_label.setFont(new Font("HY占쌩곤옙占�",Font.BOLD,30));
 		Title_label.setForeground(default_color);
 		
 		Title_label.setBounds(260, 25, 200, 50);
@@ -60,21 +64,14 @@ public class Trashcan extends JDialog {
 		
 		setSize(650,550);
 		setVisible(true);
-		
-		try {
-			DataSetting();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-		
-		
 	}
+	  
+	
+
 	
 	
 	public void TableSetting() {
-		String columnNames[] = {"V","����","To do","���� ����","���� ������","�Ϸ� ����"};
+		String columnNames[] = {"V","占쏙옙占쏙옙","To do","占쏙옙占쏙옙 占쏙옙占쏙옙","占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙","占싹뤄옙 占쏙옙占쏙옙"};
 		
 		dcr = new DefaultTableCellRenderer() {	
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column){	
@@ -106,11 +103,11 @@ public class Trashcan extends JDialog {
 		center.setHorizontalAlignment(JLabel.CENTER);
 		
 		Table.getColumn("V").setCellRenderer(center);
-		Table.getColumn("����").setCellRenderer(center);
+		Table.getColumn("占쏙옙占쏙옙").setCellRenderer(center);
 		Table.getColumn("To do").setCellRenderer(center);
-		Table.getColumn("���� ����").setCellRenderer(center);
-		Table.getColumn("���� ������").setCellRenderer(center);
-		Table.getColumn("�Ϸ� ����").setCellRenderer(center);
+		Table.getColumn("占쏙옙占쏙옙 占쏙옙占쏙옙").setCellRenderer(center);
+		Table.getColumn("占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙").setCellRenderer(center);
+		Table.getColumn("占싹뤄옙 占쏙옙占쏙옙").setCellRenderer(center);
 		Table.getTableHeader().setReorderingAllowed(false);
 		
 		Table.getColumn("V").setCellRenderer(dcr);
@@ -136,13 +133,13 @@ public class Trashcan extends JDialog {
 	
 	
 	public void ButtonSetting() {
-		restore= new JButton("�� ��");
+		restore= new JButton("占쏙옙 占쏙옙");
 		restore.setFont(default_font);
 		restore.setForeground(new Color(0,0,0));
 		restore.setBackground(new Color(255,255,255));
 		restore.addActionListener(new MyActionListener());
 		
-		remove = new JButton("���� ����");
+		remove = new JButton("占쏙옙占쏙옙 占쏙옙占쏙옙");
 		remove.setFont(default_font);
 		remove.setForeground(new Color(0,0,0));
 		remove.setBackground(new Color(255,255,255));
@@ -157,7 +154,7 @@ public class Trashcan extends JDialog {
 			workbook = new XSSFWorkbook(fis);
 			sheet = workbook.getSheetAt(0);
 			int rows = sheet.getPhysicalNumberOfRows();
-			for(int i=0;i<rows;i++) {
+			for(int i=1;i<rows;i++) {
 				XSSFRow row = sheet.getRow(i);
 				if(row==null)
 					rows++;
@@ -172,12 +169,11 @@ public class Trashcan extends JDialog {
 	}
 	
 	
-	
 	public void TableReset() throws IOException {
 		model = (DefaultTableModel)Table.getModel();
 		model.setNumRows(0);
 		int rows = sheet.getPhysicalNumberOfRows();
-		for(int i=0;i<rows;i++) {
+		for(int i=1;i<rows;i++) {
 			XSSFRow row = sheet.getRow(i);
 			if(row==null)
 				rows++;
@@ -192,7 +188,7 @@ public class Trashcan extends JDialog {
 	class MyActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			JButton b = (JButton)e.getSource();
-			if(b.getText().equals("���� ����")){
+			if(b.getText().equals("占쏙옙占쏙옙 占쏙옙占쏙옙")){
 				
 				for(int i=0;i<model.getRowCount();i++) {
 					if(Table.getModel().getValueAt(i, 0).equals(true)) {
@@ -211,52 +207,48 @@ public class Trashcan extends JDialog {
 					e1.printStackTrace();
 				} 
 			}
+			
 			else {
-				int index;
 				for(int i=0;i<model.getRowCount();i++) {
 					if(Table.getModel().getValueAt(i, 0).equals(true)) {
+						int index=0;
 						String Subject = Table.getModel().getValueAt(i, 1).toString();
 						FileInputStream fis2;
 						FileOutputStream fos2;
-						index=0;
+						
 						while(sheet.getRow(index)==null || !sheet.getRow(index).getCell(0).equals(Table.getModel().getValueAt(i, 1))) 
 							index++;
-						
 						String[] data= {Table.getModel().getValueAt(i, 1).toString(),
 								Table.getModel().getValueAt(i, 2).toString(),
 								Table.getModel().getValueAt(i, 3).toString(),
 								Table.getModel().getValueAt(i, 4).toString(),
 								Table.getModel().getValueAt(i, 5).toString(),
-								sheet.getRow(index).getCell(5).toString()
-								};
+								sheet.getRow(index).getCell(5).toString()};
 						sheet.removeRow(sheet.getRow(index));
+
 						try {
-							fis2 = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+Subject+".xlsx");
+							fis2 = new FileInputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
 							XSSFWorkbook workbook2 = new XSSFWorkbook(fis2);
 							XSSFSheet sheet2 = workbook2.getSheetAt(0);
 							index=0;
 							while(true) {
 								XSSFRow row = sheet2.getRow(index);
-								System.out.println(row);
 								if(row!=null)
 									index++;
 								else {
 									row = sheet2.createRow(index);
-									
 									for(int z=0;z<6;z++) 
 										row.createCell(z).setCellValue(data[z]);
 									break;
 								}
 							}
-							fos2 = new FileOutputStream("./Subject_Dir/ToDolist_Dir/"+Subject+".xlsx");
+							fos2 = new FileOutputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
 							workbook2.write(fos2);
 							fos2.close();
 							
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						} 
-						
-							
 					}
 				}
 				try {
@@ -272,5 +264,4 @@ public class Trashcan extends JDialog {
 		}	
 	}
 }
-
 
