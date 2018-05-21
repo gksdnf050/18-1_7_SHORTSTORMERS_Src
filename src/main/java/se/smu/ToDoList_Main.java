@@ -8,7 +8,6 @@ import javax.swing.table.*;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -18,6 +17,11 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 class Add_Change_Panel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private JLabel Title_Label;
 	
 	private JButton Reg_Button;
@@ -290,6 +294,15 @@ class Add_Change_Panel extends JPanel{
 						XSSFWorkbook workbook = new XSSFWorkbook();
 						Sheet sheet=workbook.createSheet();
 						sheet.createRow(0);
+						Row row = sheet.createRow(0);
+						row.createCell(0).setCellValue("과목");
+						row.createCell(1).setCellValue("할 일");
+						row.createCell(2).setCellValue("마감 기한");
+						row.createCell(3).setCellValue("실제 마감일");
+						row.createCell(4).setCellValue("완료 여부");
+						row.createCell(5).setCellValue("중요도");
+						
+						
 						try {
 							outFile = new FileOutputStream(FilePath2 + Reg_Info[0] + ".xlsx");
 							workbook.write(outFile);
@@ -935,6 +948,15 @@ public class ToDoList_Main extends JFrame{
 				row.createCell(3).setCellValue("시간");
 				row.createCell(4).setCellValue("수강년도");
 				row.createCell(5).setCellValue("학기");
+				
+				Row row2 = sheet2.createRow(0);
+				row2.createCell(0).setCellValue("과목");
+				row2.createCell(1).setCellValue("할 일");
+				row2.createCell(2).setCellValue("마감 기한");
+				row2.createCell(3).setCellValue("실제 마감일");
+				row2.createCell(4).setCellValue("완료 여부");
+				row2.createCell(5).setCellValue("중요도");
+				
 				
 				FileOutputStream outFile;
 				FileOutputStream outFile2;
