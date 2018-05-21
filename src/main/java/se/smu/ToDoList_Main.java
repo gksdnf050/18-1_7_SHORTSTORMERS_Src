@@ -277,20 +277,33 @@ class Add_Change_Panel extends JPanel{
 				String FilePath2 = "./Subject_Dir/Todolist_Dir/";			
 				
 				// ToDoList ¿¢¼¿ »ý¼º
-				File destFile = new File(FilePath2 + Reg_Info[0] +".xlsx");
+				File destFile = new File(FilePath2 + Reg_Info[0] + ".xlsx");
 				File OriFile = new File(FilePath2 + PreName + ".xlsx");
+				
 				//Ãâ·Â
+				FileInputStream inputStream;
 				FileOutputStream outFile;
+				
 				try {
 					if(PanelName == "Add_Panel") {
-						destFile.createNewFile();	
+						destFile.createNewFile();
+						XSSFWorkbook workbook = new XSSFWorkbook();
+						Sheet sheet=workbook.createSheet();
+						sheet.createRow(0);
+						try {
+							outFile = new FileOutputStream(FilePath2 + Reg_Info[0] + ".xlsx");
+							workbook.write(outFile);
+							outFile.close();
+							workbook.close();
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
 					}
 					else if(PanelName == "Change_Panel"){
 						OriFile.renameTo(destFile);
 					}
 					
-					
-					FileInputStream inputStream = new FileInputStream(FilePath + "Subject_List.xlsx");
+					inputStream = new FileInputStream(FilePath + "Subject_List.xlsx");
 					XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 					Sheet sheet = workbook.getSheetAt(0);
 					int rows=0;
