@@ -227,7 +227,7 @@ public class Trashcan extends JFrame {
 						sheet.removeRow(sheet.getRow(index));
 
 						try {
-							fis2 = new FileInputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
+							fis2 = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+Subject+".xlsx");
 							XSSFWorkbook workbook2 = new XSSFWorkbook(fis2);
 							XSSFSheet sheet2 = workbook2.getSheetAt(0);
 							index=0;
@@ -242,7 +242,7 @@ public class Trashcan extends JFrame {
 									break;
 								}
 							}
-							fos2 = new FileOutputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
+							fos2 = new FileOutputStream("./Subject_Dir/ToDolist_Dir/"+Subject+".xlsx");
 							workbook2.write(fos2);
 							fos2.close();
 							
