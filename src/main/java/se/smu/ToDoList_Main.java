@@ -277,20 +277,33 @@ class Add_Change_Panel extends JPanel{
 				String FilePath2 = "./Subject_Dir/Todolist_Dir/";			
 				
 				// ToDoList 엑셀 생성
-				File destFile = new File(FilePath2 + Reg_Info[0] +".xlsx");
+				File destFile = new File(FilePath2 + Reg_Info[0] + ".xlsx");
 				File OriFile = new File(FilePath2 + PreName + ".xlsx");
+				
 				//출력
+				FileInputStream inputStream;
 				FileOutputStream outFile;
+				
 				try {
 					if(PanelName == "Add_Panel") {
-						destFile.createNewFile();	
+						destFile.createNewFile();
+						XSSFWorkbook workbook = new XSSFWorkbook();
+						Sheet sheet=workbook.createSheet();
+						sheet.createRow(0);
+						try {
+							outFile = new FileOutputStream(FilePath2 + Reg_Info[0] + ".xlsx");
+							workbook.write(outFile);
+							outFile.close();
+							workbook.close();
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
 					}
 					else if(PanelName == "Change_Panel"){
 						OriFile.renameTo(destFile);
 					}
 					
-					
-					FileInputStream inputStream = new FileInputStream(FilePath + "Subject_List.xlsx");
+					inputStream = new FileInputStream(FilePath + "Subject_List.xlsx");
 					XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 					Sheet sheet = workbook.getSheetAt(0);
 					int rows=0;
@@ -676,7 +689,6 @@ class Mainpage extends JPanel{
 				for(int i = 0; i < 6; i++) {
 					S_Reg_Info[i] = Subject_Table.getValueAt(SelectedRowNum, i+1).toString();
 				}
-				System.out.println("수정 페이지 전환");
 				win.change("Change_Panel", SelectedRowNum, S_Reg_Info);
 			}
 		}
@@ -692,7 +704,6 @@ class Mainpage extends JPanel{
 				if(Subject_Table.getValueAt(i, 0) == Boolean.TRUE) {
 					SelectedNum++;
 					SelectedRowNum.add(Integer.valueOf(i));
-					System.out.println((i+1) + "번째 row 선택 ");
 				}
 			}
 			
@@ -736,7 +747,6 @@ class Mainpage extends JPanel{
 						row.getCell(3).setCellValue("");
 						row.getCell(4).setCellValue("");
 						row.getCell(5).setCellValue("");
-						System.out.println("temp");
 					}
 					
 					
@@ -744,8 +754,6 @@ class Mainpage extends JPanel{
 					int	NextRowNum=0;
 					// Subject_List.xlsx 정리
 					// 엑셀 파일 순회
-					System.out.println("엑셀 정리 시작");
-					
 					for(int searchRow = 1; searchRow < sheet.getPhysicalNumberOfRows();searchRow++) {
 						row = sheet.getRow(searchRow);
 						cell = row.getCell(0);
@@ -769,7 +777,6 @@ class Mainpage extends JPanel{
 					}
 					// 엑셀 길이 줄이기
 					for(int i=0; i < SelectedRowNum.size() ; i++) {
-						System.out.println("Subject_List.xlsx || " + sheet.getLastRowNum() + "번째 row 삭제");
 						row = sheet.getRow(sheet.getLastRowNum());
 						sheet.removeRow(row);
 					}
@@ -781,9 +788,7 @@ class Mainpage extends JPanel{
 					workbook.close();
 				} catch (Exception ex) {
 					ex.printStackTrace();
-				} 
-				
-				System.out.println("과목 삭제");
+				} 	
 				RefreshSubjectTable();
 			}
 		}
@@ -903,7 +908,10 @@ public class ToDoList_Main extends JFrame{
 		File destdir = new File(FilePath);
 		File destdir2 = new File(FilePath2);
 		XSSFWorkbook workbook = new XSSFWorkbook();
+		XSSFWorkbook workbook2 = new XSSFWorkbook();
+		
 		Sheet sheet;
+		Sheet sheet2;
 		if(!destdir.exists() || !destdir2.exists()) {
 			destdir.mkdirs();
 			destdir2.mkdirs();
@@ -915,6 +923,11 @@ public class ToDoList_Main extends JFrame{
 				destFile.createNewFile();
 				destFile2.createNewFile();
 				sheet=workbook.createSheet();
+				
+				
+				sheet2=workbook2.createSheet();
+				sheet2.createRow(0);
+				
 				Row row = sheet.createRow(0);
 				row.createCell(0).setCellValue("과목");
 				row.createCell(1).setCellValue("교수");
@@ -924,11 +937,17 @@ public class ToDoList_Main extends JFrame{
 				row.createCell(5).setCellValue("학기");
 				
 				FileOutputStream outFile;
+				FileOutputStream outFile2;
+				
 				try {
 					outFile = new FileOutputStream(FilePath + "Subject_List.xlsx");
+					outFile2 = new FileOutputStream(FilePath2 + "Trashcan.xlsx");
 					workbook.write(outFile);
+					workbook2.write(outFile2);
 					outFile.close();
+					outFile2.close();
 					workbook.close();
+					workbook2.close();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
