@@ -143,7 +143,7 @@ public class Trashcan extends JDialog {
 	 
 	public void DataSetting() throws IOException {	
 		try {
-			FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/trashcan.xlsx");
+			FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
 			workbook = new XSSFWorkbook(fis);
 			sheet = workbook.getSheetAt(0);
 			int rows = sheet.getPhysicalNumberOfRows();
