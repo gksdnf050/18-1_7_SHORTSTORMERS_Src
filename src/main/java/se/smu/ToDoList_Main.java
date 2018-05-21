@@ -992,6 +992,7 @@ public class ToDoList_Main extends JFrame{
 	    test.setSize(650, 750);
 	    test.setVisible(true);
 	    test.setResizable(false);
+	    //as
 	}
 }
 
