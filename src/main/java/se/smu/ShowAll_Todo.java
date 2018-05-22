@@ -2,7 +2,6 @@ package se.smu;
 
 import java.awt.event.*;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 
