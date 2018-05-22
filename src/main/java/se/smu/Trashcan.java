@@ -1,41 +1,55 @@
 package se.smu;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.table.*;
-
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class Trashcan extends JDialog {
-	DefaultTableCellRenderer dcr;
+public class Trashcan extends JFrame {
+	DefaultTableCellRenderer dcr,check;
 	DefaultTableModel model;
 	JTable Table;
 	JScrollPane jscollPane;
 	JButton restore,remove;
 	XSSFSheet sheet;
 	XSSFWorkbook workbook;
-
-	Font default_font = new Font("¸¼Àº °íµñ",Font.BOLD,20);
+	Font default_font = new Font("å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ï¿½",Font.BOLD,20);
 	Color default_color = new Color(0,32,96);
 	
 	public Trashcan() {
-		
 		TableSetting();
 		TableColumnSetting();
 		ButtonSetting();
 		
+		try {
+			DataSetting();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		setLayout(null);
 		
-		JLabel Title_label = new JLabel("ÈŞÁöÅë");
-		Title_label.setFont(new Font("HY°ß°íµñ",Font.BOLD,30));
+		JLabel Title_label = new JLabel("å ì™ì˜™å ì™ì˜™å ì™ì˜™");
+		Title_label.setFont(new Font("HYå ìŒ©ê³¤ì˜™å ï¿½",Font.BOLD,30));
 		Title_label.setForeground(default_color);
 		
 		Title_label.setBounds(260, 25, 200, 50);
@@ -50,21 +64,14 @@ public class Trashcan extends JDialog {
 		
 		setSize(650,550);
 		setVisible(true);
-		
-		try {
-			DataSetting();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-		
-		
 	}
+	  
+	
+
 	
 	
 	public void TableSetting() {
-		String columnNames[] = {"V","°ú¸ñ","To do","¸¶°¨ ±âÇÑ","½ÇÁ¦ ¸¶°¨ÀÏ","¿Ï·á ¿©ºÎ"};
+		String columnNames[] = {"V","å ì™ì˜™å ì™ì˜™","To do","å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™","å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™","å ì‹¹ë¤„ì˜™ å ì™ì˜™å ì™ì˜™"};
 		
 		dcr = new DefaultTableCellRenderer() {	
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column){	
@@ -96,11 +103,11 @@ public class Trashcan extends JDialog {
 		center.setHorizontalAlignment(JLabel.CENTER);
 		
 		Table.getColumn("V").setCellRenderer(center);
-		Table.getColumn("°ú¸ñ").setCellRenderer(center);
+		Table.getColumn("å ì™ì˜™å ì™ì˜™").setCellRenderer(center);
 		Table.getColumn("To do").setCellRenderer(center);
-		Table.getColumn("¸¶°¨ ±âÇÑ").setCellRenderer(center);
-		Table.getColumn("½ÇÁ¦ ¸¶°¨ÀÏ").setCellRenderer(center);
-		Table.getColumn("¿Ï·á ¿©ºÎ").setCellRenderer(center);
+		Table.getColumn("å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™").setCellRenderer(center);
+		Table.getColumn("å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™").setCellRenderer(center);
+		Table.getColumn("å ì‹¹ë¤„ì˜™ å ì™ì˜™å ì™ì˜™").setCellRenderer(center);
 		Table.getTableHeader().setReorderingAllowed(false);
 		
 		Table.getColumn("V").setCellRenderer(dcr);
@@ -126,13 +133,13 @@ public class Trashcan extends JDialog {
 	
 	
 	public void ButtonSetting() {
-		restore= new JButton("º¹ ±¸");
+		restore= new JButton("å ì™ì˜™ å ì™ì˜™");
 		restore.setFont(default_font);
 		restore.setForeground(new Color(0,0,0));
 		restore.setBackground(new Color(255,255,255));
 		restore.addActionListener(new MyActionListener());
 		
-		remove = new JButton("¿µ±¸ »èÁ¦");
+		remove = new JButton("å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™");
 		remove.setFont(default_font);
 		remove.setForeground(new Color(0,0,0));
 		remove.setBackground(new Color(255,255,255));
@@ -147,7 +154,7 @@ public class Trashcan extends JDialog {
 			workbook = new XSSFWorkbook(fis);
 			sheet = workbook.getSheetAt(0);
 			int rows = sheet.getPhysicalNumberOfRows();
-			for(int i=0;i<rows;i++) {
+			for(int i=1;i<rows;i++) {
 				XSSFRow row = sheet.getRow(i);
 				if(row==null)
 					rows++;
@@ -162,12 +169,11 @@ public class Trashcan extends JDialog {
 	}
 	
 	
-	
 	public void TableReset() throws IOException {
 		model = (DefaultTableModel)Table.getModel();
 		model.setNumRows(0);
 		int rows = sheet.getPhysicalNumberOfRows();
-		for(int i=0;i<rows;i++) {
+		for(int i=1;i<rows;i++) {
 			XSSFRow row = sheet.getRow(i);
 			if(row==null)
 				rows++;
@@ -182,7 +188,7 @@ public class Trashcan extends JDialog {
 	class MyActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			JButton b = (JButton)e.getSource();
-			if(b.getText().equals("¿µ±¸ »èÁ¦")){
+			if(b.getText().equals("å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™")){
 				
 				for(int i=0;i<model.getRowCount();i++) {
 					if(Table.getModel().getValueAt(i, 0).equals(true)) {
@@ -203,17 +209,23 @@ public class Trashcan extends JDialog {
 			}
 			
 			else {
-				int index;
 				for(int i=0;i<model.getRowCount();i++) {
 					if(Table.getModel().getValueAt(i, 0).equals(true)) {
+						int index=0;
 						String Subject = Table.getModel().getValueAt(i, 1).toString();
 						FileInputStream fis2;
 						FileOutputStream fos2;
+						
+						while(sheet.getRow(index)==null || !sheet.getRow(index).getCell(0).equals(Table.getModel().getValueAt(i, 1))) 
+							index++;
 						String[] data= {Table.getModel().getValueAt(i, 1).toString(),
 								Table.getModel().getValueAt(i, 2).toString(),
 								Table.getModel().getValueAt(i, 3).toString(),
 								Table.getModel().getValueAt(i, 4).toString(),
-								Table.getModel().getValueAt(i, 5).toString()};
+								Table.getModel().getValueAt(i, 5).toString(),
+								sheet.getRow(index).getCell(5).toString()};
+						sheet.removeRow(sheet.getRow(index));
+
 						try {
 							fis2 = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+Subject+".xlsx");
 							XSSFWorkbook workbook2 = new XSSFWorkbook(fis2);
@@ -221,13 +233,11 @@ public class Trashcan extends JDialog {
 							index=0;
 							while(true) {
 								XSSFRow row = sheet2.getRow(index);
-								System.out.println(row);
-								XSSFCell cell;
 								if(row!=null)
 									index++;
 								else {
 									row = sheet2.createRow(index);
-									for(int z=0;z<5;z++) 
+									for(int z=0;z<6;z++) 
 										row.createCell(z).setCellValue(data[z]);
 									break;
 								}
@@ -239,11 +249,6 @@ public class Trashcan extends JDialog {
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						} 
-						
-						index=0;
-						while(sheet.getRow(index)==null || !sheet.getRow(index).getCell(0).equals(Table.getModel().getValueAt(i, 1))) 
-							index++;
-						sheet.removeRow(sheet.getRow(index));	
 					}
 				}
 				try {
@@ -259,5 +264,4 @@ public class Trashcan extends JDialog {
 		}	
 	}
 }
-
 
