@@ -188,15 +188,15 @@ class Add_Change_Panel extends JPanel{
 	}
 	
 	public Add_Change_Panel(ToDoList_Main win, String PanelName) {
-		Title_Label = new JLabel("수강 과목 등록");
-		Title_Label.setFont(TitleFont);
-		Title_Label.setForeground(MainColor);
-		Title_Label.setBounds(240,40,400,60);
-		add(Title_Label);
-		
-		showPanel(win);
-		
-		
+		if(PanelName == "Add_Panel") {
+			Title_Label = new JLabel("수강 과목 등록");
+			Title_Label.setFont(TitleFont);
+			Title_Label.setForeground(MainColor);
+			Title_Label.setBounds(240,40,400,60);
+			add(Title_Label);
+			
+			showPanel(win);	
+		}
 	}
 	
 	public void setRowNum(int RowNum) {
@@ -753,7 +753,7 @@ class Mainpage extends JPanel{
 						//To Do List 엑셀 삭제 
 						RemoveFile(FilePath2, sheet.getRow(rows).getCell(0).getStringCellValue());
 						
-						//선택한 과목의 Row 초기화 (Subject_List.xlsx)
+						//선택한 과목의 Row ""으로 초기화 (Subject_List.xlsx)
 						row.getCell(0).setCellValue("");
 						row.getCell(1).setCellValue("");
 						row.getCell(2).setCellValue("");
@@ -762,15 +762,17 @@ class Mainpage extends JPanel{
 						row.getCell(5).setCellValue("");
 					}
 					
-					
-					sortExcel SE = new sortExcel(FilePath, "Subject_List.xlsx");
-					//
-					
-						
+					// 공백으로 만들고 파일 닫기
 					outFile = new FileOutputStream(FilePath + "Subject_List.xlsx");
 					workbook.write(outFile);	
 					outFile.close();
 					workbook.close();
+					
+					
+					// 공백 정렬
+					sortExcel SE = new sortExcel(FilePath, "Subject_List.xlsx");	
+					
+					
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				} 	
@@ -796,7 +798,7 @@ class Mainpage extends JPanel{
 		public void mouseClicked(MouseEvent e) {
 			JTable t = (JTable)e.getSource();
 			if(e.getClickCount() == 2) {
-				TableModel m = t.getModel();
+				//TableModel m = t.getModel();
 				Point pt = e.getPoint();
 				int r = t.rowAtPoint(pt);
 				int c = t.columnAtPoint(pt);
@@ -814,31 +816,33 @@ class Mainpage extends JPanel{
 class sortExcel{
 	sortExcel(String FilePath, String FileName){
 		try {	
-			FileInputStream inputStream = new FileInputStream(FilePath + FileName );
+			FileInputStream inputStream = new FileInputStream(FilePath + FileName);
 			XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 			Sheet sheet = workbook.getSheetAt(0);
-			int rows=0;
 			Row row; 
 			Row NextRow = sheet.getRow(0);
 			Cell NextCell = NextRow.getCell(0);
 			NextCell = NextRow.getCell(0);
 		
-		
+			System.out.println("엑셀 정렬 시작");
 			// Subject_List.xlsx 정리
 			// 엑셀 파일 순회
-			int	NextRowNum=0;
 			Cell cell;
 			for(int searchRow = 1; searchRow < sheet.getPhysicalNumberOfRows();searchRow++) {
 				row = sheet.getRow(searchRow);
 				cell = row.getCell(0);
 				// Row의 첫번째 Cell이 공백이면 다음 공백이 아닌 Row 찾기
+				System.out.println("cell : " + cell.getStringCellValue());
+				
 				if (cell.getStringCellValue() == ""){
-					for(NextRowNum = searchRow; NextRowNum < sheet.getPhysicalNumberOfRows(); NextRowNum++) {
+					System.out.println("공백 row 발견");
+					for(int NextRowNum = searchRow; NextRowNum < sheet.getPhysicalNumberOfRows(); NextRowNum++) {
 						// 공백일 경우 다음 공백이 아닌 셀 찾기
 						NextRow = sheet.getRow(NextRowNum);
 						NextCell = NextRow.getCell(0);
 						if(NextCell.getStringCellValue() != "") {
 							// 다음 공백이 아닌 셀을 공백이였던 셀로 이동
+							System.out.println("공백이 아닌 다음 row 발견 후 이동");
 							for(int r = 0; r <row.getPhysicalNumberOfCells(); r++) {
 								NextCell = NextRow.getCell(r);
 								row.getCell(r).setCellValue(NextCell.getStringCellValue());
@@ -878,7 +882,7 @@ public class ToDoList_Main extends JFrame{
 	public Add_Change_Panel CP = null;
 	public Mainpage MP = null;
 	public Login Log = null;
-	public Trashcan TC = null;
+	//public Trashcan TC = null;
 	public ShowAll_Todo SA = null;
 	public Todolist TD = null;
 	
