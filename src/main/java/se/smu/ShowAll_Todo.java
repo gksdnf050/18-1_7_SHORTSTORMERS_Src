@@ -161,7 +161,7 @@ public class ShowAll_Todo extends JFrame {
 					
 						
 
-						for (int r = 0; r < rows; r++) {
+						for (int r = 1; r < rows; r++) { // 파일의 두번째줄부터 불러옴
 
 							row = sheet.getRow(r); // row 가져오기
 
