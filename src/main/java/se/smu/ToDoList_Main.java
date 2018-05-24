@@ -666,7 +666,7 @@ class Mainpage extends JPanel{
 	}
 	
 	// 등록, 수정, 삭제 , 휴지통 버튼 ActionListener
-	class RegActionListener extends JFrame implements ActionListener{
+	class RegActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			RefreshSubjectExel();
 			
@@ -676,7 +676,7 @@ class Mainpage extends JPanel{
 		}
 	}
 	
-	class ChangeActionListener extends JFrame implements ActionListener{
+	class ChangeActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			int SelectedNum = 0;
 			int SelectedRowNum = 0;
@@ -706,7 +706,7 @@ class Mainpage extends JPanel{
 			}
 		}
 	}
-	class DeleteActionListener extends JFrame implements ActionListener{
+	class DeleteActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			RefreshSubjectExel();
 
@@ -742,10 +742,6 @@ class Mainpage extends JPanel{
 					int rows=0;
 					Iterator <Integer> it = SelectedRowNum.iterator();
 					Row row; 
-					Row NextRow = sheet.getRow(0);
-					Cell NextCell = NextRow.getCell(0);
-					NextCell = NextRow.getCell(0);
-					
 					while(it.hasNext()) {
 						rows = it.next().intValue()+1;
 						row = sheet.getRow(rows);
@@ -770,8 +766,8 @@ class Mainpage extends JPanel{
 					
 					
 					// 공백 정렬
-					sortExcel SE = new sortExcel(FilePath, "Subject_List.xlsx");	
-					
+					sortExcel SE = new sortExcel();	
+					SE.sort(FilePath, "Subject_List.xlsx");
 					
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -784,10 +780,11 @@ class Mainpage extends JPanel{
 	class TrashcanActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			Trashcan TC = new Trashcan();
+			TC.setVisible(true);
 		}
 	}
 	
-	class ShowAllActionListener extends JFrame implements ActionListener{
+	class ShowAllActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			win.change("ShowAll_Todo");
 		}
@@ -814,7 +811,7 @@ class Mainpage extends JPanel{
 }
 
 class sortExcel{
-	sortExcel(String FilePath, String FileName){
+	void sort(String FilePath, String FileName) {
 		try {	
 			FileInputStream inputStream = new FileInputStream(FilePath + FileName);
 			XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
@@ -823,8 +820,6 @@ class sortExcel{
 			Row NextRow = sheet.getRow(0);
 			Cell NextCell = NextRow.getCell(0);
 			NextCell = NextRow.getCell(0);
-		
-			System.out.println("엑셀 정렬 시작");
 			// Subject_List.xlsx 정리
 			// 엑셀 파일 순회
 			Cell cell;
@@ -873,6 +868,7 @@ class sortExcel{
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} 	
+		
 	}
 }
 
@@ -882,7 +878,6 @@ public class ToDoList_Main extends JFrame{
 	public Add_Change_Panel CP = null;
 	public Mainpage MP = null;
 	public Login Log = null;
-	//public Trashcan TC = null;
 	public ShowAll_Todo SA = null;
 	public Todolist TD = null;
 	
