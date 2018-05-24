@@ -1,25 +1,11 @@
 package se.smu;
 
-import java.io.File;  
-import java.io.FileInputStream;  
-import java.io.FileNotFoundException;  
+ 
+import java.io.FileInputStream;   
 import java.io.FileOutputStream;  
-import java.io.IOException;
-
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFColor;
-import org.apache.poi.xssf.usermodel.XSSFFont;
-import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +14,7 @@ import java.awt.*;
 
 public class Register_Todolist extends JFrame{
 	String[] Todo = {"","","",""};	
-	String[] data = {"","","","",""};
+	String[] data = {"","","","","",""};
 	String Subject_Name;
 	private Todolist TD;
 	
@@ -132,7 +118,7 @@ public class Register_Todolist extends JFrame{
        JLabel IsDone_Label = new JLabel("�Ϸ� ���� ");
        IsDone_Label.setFont(new Font("�������",Font.BOLD,15));
        this.add(IsDone_Label);
-       String[] Done = {"�غ�","����","�Ϸ�"};
+       String[] Done = {"준비","진행","완료"};
        JComboBox Done_Combo = new JComboBox(Done);
        this.add(Done_Combo);
        
@@ -184,7 +170,7 @@ public class Register_Todolist extends JFrame{
     	   			data[1] = new String(Todo[2]+"��" + Todo[3]+"��");
     	   			data[2] = Todo_text.getText();
     	   			boolean Done = Boolean.FALSE;
-    	   			
+    	   			data[5] = Subject_Name;
     			
     				if(data[0].equals("") || data[1].equals("") || data[2].equals("") || data[3].equals("") ||data[4].equals("") ) {
     					JOptionPane.showMessageDialog(null , "�ʼ� �Է� �����Դϴ�.", "�˸�", JOptionPane.INFORMATION_MESSAGE);
@@ -199,7 +185,7 @@ public class Register_Todolist extends JFrame{
 						
 						try {
     	   		
-							FileInputStream fis = new FileInputStream("C:\\Users\\Public\\Book1.xlsx");
+							FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
 							XSSFWorkbook workbook = new XSSFWorkbook(fis);
 							Sheet sheet = workbook.getSheetAt(0);
     	   			
@@ -208,15 +194,16 @@ public class Register_Todolist extends JFrame{
 							Row row = sheet.createRow(rows);
     	   			
 			
-	   			
-							row.createCell(0).setCellValue(data[2]);   	   		
-							row.createCell(1).setCellValue(data[0]);   	   			
-							row.createCell(2).setCellValue(data[1]);	   			
-							row.createCell(3).setCellValue(data[3]);
-							row.createCell(4).setCellValue(data[4]);
+							row.createCell(0).setCellValue(data[5]);
+							row.createCell(1).setCellValue(data[2]);   	   		
+							row.createCell(2).setCellValue(data[0]);   	   			
+							row.createCell(3).setCellValue(data[1]);	   			
+							row.createCell(4).setCellValue(data[3]);
+							row.createCell(5).setCellValue(data[4]);
+							
 
     	   			 
-    	   				FileOutputStream fos = new FileOutputStream("C:\\Users\\Public\\Book1.xlsx");
+    	   				FileOutputStream fos = new FileOutputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
     	   				workbook.write(fos);    
     	   				fos.close();
     	   				fis.close();
@@ -275,8 +262,6 @@ public class Register_Todolist extends JFrame{
     	   	TD.setVisible(true);
     	   	  }
     	  });
- 
- 
  
  }
 }

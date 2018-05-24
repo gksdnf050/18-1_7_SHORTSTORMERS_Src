@@ -1,26 +1,12 @@
 package se.smu;
 
 
-import java.io.File;  
+
 import java.io.FileInputStream;  
-import java.io.FileNotFoundException;  
 import java.io.FileOutputStream;  
-import java.io.IOException;
-
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFColor;
-import org.apache.poi.xssf.usermodel.XSSFFont;
-import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
@@ -29,31 +15,31 @@ import java.awt.*;
 
 public class Change_Todolist extends JFrame{
 	String[] Todo = {"","","",""};	
-	String[] data = {"","","","",""};
-	public String Subject_Name;
+	String[] data = {"","","","","",""};
+	String Subject_Name;
 	
 	
-	Change_Todolist(final int SelectedRowNum,final String[] data){
-   
+	Change_Todolist(final int SelectedRowNum,final String[] data,final String Subject_Name){
+		this.Subject_Name = Subject_Name;
     
        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      
-       JLabel Title_Label = new JLabel("To Do ¼öÁ¤");
-       Title_Label.setFont(new Font("HY°ß°íµñ",Font.BOLD,30));
+       JLabel Title_Label = new JLabel("To Do ï¿½ï¿½ï¿½ï¿½");
+       Title_Label.setFont(new Font("HYï¿½ß°ï¿½ï¿½",Font.BOLD,30));
        this.add(Title_Label);
        
        
-       JLabel Todo_Label = new JLabel("To do ¸í :");
-       Todo_Label.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
+       JLabel Todo_Label = new JLabel("To do ï¿½ï¿½ :");
+       Todo_Label.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,15));
        this.add(Todo_Label);
-       final JTextField Todo_text = new JTextField("ÀÔ·ÂÇØÁÖ¼¼¿ä");
+       final JTextField Todo_text = new JTextField("ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
        this.add(Todo_text);
              
     	 
 
        
-       JLabel Deadline_Label = new JLabel("¸¶°¨ ±âÇÑ :");
-       Deadline_Label.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
+       JLabel Deadline_Label = new JLabel("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ :");
+       Deadline_Label.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,15));
        this.add(Deadline_Label);
        String[] Dead_mon = {"1","2","3","4","5","6","7","8","9","10","11","12"};
        JComboBox Month_combo = new JComboBox(Dead_mon);
@@ -68,8 +54,8 @@ public class Change_Todolist extends JFrame{
        
        
        
-       JLabel Month_Label = new JLabel("¿ù");
-       Month_Label.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
+       JLabel Month_Label = new JLabel("ï¿½ï¿½");
+       Month_Label.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,15));
        this.add(Month_Label);
        
        
@@ -89,13 +75,13 @@ public class Change_Todolist extends JFrame{
        
        
        
-       JLabel day_Label = new JLabel("ÀÏ");
-       day_Label.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
+       JLabel day_Label = new JLabel("ï¿½ï¿½");
+       day_Label.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,15));
        this.add(day_Label);
        
        
-       JLabel Actual_Label = new JLabel("½ÇÁ¦ ¸¶°¨ÀÏ :");
-       Actual_Label.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
+       JLabel Actual_Label = new JLabel("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ :");
+       Actual_Label.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,15));
        this.add(Actual_Label);
        String[] Actual_mon = {"1","2","3","4","5","6","7","8","9","10","11","12"};
        JComboBox Month_Combo2 = new JComboBox(Actual_mon);
@@ -108,8 +94,8 @@ public class Change_Todolist extends JFrame{
        });
        
        this.add(Month_Combo2);
-       JLabel Month_Label2 = new JLabel("¿ù");
-       Month_Label2.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
+       JLabel Month_Label2 = new JLabel("ï¿½ï¿½");
+       Month_Label2.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,15));
        this.add(Month_Label2);
        
        String[] Actual_day = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23",
@@ -124,15 +110,15 @@ public class Change_Todolist extends JFrame{
             	   };
                });
        
-       JLabel day_Label2 = new JLabel("ÀÏ");
-       day_Label2.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
+       JLabel day_Label2 = new JLabel("ï¿½ï¿½");
+       day_Label2.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,15));
        this.add(day_Label2);
        
        
-       JLabel IsDone_Label = new JLabel("¿Ï·á ¿©ºÎ ");
-       IsDone_Label.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
+       JLabel IsDone_Label = new JLabel("ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ ");
+       IsDone_Label.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,15));
        this.add(IsDone_Label);
-       String[] Done = {"ÁØºñ","ÁøÇà","¿Ï·á"};
+       String[] Done = {"ì¤€ë¹„","ì§„í–‰","ì™„ë£Œ"};
        JComboBox Done_Combo = new JComboBox(Done);
        this.add(Done_Combo);
        
@@ -143,8 +129,8 @@ public class Change_Todolist extends JFrame{
     	   };
        });
        
-       JLabel Import_Label = new JLabel("Áß¿äµµ ");
-       Import_Label.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
+       JLabel Import_Label = new JLabel("ï¿½ß¿äµµ ");
+       Import_Label.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,15));
        this.add(Import_Label);
        String[] Import = {"1", "2", "3" };
        JComboBox Import_Combo = new JComboBox(Import);
@@ -158,14 +144,14 @@ public class Change_Todolist extends JFrame{
        });
        
 
-       JButton Done_Button = new JButton("¼öÁ¤ ¿Ï·á");
-       JButton Cancel_Button = new JButton("Ãë¼Ò");
+       JButton Done_Button = new JButton("ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½");
+       JButton Cancel_Button = new JButton("ï¿½ï¿½ï¿½");
        this.add(Done_Button);
        this.add(Cancel_Button);
        Done_Button.setBackground(Color.white);
-       Done_Button.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,20));
+       Done_Button.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,20));
        Cancel_Button.setBackground(Color.white);
-       Cancel_Button.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,20));
+       Cancel_Button.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,20));
        
     
       
@@ -175,18 +161,19 @@ public class Change_Todolist extends JFrame{
    	   		 
    	   		UIManager UI =new UIManager();
 			Color navy = new Color(0,32,96);
-			Font message = new Font("¸¼Àº °íµñ",Font.BOLD,20);
+			Font message = new Font("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½",Font.BOLD,20);
 			UI.put("OptionPane.messageForeground", navy);
 			UI.put("OptionPane.messageFont", message);
 					
-			data[0] = new String(Todo[0]+"¿ù" + Todo[1]+"ÀÏ");
-   			data[1] = new String(Todo[2]+"¿ù" + Todo[3]+"ÀÏ");
+			data[0] = new String(Todo[0]+"ï¿½ï¿½" + Todo[1]+"ï¿½ï¿½");
+   			data[1] = new String(Todo[2]+"ï¿½ï¿½" + Todo[3]+"ï¿½ï¿½");
    			data[2] = Todo_text.getText();
    			boolean change = Boolean.FALSE;
    			
+   			
 		
 			if(data[0].equals("") || data[1].equals("") || data[2].equals("") || data[3].equals("") ||data[4].equals("")) {
-				JOptionPane.showMessageDialog(null , "ÇÊ¼ö ÀÔ·Â »çÇ×ÀÔ´Ï´Ù.", "¾Ë¸²", JOptionPane.INFORMATION_MESSAGE);    					
+				JOptionPane.showMessageDialog(null , "ï¿½Ê¼ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.", "ï¿½Ë¸ï¿½", JOptionPane.INFORMATION_MESSAGE);    					
 				
 			}
 			else change = Boolean.TRUE;
@@ -194,23 +181,24 @@ public class Change_Todolist extends JFrame{
 		if(change == Boolean.TRUE) {						
 						try {
    	   		
-							FileInputStream fis = new FileInputStream("C:\\Users\\Public\\Book1.xlsx");
+							FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
 							XSSFWorkbook workbook = new XSSFWorkbook(fis);
 							Sheet sheet = workbook.getSheetAt(0);
    	   			
 
-							int rows = SelectedRowNum;
+							int rows = SelectedRowNum+1;
 							Row row = sheet.createRow(rows);
 							
 			
-							row.createCell(0).setCellValue(data[2]);   	   		
-							row.createCell(1).setCellValue(data[0]);   	   			
-							row.createCell(2).setCellValue(data[1]);	   			
-							row.createCell(3).setCellValue(data[3]);
-							row.createCell(4).setCellValue(data[4]);
+							row.createCell(0).setCellValue(Subject_Name);
+							row.createCell(1).setCellValue(data[2]);   	   		
+							row.createCell(2).setCellValue(data[0]);   	   			
+							row.createCell(3).setCellValue(data[1]);	   			
+							row.createCell(4).setCellValue(data[3]);
+							row.createCell(5).setCellValue(data[4]);
 
    	   			
-							FileOutputStream fos = new FileOutputStream("C:\\Users\\Public\\Book1.xlsx");
+							FileOutputStream fos = new FileOutputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
 							workbook.write(fos);    
 							fos.close();
 							fis.close();
@@ -269,4 +257,4 @@ public class Change_Todolist extends JFrame{
  
 
  }
-} 
+}
