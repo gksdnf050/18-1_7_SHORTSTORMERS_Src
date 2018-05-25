@@ -33,15 +33,15 @@ public class ShowAll_Todo extends JFrame {
 
     ToDoList_Main win;
     
-    //////////¸É¹ö ÇÊµå
+    //////////ï¿½É¹ï¿½ ï¿½Êµï¿½
     
     private JLabel Title_Label;
     private JTable tableArea;
     private JScrollPane scrollArea;
     
-    //////////UI¸É¹ö ÇÊµå
+    //////////UIï¿½É¹ï¿½ ï¿½Êµï¿½
     
-    public ShowAll_Todo(ToDoList_Main win) {//»ý¼ºÀÚ
+    public ShowAll_Todo(ToDoList_Main win) {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     	this.win = win;
     	setSize(750,650);
     	    
@@ -51,44 +51,44 @@ public class ShowAll_Todo extends JFrame {
     	JPanel Table = new JPanel();
     	
     	////////////////////////////////////////////////////////////Title Label
-    	Title_Label=new JLabel("ÀüÃ¼ TO do LIST");
-    	Title_Label.setFont(new Font("HY°ß°íµñ",Font.BOLD,30));
+    	Title_Label=new JLabel("ï¿½ï¿½Ã¼ TO do LIST");
+    	Title_Label.setFont(new Font("HYï¿½ß°ï¿½ï¿½",Font.BOLD,30));
     	Title_Label.setForeground(new Color(0,32,96));
     	Label.add(Title_Label);
     	add(Label);
     	Label.setBounds(220,70,300,50);
     	
     	////////////////////////////////////////////////////////////TableArea
-    	String ColumnNames[] = {"°ú¸ñ","TO do","¸¶°¨ ±âÇÑ","½ÇÁ¦ ¸¶°¨ÀÏ","¿Ï·á ¿©ºÎ"};
+    	String ColumnNames[] = {"ï¿½ï¿½ï¿½ï¿½","TO do","ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½"};
     	
     	
-    	DefaultTableModel model = new DefaultTableModel(ColumnNames,0) { // table ³»¿ë ¼öÁ¤ ºÒ°¡
+    	DefaultTableModel model = new DefaultTableModel(ColumnNames,0) { // table ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½
     		 public boolean isCellEditable(int rowIndex, int mColIndex) {
     	        	return false;
     	        }
     	};
     	tableArea = new JTable(model);
-    	scrollArea = new JScrollPane(tableArea,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); //½ºÅ©·Ñ Ãß°¡
+    	scrollArea = new JScrollPane(tableArea,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); //ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ß°ï¿½
     	
     	
-    	scrollArea.setPreferredSize(new Dimension(650,400)); // table Å©±âÁöÁ¤ 
+    	scrollArea.setPreferredSize(new Dimension(650,400)); // table Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
     	Table.setBounds(0,150,735,500); 
     	
-        tableArea.getTableHeader().setReorderingAllowed(false); // table ¼Ó¼ºµé ÀÌµ¿ ±ÝÁö
+        tableArea.getTableHeader().setReorderingAllowed(false); // table ï¿½Ó¼ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
         
-        tableArea.setAutoCreateRowSorter(true); // ÄÃ·³ Á¤·ÄÇÏ±â ±â´É  
+        tableArea.setAutoCreateRowSorter(true); // ï¿½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½  
         
-        JTableHeader header = tableArea.getTableHeader(); // Çì´õ »ö»ó ÁöÁ¤
+        JTableHeader header = tableArea.getTableHeader(); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         header.setBackground(new Color(0,32,96));
         header.setForeground(Color.white); 
         
-        header.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
-        tableArea.setFont(new Font("¸¼Àº°íµñ",Font.PLAIN,15)); //Çì´õ¿Í °¢ ¼¿ ÆùÆ®¿Í Å©±â¼³Á¤
+        header.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,15));
+        tableArea.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.PLAIN,15)); //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ Å©ï¿½â¼³ï¿½ï¿½
         
-        header.setPreferredSize(new Dimension(100,30)); // Çì´õ³ôÀÌÁ¶Àý
-        tableArea.setRowHeight(30); // ¼¿³ôÀÌÁ¶Àý
+        header.setPreferredSize(new Dimension(100,30)); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        tableArea.setRowHeight(30); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         
-        tableArea.getColumnModel().getColumn(0).setPreferredWidth(100); // ¼¿³ÊºñÁ¶Àý
+        tableArea.getColumnModel().getColumn(0).setPreferredWidth(100); // ï¿½ï¿½ï¿½Êºï¿½ï¿½ï¿½ï¿½ï¿½
         tableArea.getColumnModel().getColumn(1).setPreferredWidth(150);
         tableArea.getColumnModel().getColumn(2).setPreferredWidth(50);
         tableArea.getColumnModel().getColumn(3).setPreferredWidth(50);
@@ -96,7 +96,7 @@ public class ShowAll_Todo extends JFrame {
         
        
         
-        DefaultTableCellRenderer CR = new DefaultTableCellRenderer(); // ¼¿ °¡¿îµ¥ Á¤·Ä
+        DefaultTableCellRenderer CR = new DefaultTableCellRenderer(); // ï¿½ï¿½ ï¿½ï¿½ï¿½îµ¥ ï¿½ï¿½ï¿½ï¿½
         CR.setHorizontalAlignment(SwingConstants.CENTER);
         TableColumnModel CM = tableArea.getColumnModel();
         for(int i =0; i<CM.getColumnCount(); i++) {
@@ -106,13 +106,13 @@ public class ShowAll_Todo extends JFrame {
         Table.add(scrollArea);
         add(Table);
     	
-        /////////////////////////////////////////////////////////////////¿¢¼¿ÆÄÀÏÀÔÃâ·Â
-		String folder="./Subject_Dir/ToDolist_Dir/"; //ÀÐÀ» Æú´õ¸í ¼¼ÆÃ
-		String file_name; // ÀÐÀ» ÆÄÀÏÀÌ¸§
+        /////////////////////////////////////////////////////////////////ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		String folder="./Subject_Dir/ToDolist_Dir/"; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		String file_name; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½
 		File file=new File(folder);
 		
 		if(!file.isDirectory()) {
-			System.out.println("ÇØ´çµð·ºÅä¸®°¡ ¾ø½À´Ï´Ù");
+			System.out.println("ï¿½Ø´ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½");
 			System.exit(1);
 		}
 		
@@ -120,7 +120,7 @@ public class ShowAll_Todo extends JFrame {
 		
 		for(File f:list) {
 			
-			if(f.isFile() && !f.getName().equals("Trashcan.xlsx")) { // ÈÞÁöÅëÀº Á¦¿Ü
+			if(f.isFile() && !f.getName().equals("Trashcan.xlsx")) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				
 				file_name=f.getName();
 			
@@ -132,7 +132,7 @@ public class ShowAll_Todo extends JFrame {
 					XSSFWorkbook wb = new XSSFWorkbook(inputStream);
 					
 
-					//sheet¼ö Ãëµæ
+					//sheetï¿½ï¿½ ï¿½ï¿½ï¿½
 
 					int sheetCn = wb.getNumberOfSheets();
 
@@ -143,27 +143,27 @@ public class ShowAll_Todo extends JFrame {
 					for(int cn = 0; cn < sheetCn; cn++){
 
 
-						//0¹øÂ° sheet Á¤º¸ Ãëµæ
+						//0ï¿½ï¿½Â° sheet ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
 						XSSFSheet sheet = wb.getSheetAt(cn);
 
 						
 
-						//ÃëµæµÈ sheet¿¡¼­ rows¼ö Ãëµæ
+						//ï¿½ï¿½ï¿½ï¿½ sheetï¿½ï¿½ï¿½ï¿½ rowsï¿½ï¿½ ï¿½ï¿½ï¿½
 
 						int rows = sheet.getPhysicalNumberOfRows();
 
 						
 
-						//ÃëµæµÈ row¿¡¼­ Ãëµæ´ë»ó cell¼ö Ãëµæ
+						//ï¿½ï¿½ï¿½ï¿½ rowï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ cellï¿½ï¿½ ï¿½ï¿½ï¿½
 
 						int cells = sheet.getRow(cn).getPhysicalNumberOfCells(); 
 					
 						
 
-						for (int r = 1; r < rows; r++) { // ÆÄÀÏÀÇ µÎ¹øÂ°ÁÙºÎÅÍ ºÒ·¯¿È
+						for (int r = 1; r < rows; r++) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¹ï¿½Â°ï¿½Ùºï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½
 
-							row = sheet.getRow(r); // row °¡Á®¿À±â
+							row = sheet.getRow(r); // row ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 							if (row != null) {
 
@@ -203,7 +203,7 @@ public class ShowAll_Todo extends JFrame {
 
 										case XSSFCell.CELL_TYPE_BLANK:
 
-											value = "[null ¾Æ´Ñ °ø¹é]";
+											value = "[null ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½]";
 
 											break;
 
@@ -242,14 +242,14 @@ public class ShowAll_Todo extends JFrame {
 									break;
 									}
 
-								} // for(c) ¹®
+								} // for(c) ï¿½ï¿½
 
 								
 								System.out.print("\n");
 
 							}
 
-						} // for(r) ¹®
+						} // for(r) ï¿½ï¿½
 
 					}
 
@@ -258,27 +258,17 @@ public class ShowAll_Todo extends JFrame {
 					e.printStackTrace();
 
 				}
-			} // if(ÆÄÀÏÀÏ°æ¿ì)
+			} // if(ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½)
 		} // for(f)
 
 		setVisible(false);	
     
 
-        this.addWindowListener(new WindowAdapter(){ //µµ±¸Ã¢ÀÇ xÇ¥½Ã´©¸¥ÈÄ ¸ÞÀÎÆäÀÌÁö ÀÌµ¿
+        this.addWindowListener(new WindowAdapter(){ //ï¿½ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ xÇ¥ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
             public void windowClosing(WindowEvent e) { 
-            	ToDoList_Main test = new ToDoList_Main();
+            	Back test = new Back();
+            	test.back();
             	
-            	test.setTitle("To Do List Program");
-            	test.Log = new Login(test);
-            	test.AP = new Add_Change_Panel(test, "Add_Panel");
-            	test.MP = new Mainpage(test);
-            	
-            	test.add(test.MP);
-            	test.MP.RefreshSubjectTable();
-            	test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            test.setSize(650, 750);
-            test.setVisible(true);
-            test.setResizable(false);
             }
         });
     }

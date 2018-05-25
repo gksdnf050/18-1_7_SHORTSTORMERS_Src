@@ -1,10 +1,5 @@
 package se.smu;
 
-
-
-
-
-
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -12,9 +7,7 @@ import javax.swing.table.TableRowSorter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import java.io.FileInputStream;  
-import java.io.FileNotFoundException;  
 import java.io.FileOutputStream;  
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.Vector;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -23,6 +16,23 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
 
+class Back {
+	public void back() {
+	ToDoList_Main test = new ToDoList_Main();
+	
+	test.setTitle("To Do List Program");
+	test.Log = new Login(test);
+	test.AP = new Add_Change_Panel(test, "Add_Panel");
+	test.MP = new Mainpage(test);
+	
+	test.add(test.MP);
+	test.MP.RefreshSubjectTable();
+	test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+test.setSize(650, 750);
+test.setVisible(true);
+test.setResizable(false);
+	}
+}
 
 
 public class Todolist extends JFrame{
@@ -33,9 +43,7 @@ public class Todolist extends JFrame{
 	private JButton Delete_Button;
 	private JButton Change_Button;
 	
-	
-	  
-    private Cell cell;  
+	private Cell cell;  
  
    	private JTable table; 
    	DefaultTableModel model;
@@ -43,10 +51,12 @@ public class Todolist extends JFrame{
    	public String[] column = {"V", "�� ��", "���� ����", "���� ������", "�Ϸ� ����", "�߿䵵"};
     public Object rowData[][];
     
-    // �߰� 
+    
     private String Subject_Name = new String();
     
+    
     public void HeaderSetting_2() {
+    	
     	chk = new JCheckBox();
 	    table.getColumn("V").setCellRenderer(dtcr1);	    
 	    table.getColumn("V").setCellEditor(new DefaultCellEditor(chk));
@@ -92,10 +102,16 @@ public class Todolist extends JFrame{
     }
     
     public void setSubject_Name(String Subject_Name) {
-    		this.Subject_Name = Subject_Name;
-    		
+    		this.Subject_Name = Subject_Name;    		
     }
+    
     public void Hiderender() {
+    	
+    	chk = new JCheckBox();
+	    table.getColumn("V").setCellRenderer(dtcr1);	    
+	    table.getColumn("V").setCellEditor(new DefaultCellEditor(chk));
+	    chk.setHorizontalAlignment(JLabel.CENTER);
+    	    
     	Hide_render myRenderer = new Hide_render();
    		myRenderer.setHorizontalAlignment(SwingConstants.CENTER);
    		
@@ -113,69 +129,93 @@ public class Todolist extends JFrame{
    		
    		TableColumn column5 = table.getColumnModel().getColumn(5); 
    		column5.setCellRenderer(myRenderer);
+   		
+   		table.getTableHeader().setFont(new Font("�������",Font.BOLD,15));
     }
-    
+    public void Showrender() {
+    	
+    	chk = new JCheckBox();
+	    table.getColumn("V").setCellRenderer(dtcr1);	    
+	    table.getColumn("V").setCellEditor(new DefaultCellEditor(chk));
+	    chk.setHorizontalAlignment(JLabel.CENTER);
+	    
+    	Show_render renderer = new Show_render();
+		renderer.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		TableColumn column = table.getColumnModel().getColumn(1); 
+		column.setCellRenderer(renderer);
+		
+		TableColumn column2 = table.getColumnModel().getColumn(2); 
+		column2.setCellRenderer(renderer);
+		
+		TableColumn column3 = table.getColumnModel().getColumn(3); 
+		column3.setCellRenderer(renderer);
+		
+		TableColumn column4 = table.getColumnModel().getColumn(4); 
+		column4.setCellRenderer(renderer);
+		
+		TableColumn column5 = table.getColumnModel().getColumn(5); 
+		column5.setCellRenderer(renderer);
+		
+		table.getTableHeader().setFont(new Font("�������",Font.BOLD,15));
+    }
     public void RefreshTable_1() {
 		
-		try {
-			DefaultTableModel model = new DefaultTableModel(rowData, column) {				
-				public boolean isCellEditable(int row, int column) {
-					if(column == 0) {
-						return true;
-					}
-					return false;
-				}
-			};
-			table.setModel(model);
-	
-			chk = new JCheckBox();
-		    table.getColumn("V").setCellRenderer(dtcr1);	    
-		    table.getColumn("V").setCellEditor(new DefaultCellEditor(chk));
-		    chk.setHorizontalAlignment(JLabel.CENTER);
-		    
-		    Hiderender();
-		    
-		  
-		    
-		    
-		    table.getTableHeader().setFont(new Font("�������",Font.BOLD,15));
-		    
-		    HeaderSetting();
-		 
-		
-		    table.setBackground(Color.WHITE);
-		    table.setAutoCreateRowSorter(true);
-		    TableRowSorter tablesorter = new TableRowSorter(table.getModel());
-		    table.setRowSorter(tablesorter);
-		
+    	table.setModel(model);
+    	DefaultTableModel model = new DefaultTableModel(rowData, column) {				
+    		public boolean isCellEditable(int row, int column) {
+    			if(column == 0) {
+    				return true;
+    			}
+    			return false;
+    		}
+    	};
+    	
+        table.setBackground(Color.WHITE);
+        
+      
 
-		    table.revalidate();
-		    table.repaint();
+        table.revalidate();
+        TableRowSorter tablesorter = new TableRowSorter(table.getModel());
+        table.setRowSorter(tablesorter);
+        table.repaint();
+        
+        table.setAutoCreateRowSorter(true);
+        
+        
+        Hiderender();   
+		HeaderSetting();
 		
-		    FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
+		try {
+	         FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
 	         XSSFWorkbook workbook = new XSSFWorkbook(fis);
 	         Sheet sheet = workbook.getSheetAt(0);
-	         int rows = sheet.getPhysicalNumberOfRows();         
-	         for(int i=1;i<rows;i++) {
-	            Row row = sheet.getRow(i);
+	         int rows = sheet.getPhysicalNumberOfRows();
 	         
+	         for(int i=1;i<rows;i++) {
+	            Row row = sheet.getRow(i); 	         
 	            if(row==null)
 	               rows++;
 	            else {
 	               Object[] ob = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
-	               model.addRow(ob);      	   
+	               model.addRow(ob);   
+	             
 	            }
-	   		}	
-	         fis.close();
-		} 
-		catch (Exception e) {			
-			e.printStackTrace();		
-		}		      
+
+	   		} 
+	       
+	      fis.close();
+	   	}
+	   	catch (Exception e){
+	   			e.printStackTrace();
+	   	} 
 	}
     
     public void RefreshTable_2() {
-	
-	try {
+    	table.setModel(model);
+	    table.setBackground(Color.WHITE);
+	    table.setAutoCreateRowSorter(true);
+    	
 		DefaultTableModel model = new DefaultTableModel(rowData, column) {				
 			public boolean isCellEditable(int row, int column) {
 				if(column == 0) {
@@ -184,117 +224,93 @@ public class Todolist extends JFrame{
 				return false;
 			}
 		};
-		table.setModel(model);
-
-		chk = new JCheckBox();
-	    table.getColumn("V").setCellRenderer(dtcr1);	    
-	    table.getColumn("V").setCellEditor(new DefaultCellEditor(chk));
-	    chk.setHorizontalAlignment(JLabel.CENTER);
-	    
-	    Show_render myRenderer2 = new Show_render();
-   		myRenderer2.setHorizontalAlignment(SwingConstants.CENTER);
-   		
-   		TableColumn column = table.getColumnModel().getColumn(1); 
-   		column.setCellRenderer(myRenderer2);
-   		
-   		TableColumn column2 = table.getColumnModel().getColumn(2); 
-   		column2.setCellRenderer(myRenderer2);
-   		
-   		TableColumn column3 = table.getColumnModel().getColumn(3); 
-   		column3.setCellRenderer(myRenderer2);
-   		
-   		TableColumn column4 = table.getColumnModel().getColumn(4); 
-   		column4.setCellRenderer(myRenderer2);
-   		
-   		TableColumn column5 = table.getColumnModel().getColumn(5); 
-   		column5.setCellRenderer(myRenderer2);
-   		
-	    
-	    
-	    table.getTableHeader().setFont(new Font("�������",Font.BOLD,15));
-	   
-	    HeaderSetting();
-	   
-	
-	    table.setBackground(Color.WHITE);
-	    table.setAutoCreateRowSorter(true);
+		
 	    TableRowSorter tablesorter = new TableRowSorter(table.getModel());
 	    table.setRowSorter(tablesorter);
 	
 
 	    table.revalidate();
 	    table.repaint();
-	
-	    FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
-         XSSFWorkbook workbook = new XSSFWorkbook(fis);
-         Sheet sheet = workbook.getSheetAt(0);
-         int rows = sheet.getPhysicalNumberOfRows();         
-         for(int i=1;i<rows;i++) {
-            Row row = sheet.getRow(i);
-         
-            if(row==null)
-               rows++;
-            else {
-               Object[] ob = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
-               model.addRow(ob);      	   
-            }
-   		}	
-         fis.close();
-	} 
-	catch (Exception e) {			
-		e.printStackTrace();		
-	}		      
+    
+	    Showrender();
+	    HeaderSetting();
+	    
+	    try {
+ 	         FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
+ 	         XSSFWorkbook workbook = new XSSFWorkbook(fis);
+ 	         Sheet sheet = workbook.getSheetAt(0);
+ 	         int rows = sheet.getPhysicalNumberOfRows();
+ 	         
+ 	         for(int i=1;i<rows;i++) {
+ 	            Row row = sheet.getRow(i); 	         
+ 	            if(row==null)
+ 	               rows++;
+ 	            else {
+ 	               Object[] ob = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
+ 	               model.addRow(ob);   
+ 	             
+ 	            }
+
+ 	   		} 
+ 	       
+ 	      fis.close();
+ 	   	}
+ 	   	catch (Exception e){
+ 	   			e.printStackTrace();
+ 	   	} 
+	    
+	    
 }
 
     public void RefreshTable() {
-		
-		try {
-			DefaultTableModel model = new DefaultTableModel(rowData, column) {				
-				public boolean isCellEditable(int row, int column) {
-					if(column == 0) {
-						return true;
-					}
-					return false;
+    	table.setBackground(Color.WHITE);
+	    table.setAutoCreateRowSorter(true);
+    	DefaultTableModel model = new DefaultTableModel(rowData, column) {				
+			public boolean isCellEditable(int row, int column) {
+				if(column == 0) {
+					return true;
 				}
-			};
-			table.setModel(model);
-			
-			HeaderSetting_2();
+				return false;
+			}
+		};
+		table.setModel(model);
+		
+	    
 
-		    HeaderSetting();
-		   
+	    table.revalidate();
+	    table.repaint();
 		
-		    table.setBackground(Color.WHITE);
-		    table.setAutoCreateRowSorter(true);
-		    TableRowSorter tablesorter = new TableRowSorter(table.getModel());
-		    table.setRowSorter(tablesorter);
-		
+	    TableRowSorter tablesorter = new TableRowSorter(table.getModel());
+	    table.setRowSorter(tablesorter);
+		    
+		HeaderSetting_2();
+		HeaderSetting();
+		    try {
+	  	         FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
+	  	         XSSFWorkbook workbook = new XSSFWorkbook(fis);
+	  	         Sheet sheet = workbook.getSheetAt(0);
+	  	         int rows = sheet.getPhysicalNumberOfRows();
+	  	         
+	  	         for(int i=1;i<rows;i++) {
+	  	            Row row = sheet.getRow(i); 	         
+	  	            if(row==null)
+	  	               rows++;
+	  	            else {
+	  	               Object[] ob = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
+	  	               model.addRow(ob);   
+	  	             
+	  	            }
 
-		    table.revalidate();
-		    table.repaint();
-		
-		    FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
-	         XSSFWorkbook workbook = new XSSFWorkbook(fis);
-	         Sheet sheet = workbook.getSheetAt(0);
-	         int rows = sheet.getPhysicalNumberOfRows();         
-	         for(int i=1;i<rows;i++) {
-	            Row row = sheet.getRow(i);
-	         
-	            if(row==null)
-	               rows++;
-	            else {
-	               Object[] ob = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
-	               model.addRow(ob);      	   
-	            }
-	   		}	
-	         fis.close();
-		} 
-		catch (Exception e) {			
-			e.printStackTrace();		
-		}		      
+	  	   		} 
+	  	       
+	  	      fis.close();
+	  	   	}
+	  	   	catch (Exception e){
+	  	   			e.printStackTrace();
+	  	   	}  
 	}
       
-    public void TableSetting()throws IOException{
+    public void TableSetting(){
   	   try {
   	         FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
   	         XSSFWorkbook workbook = new XSSFWorkbook(fis);
@@ -315,7 +331,7 @@ public class Todolist extends JFrame{
   	       
   	      fis.close();
   	   	}
-  	   	catch (FileNotFoundException e){
+  	   	catch (Exception e){
   	   			e.printStackTrace();
   	   	}   
      }
@@ -331,28 +347,18 @@ public class Todolist extends JFrame{
 	      }
     };
 	public Todolist(final String Subject_Name) {    
-    	this.Subject_Name = Subject_Name;
-    	
-    		Color navy = new Color(0,32,96);
+    		this.Subject_Name = Subject_Name;
+    		
+    		this.addWindowListener(new WindowAdapter(){ 
+                public void windowClosing(WindowEvent e) { 
+                	Back re = new Back();
+                	re.back();
+                }
+            });
+    		
+    	Color navy = new Color(0,32,96);
 	    
-    		this.addWindowListener(new WindowAdapter(){ //����â�� xǥ�ô����� ���������� �̵�
-            public void windowClosing(WindowEvent e) { 
-            	ToDoList_Main test = new ToDoList_Main();
-            	
-            	test.setTitle("To Do List Program");
-            	test.Log = new Login(test);
-            	test.AP = new Add_Change_Panel(test, "Add_Panel");
-            	test.MP = new Mainpage(test);
-            	
-            	test.add(test.MP);
-            	test.MP.RefreshSubjectTable();
-            	test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            test.setSize(650, 750);
-            test.setVisible(true);
-            test.setResizable(false);
-            }
-        });
-   
+    		
 	    JLabel Title_Label = new JLabel(Subject_Name + " To do LIST");
 	    Title_Label.setFont(new Font("HY�߰��",Font.BOLD,30));
 	    Title_Label.setForeground(navy);
@@ -404,11 +410,9 @@ public class Todolist extends JFrame{
 	    HeaderSetting();
 	   
 	    
-	    try {
-	         TableSetting();
-	      } catch (IOException e) {
-	         e.printStackTrace();
-	      } 
+	   
+	    TableSetting();
+	      
 	    
 	    this.setLayout(null);
 	    Add_Button.setBounds(368,160,80,30);
@@ -427,32 +431,14 @@ public class Todolist extends JFrame{
 		   		JButton b = (JButton)e.getSource();
 		   		
 		   		if(b.getText().equals("숨기기")) {
-		   		 Hiderender();
-		   		
+
 		   		Hide_Button.setText("보여주기"); 
 		   		RefreshTable_1();
 		   		}
 		   		else {
-		   			Show_render myRenderer = new Show_render();
-			   		myRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-			   		
-			   		TableColumn column = table.getColumnModel().getColumn(1); 
-			   		column.setCellRenderer(myRenderer);
-			   		
-			   		TableColumn column2 = table.getColumnModel().getColumn(2); 
-			   		column2.setCellRenderer(myRenderer);
-			   		
-			   		TableColumn column3 = table.getColumnModel().getColumn(3); 
-			   		column3.setCellRenderer(myRenderer);
-			   		
-			   		TableColumn column4 = table.getColumnModel().getColumn(4); 
-			   		column4.setCellRenderer(myRenderer);
-			   		
-			   		TableColumn column5 = table.getColumnModel().getColumn(5); 
-			   		column5.setCellRenderer(myRenderer);
 		   			
-		   			b.setText("숨기기");
-		   			RefreshTable_2();
+	   			b.setText("숨기기");
+		   		RefreshTable_2();
 		   		}		 
 		   }
 	    });
@@ -556,8 +542,8 @@ public class Todolist extends JFrame{
 						FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
 						XSSFWorkbook workbook = new XSSFWorkbook(fis);
 						Sheet sheet = workbook.getSheetAt(0);
-						//Row NextRow = sheet.getRow(0);
-						//Cell NextCell = NextRow.getCell(0);
+						
+						
 
 						int rows = sheet.getPhysicalNumberOfRows();
 						Row row = sheet.createRow(rows);
