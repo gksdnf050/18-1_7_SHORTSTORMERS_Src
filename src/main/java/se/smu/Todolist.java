@@ -1,10 +1,10 @@
 package se.smu;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+
+
+
+
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -524,23 +524,23 @@ public class Todolist extends JFrame{
 	   			UI.put("OptionPane.messageFont", message);
 	   			
 		   		if(chk.isSelected()) {
-				int SelectedNum = 0;
+				
 				Vector<Integer> SelectedRowNum = new Vector<Integer>();
 				 
 				for(int i=0; i < table.getRowCount() ; i++) {
 					if(table.getValueAt(i, 0) == Boolean.TRUE) {
-						SelectedNum++;
+						
 						SelectedRowNum.add(Integer.valueOf(i));
 						
 					}
 				}
 				
-				int SelectedNum2 = 0;
+				
 				int SelectedRowNum2 = 0;
-				boolean Select = Boolean.FALSE;
+				
 				for(int i=0; i < table.getRowCount() ; i++) {
 					if(table.getValueAt(i, 0) == Boolean.TRUE) {
-						SelectedNum2++;
+						
 						SelectedRowNum2 = i;
 					}
 								
@@ -570,29 +570,7 @@ public class Todolist extends JFrame{
 						row.createCell(5).setCellValue(data[4]);
 						
 						
-						/*int	NextRowNum=0;
 						
-						for(int searchRow = 0; searchRow < sheet.getPhysicalNumberOfRows();searchRow++) {
-							row = sheet.getRow(searchRow);
-							cell = row.getCell(0);
-							
-							if (cell.getStringCellValue() == ""){
-								for(NextRowNum = searchRow; NextRowNum < sheet.getPhysicalNumberOfRows(); NextRowNum++) {
-									
-									NextRow = sheet.getRow(NextRowNum);
-									NextCell = NextRow.getCell(0);
-									if(NextCell.getStringCellValue() != "") {
-										
-										for(int r = 0; r <row.getPhysicalNumberOfCells(); r++) {
-											NextCell = NextRow.getCell(r);
-											row.getCell(r).setCellValue(NextCell.getStringCellValue());
-											NextCell.setCellValue("");
-										}
-										break;
-									}
-								}
-							}
-						}*/
 				
 						
 						

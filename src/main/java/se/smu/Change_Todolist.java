@@ -1,7 +1,6 @@
 package se.smu;
 
 
-
 import java.io.FileInputStream;  
 import java.io.FileOutputStream;  
 import org.apache.poi.ss.usermodel.Sheet;
@@ -17,6 +16,8 @@ public class Change_Todolist extends JFrame{
 	String[] Todo = {"","","",""};	
 	String[] data = {"","","","","",""};
 	String Subject_Name;
+	
+	
 	
 	
 	Change_Todolist(final int SelectedRowNum,final String[] data,final String Subject_Name){
@@ -142,20 +143,18 @@ public class Change_Todolist extends JFrame{
     		   data [4]=cb.getSelectedItem().toString();
     	   };
        });
+    
        
-
-       JButton Done_Button = new JButton("���� �Ϸ�");
-       JButton Cancel_Button = new JButton("���");
+       JButton Done_Button = new JButton("등록");
+       JButton Cancel_Button = new JButton("취소");
        this.add(Done_Button);
        this.add(Cancel_Button);
        Done_Button.setBackground(Color.white);
-       Done_Button.setFont(new Font("�������",Font.BOLD,20));
+       Done_Button.setFont(new Font("맑은고딕",Font.BOLD,20));
        Cancel_Button.setBackground(Color.white);
-       Cancel_Button.setFont(new Font("�������",Font.BOLD,20));
-       
+       Cancel_Button.setFont(new Font("맑은고딕",Font.BOLD,20));
     
-      
-    	   		 
+
        Done_Button.addActionListener(new ActionListener(){
    	   	public void actionPerformed(ActionEvent arg0) {
    	   		 
