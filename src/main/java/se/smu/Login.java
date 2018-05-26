@@ -27,22 +27,22 @@ public class Login extends JPanel{
 		this.win = win;
 		
 		setLayout(null);
-		Font default_font = new Font("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½",Font.BOLD,20);
+		Font default_font = new Font("¸¼Àº °íµñ",Font.BOLD,20);
 		Color default_color = new Color(0,32,96);		
 		
 		JLabel Title_label = new JLabel("SMU To do List");
-		Title_label.setFont(new Font("HYï¿½ß°ï¿½ï¿½",Font.BOLD,30));
+		Title_label.setFont(new Font("HY°ß°íµñ",Font.BOLD,30));
 		Title_label.setForeground(default_color);
 		
-		JLabel ID_label= new JLabel("ï¿½ï¿½ï¿½Ìµï¿½");
+		JLabel ID_label= new JLabel("¾ÆÀÌµð");
 		ID_label.setFont(default_font);
 		ID_label.setForeground(default_color);
 		
-		JLabel PW_label= new JLabel("ï¿½ï¿½Ð¹ï¿½È£");
+		JLabel PW_label= new JLabel("ºñ¹Ð¹øÈ£");
 		PW_label.setFont(default_font);
 		PW_label.setForeground(default_color);
 		
-		JButton btn1 = new JButton("ï¿½Î±ï¿½ï¿½ï¿½");
+		JButton btn1 = new JButton("·Î±×ÀÎ");
 		btn1.setFont(default_font);
 		btn1.setBackground(default_color);
 		btn1.setForeground(new Color(255,255,255));
@@ -74,13 +74,13 @@ public class Login extends JPanel{
 			String ID = id.getText();
 			String PW = new String(pw.getPassword());
 			if(ID.equals("") || PW.equals(""))
-				JOptionPane.showMessageDialog(null , "ï¿½ï¿½ï¿½Ìµï¿½, ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
+				JOptionPane.showMessageDialog(null , "¾ÆÀÌµð¿Í ºñ¹Ð¹øÈ£´Â ÇÊ¼öÀÔ·Â»çÇ×ÀÔ´Ï´Ù.");
 			else if(ID.equals("stormers") && PW.equals("stormers")) {
 				SavedID = "stormers";
 				win.change("Mainpage");
 			}
 			else 
-				JOptionPane.showMessageDialog(null , "ï¿½ï¿½ï¿½Ìµï¿½, ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
+				JOptionPane.showMessageDialog(null , "¾ÆÀÌµð ¹× ºñ¹Ð¹øÈ£°¡ Æ²·È½À´Ï´Ù.");
 			
 		}
 	}

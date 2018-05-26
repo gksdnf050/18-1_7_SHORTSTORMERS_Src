@@ -32,7 +32,7 @@ public class Trashcan extends JFrame {
 	JButton restore,remove;
 	XSSFSheet sheet;
 	XSSFWorkbook workbook;
-	Font default_font = new Font("å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ï¿½",Font.BOLD,20);
+	Font default_font = new Font("¸¼Àº °íµñ",Font.BOLD,20);
 	Color default_color = new Color(0,32,96);
 	
 	public Trashcan() {
@@ -48,8 +48,8 @@ public class Trashcan extends JFrame {
 		
 		setLayout(null);
 		
-		JLabel Title_label = new JLabel("å ì™ì˜™å ì™ì˜™å ì™ì˜™");
-		Title_label.setFont(new Font("HYå ìŒ©ê³¤ì˜™å ï¿½",Font.BOLD,30));
+		JLabel Title_label = new JLabel("ÈŞÁöÅë");
+		Title_label.setFont(new Font("HY°ß°íµñ",Font.BOLD,30));
 		Title_label.setForeground(default_color);
 		
 		Title_label.setBounds(260, 25, 200, 50);
@@ -71,7 +71,7 @@ public class Trashcan extends JFrame {
 	
 	
 	public void TableSetting() {
-		String columnNames[] = {"V","å ì™ì˜™å ì™ì˜™","To do","å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™","å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™","å ì‹¹ë¤„ì˜™ å ì™ì˜™å ì™ì˜™"};
+		String columnNames[] = {"V","°ú¸ñ","To do","¸¶°¨ ±âÇÑ","½ÇÁ¦ ¸¶°¨ÀÏ","¿Ï·á ¿©ºÎ"};
 		
 		dcr = new DefaultTableCellRenderer() {	
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column){	
@@ -103,11 +103,11 @@ public class Trashcan extends JFrame {
 		center.setHorizontalAlignment(JLabel.CENTER);
 		
 		Table.getColumn("V").setCellRenderer(center);
-		Table.getColumn("å ì™ì˜™å ì™ì˜™").setCellRenderer(center);
+		Table.getColumn("°ú¸ñ").setCellRenderer(center);
 		Table.getColumn("To do").setCellRenderer(center);
-		Table.getColumn("å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™").setCellRenderer(center);
-		Table.getColumn("å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™").setCellRenderer(center);
-		Table.getColumn("å ì‹¹ë¤„ì˜™ å ì™ì˜™å ì™ì˜™").setCellRenderer(center);
+		Table.getColumn("¸¶°¨ ±âÇÑ").setCellRenderer(center);
+		Table.getColumn("½ÇÁ¦ ¸¶°¨ÀÏ").setCellRenderer(center);
+		Table.getColumn("¿Ï·á ¿©ºÎ").setCellRenderer(center);
 		Table.getTableHeader().setReorderingAllowed(false);
 		
 		Table.getColumn("V").setCellRenderer(dcr);
@@ -133,13 +133,13 @@ public class Trashcan extends JFrame {
 	
 	
 	public void ButtonSetting() {
-		restore= new JButton("å ì™ì˜™ å ì™ì˜™");
+		restore= new JButton("º¹ ±¸");
 		restore.setFont(default_font);
 		restore.setForeground(new Color(0,0,0));
 		restore.setBackground(new Color(255,255,255));
 		restore.addActionListener(new MyActionListener());
 		
-		remove = new JButton("å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™");
+		remove = new JButton("¿µ±¸ »èÁ¦");
 		remove.setFont(default_font);
 		remove.setForeground(new Color(0,0,0));
 		remove.setBackground(new Color(255,255,255));
@@ -188,7 +188,7 @@ public class Trashcan extends JFrame {
 	class MyActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			JButton b = (JButton)e.getSource();
-			if(b.getText().equals("å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™")){
+			if(b.getText().equals("¿µ±¸ »èÁ¦")){
 				
 				for(int i=0;i<model.getRowCount();i++) {
 					if(Table.getModel().getValueAt(i, 0).equals(true)) {

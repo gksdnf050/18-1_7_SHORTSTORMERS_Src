@@ -13,7 +13,7 @@ public Component getTableCellRendererComponent(JTable table, Object value, boole
 
 	Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column); 
   
-	if (table.getValueAt(row, 4).toString().indexOf("ì™„ë£Œ") !=-1)
+	if (table.getValueAt(row, 4).toString().indexOf("¿Ï·á") !=-1)
 	{ 
 		cell.setForeground(Color.BLACK); 
 		} 

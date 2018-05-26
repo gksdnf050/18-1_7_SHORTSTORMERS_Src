@@ -17,38 +17,38 @@ import javax.swing.*;
 import java.awt.*;
 
 class Back {
-	public void back() {
-	ToDoList_Main test = new ToDoList_Main();
-	
-	test.setTitle("To Do List Program");
-	test.Log = new Login(test);
-	test.AP = new Add_Change_Panel(test, "Add_Panel");
-	test.MP = new Mainpage(test);
-	
-	test.add(test.MP);
-	test.MP.RefreshSubjectTable();
-	test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   public void back() {
+   ToDoList_Main test = new ToDoList_Main();
+   
+   test.setTitle("To Do List Program");
+   test.Log = new Login(test);
+   test.AP = new Add_Change_Panel(test, "Add_Panel");
+   test.MP = new Mainpage(test);
+   
+   test.add(test.MP);
+   test.MP.RefreshSubjectTable();
+   test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 test.setSize(650, 750);
 test.setVisible(true);
 test.setResizable(false);
-	}
+   }
 }
 
 
 public class Todolist extends JFrame{
-	private JCheckBox chk;
-	private JButton Hide_Button;
-	private Register_Todolist RT;
-	private JButton Add_Button;
-	private JButton Delete_Button;
-	private JButton Change_Button;
-	
-	private Cell cell;  
- 
-   	private JTable table; 
-   	DefaultTableModel model;
+   private JCheckBox chk;
+   private JButton Hide_Button;
+   private Register_Todolist RT;
+   private JButton Add_Button;
+   private JButton Delete_Button;
+   private JButton Change_Button;
    
-   	public String[] column = {"V", "ï¿½ï¿½ ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½", "ï¿½ß¿äµµ"};
+   private Cell cell;  
+ 
+      private JTable table; 
+      DefaultTableModel model;
+   
+      public String[] column = {"V", "ÇÒ ÀÏ", "¸¶°¨ ±âÇÑ", "½ÇÁ¦ ¸¶°¨ÀÏ", "¿Ï·á ¿©ºÎ", "Áß¿äµµ"};
     public Object rowData[][];
     
     
@@ -56,121 +56,121 @@ public class Todolist extends JFrame{
     
     
     public void HeaderSetting_2() {
-    	
-    	chk = new JCheckBox();
-	    table.getColumn("V").setCellRenderer(dtcr1);	    
-	    table.getColumn("V").setCellEditor(new DefaultCellEditor(chk));
-	    chk.setHorizontalAlignment(JLabel.CENTER);
-	    
-	    DefaultTableCellRenderer Todo = new DefaultTableCellRenderer();
-	    Todo.setHorizontalAlignment(SwingConstants.CENTER);
-	    table.getColumn("ï¿½ï¿½ ï¿½ï¿½").setCellRenderer(Todo);
-	    
+       
+       chk = new JCheckBox();
+       table.getColumn("V").setCellRenderer(dtcr1);       
+       table.getColumn("V").setCellEditor(new DefaultCellEditor(chk));
+       chk.setHorizontalAlignment(JLabel.CENTER);
+       
+       DefaultTableCellRenderer Todo = new DefaultTableCellRenderer();
+       Todo.setHorizontalAlignment(SwingConstants.CENTER);
+       table.getColumn("ÇÒ ÀÏ").setCellRenderer(Todo);
+       
     
-	    DefaultTableCellRenderer Dead = new DefaultTableCellRenderer();
-	    Dead.setHorizontalAlignment(SwingConstants.CENTER);
-	    table.getColumn("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½").setCellRenderer(Dead);
-	    
-	    
-	    DefaultTableCellRenderer Actual = new DefaultTableCellRenderer();
-	    Actual.setHorizontalAlignment(SwingConstants.CENTER);
-	    table.getColumn("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½").setCellRenderer(Actual);
-	    
-	    DefaultTableCellRenderer Done = new DefaultTableCellRenderer();
-	    Done.setHorizontalAlignment(SwingConstants.CENTER);
-	    table.getColumn("ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½").setCellRenderer(Done);
-	    
-	    
-	    DefaultTableCellRenderer Import = new DefaultTableCellRenderer();
-	    Import.setHorizontalAlignment(SwingConstants.CENTER);
-	    table.getColumn("ï¿½ß¿äµµ").setCellRenderer(Import);
-	    
-	    
-	    table.getTableHeader().setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,15));
+       DefaultTableCellRenderer Dead = new DefaultTableCellRenderer();
+       Dead.setHorizontalAlignment(SwingConstants.CENTER);
+       table.getColumn("¸¶°¨ ±âÇÑ").setCellRenderer(Dead);
+       
+       
+       DefaultTableCellRenderer Actual = new DefaultTableCellRenderer();
+       Actual.setHorizontalAlignment(SwingConstants.CENTER);
+       table.getColumn("½ÇÁ¦ ¸¶°¨ÀÏ").setCellRenderer(Actual);
+       
+       DefaultTableCellRenderer Done = new DefaultTableCellRenderer();
+       Done.setHorizontalAlignment(SwingConstants.CENTER);
+       table.getColumn("¿Ï·á ¿©ºÎ").setCellRenderer(Done);
+       
+       
+       DefaultTableCellRenderer Import = new DefaultTableCellRenderer();
+       Import.setHorizontalAlignment(SwingConstants.CENTER);
+       table.getColumn("Áß¿äµµ").setCellRenderer(Import);
+       
+       
+       table.getTableHeader().setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
     }
     
     public void HeaderSetting() {
-    	Color navy = new Color(0,32,96);
-	    table.getTableHeader().setBackground(navy);
-	    table.getTableHeader().setForeground(Color.white);
-	    table.getColumnModel().getColumn(0).setPreferredWidth(10);
-	    table.getColumnModel().getColumn(1).setPreferredWidth(200);
-	    table.getColumnModel().getColumn(2).setPreferredWidth(50);
-	    table.getColumnModel().getColumn(3).setPreferredWidth(50);
-	    table.getColumnModel().getColumn(4).setPreferredWidth(50);
-	    table.getColumnModel().getColumn(5).setPreferredWidth(50);
+       Color navy = new Color(0,32,96);
+       table.getTableHeader().setBackground(navy);
+       table.getTableHeader().setForeground(Color.white);
+       table.getColumnModel().getColumn(0).setPreferredWidth(10);
+       table.getColumnModel().getColumn(1).setPreferredWidth(200);
+       table.getColumnModel().getColumn(2).setPreferredWidth(50);
+       table.getColumnModel().getColumn(3).setPreferredWidth(50);
+       table.getColumnModel().getColumn(4).setPreferredWidth(50);
+       table.getColumnModel().getColumn(5).setPreferredWidth(50);
     }
     
     public void setSubject_Name(String Subject_Name) {
-    		this.Subject_Name = Subject_Name;    		
+          this.Subject_Name = Subject_Name;          
     }
     
     public void Hiderender() {
-    	
-    	chk = new JCheckBox();
-	    table.getColumn("V").setCellRenderer(dtcr1);	    
-	    table.getColumn("V").setCellEditor(new DefaultCellEditor(chk));
-	    chk.setHorizontalAlignment(JLabel.CENTER);
-    	    
-    	Hide_render myRenderer = new Hide_render();
-   		myRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-   		
-   		TableColumn column = table.getColumnModel().getColumn(1); 
-   		column.setCellRenderer(myRenderer);
-   		
-   		TableColumn column2 = table.getColumnModel().getColumn(2); 
-   		column2.setCellRenderer(myRenderer);
-   		
-   		TableColumn column3 = table.getColumnModel().getColumn(3); 
-   		column3.setCellRenderer(myRenderer);
-   		
-   		TableColumn column4 = table.getColumnModel().getColumn(4); 
-   		column4.setCellRenderer(myRenderer);
-   		
-   		TableColumn column5 = table.getColumnModel().getColumn(5); 
-   		column5.setCellRenderer(myRenderer);
-   		
-   		table.getTableHeader().setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,15));
+       
+       chk = new JCheckBox();
+       table.getColumn("V").setCellRenderer(dtcr1);       
+       table.getColumn("V").setCellEditor(new DefaultCellEditor(chk));
+       chk.setHorizontalAlignment(JLabel.CENTER);
+           
+       Hide_render myRenderer = new Hide_render();
+         myRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+         
+         TableColumn column = table.getColumnModel().getColumn(1); 
+         column.setCellRenderer(myRenderer);
+         
+         TableColumn column2 = table.getColumnModel().getColumn(2); 
+         column2.setCellRenderer(myRenderer);
+         
+         TableColumn column3 = table.getColumnModel().getColumn(3); 
+         column3.setCellRenderer(myRenderer);
+         
+         TableColumn column4 = table.getColumnModel().getColumn(4); 
+         column4.setCellRenderer(myRenderer);
+         
+         TableColumn column5 = table.getColumnModel().getColumn(5); 
+         column5.setCellRenderer(myRenderer);
+         
+         table.getTableHeader().setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
     }
     public void Showrender() {
-    	
-    	chk = new JCheckBox();
-	    table.getColumn("V").setCellRenderer(dtcr1);	    
-	    table.getColumn("V").setCellEditor(new DefaultCellEditor(chk));
-	    chk.setHorizontalAlignment(JLabel.CENTER);
-	    
-    	Show_render renderer = new Show_render();
-		renderer.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		TableColumn column = table.getColumnModel().getColumn(1); 
-		column.setCellRenderer(renderer);
-		
-		TableColumn column2 = table.getColumnModel().getColumn(2); 
-		column2.setCellRenderer(renderer);
-		
-		TableColumn column3 = table.getColumnModel().getColumn(3); 
-		column3.setCellRenderer(renderer);
-		
-		TableColumn column4 = table.getColumnModel().getColumn(4); 
-		column4.setCellRenderer(renderer);
-		
-		TableColumn column5 = table.getColumnModel().getColumn(5); 
-		column5.setCellRenderer(renderer);
-		
-		table.getTableHeader().setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,15));
+       
+       chk = new JCheckBox();
+       table.getColumn("V").setCellRenderer(dtcr1);       
+       table.getColumn("V").setCellEditor(new DefaultCellEditor(chk));
+       chk.setHorizontalAlignment(JLabel.CENTER);
+       
+       Show_render renderer = new Show_render();
+      renderer.setHorizontalAlignment(SwingConstants.CENTER);
+      
+      TableColumn column = table.getColumnModel().getColumn(1); 
+      column.setCellRenderer(renderer);
+      
+      TableColumn column2 = table.getColumnModel().getColumn(2); 
+      column2.setCellRenderer(renderer);
+      
+      TableColumn column3 = table.getColumnModel().getColumn(3); 
+      column3.setCellRenderer(renderer);
+      
+      TableColumn column4 = table.getColumnModel().getColumn(4); 
+      column4.setCellRenderer(renderer);
+      
+      TableColumn column5 = table.getColumnModel().getColumn(5); 
+      column5.setCellRenderer(renderer);
+      
+      table.getTableHeader().setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
     }
     public void RefreshTable_1() {
-		
-    	table.setModel(model);
-    	DefaultTableModel model = new DefaultTableModel(rowData, column) {				
-    		public boolean isCellEditable(int row, int column) {
-    			if(column == 0) {
-    				return true;
-    			}
-    			return false;
-    		}
-    	};
-    	
+      
+       table.setModel(model);
+       DefaultTableModel model = new DefaultTableModel(rowData, column) {            
+          public boolean isCellEditable(int row, int column) {
+             if(column == 0) {
+                return true;
+             }
+             return false;
+          }
+       };
+       
         table.setBackground(Color.WHITE);
         
       
@@ -184,464 +184,464 @@ public class Todolist extends JFrame{
         
         
         Hiderender();   
-		HeaderSetting();
-		
-		try {
-	         FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
-	         XSSFWorkbook workbook = new XSSFWorkbook(fis);
-	         Sheet sheet = workbook.getSheetAt(0);
-	         int rows = sheet.getPhysicalNumberOfRows();
-	         
-	         for(int i=1;i<rows;i++) {
-	            Row row = sheet.getRow(i); 	         
-	            if(row==null)
-	               rows++;
-	            else {
-	               Object[] ob = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
-	               model.addRow(ob);   
-	             
-	            }
+      HeaderSetting();
+      
+      try {
+            FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
+            XSSFWorkbook workbook = new XSSFWorkbook(fis);
+            Sheet sheet = workbook.getSheetAt(0);
+            int rows = sheet.getPhysicalNumberOfRows();
+            
+            for(int i=1;i<rows;i++) {
+               Row row = sheet.getRow(i);             
+               if(row==null)
+                  rows++;
+               else {
+                  Object[] ob = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
+                  model.addRow(ob);   
+                
+               }
 
-	   		} 
-	       
-	      fis.close();
-	   	}
-	   	catch (Exception e){
-	   			e.printStackTrace();
-	   	} 
-	}
+            } 
+          
+         fis.close();
+         }
+         catch (Exception e){
+               e.printStackTrace();
+         } 
+   }
     
     public void RefreshTable_2() {
-    	table.setModel(model);
-	    table.setBackground(Color.WHITE);
-	    table.setAutoCreateRowSorter(true);
-    	
-		DefaultTableModel model = new DefaultTableModel(rowData, column) {				
-			public boolean isCellEditable(int row, int column) {
-				if(column == 0) {
-					return true;
-				}
-				return false;
-			}
-		};
-		
-	    TableRowSorter tablesorter = new TableRowSorter(table.getModel());
-	    table.setRowSorter(tablesorter);
-	
+       table.setModel(model);
+       table.setBackground(Color.WHITE);
+       table.setAutoCreateRowSorter(true);
+       
+      DefaultTableModel model = new DefaultTableModel(rowData, column) {            
+         public boolean isCellEditable(int row, int column) {
+            if(column == 0) {
+               return true;
+            }
+            return false;
+         }
+      };
+      
+       TableRowSorter tablesorter = new TableRowSorter(table.getModel());
+       table.setRowSorter(tablesorter);
+   
 
-	    table.revalidate();
-	    table.repaint();
+       table.revalidate();
+       table.repaint();
     
-	    Showrender();
-	    HeaderSetting();
-	    
-	    try {
- 	         FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
- 	         XSSFWorkbook workbook = new XSSFWorkbook(fis);
- 	         Sheet sheet = workbook.getSheetAt(0);
- 	         int rows = sheet.getPhysicalNumberOfRows();
- 	         
- 	         for(int i=1;i<rows;i++) {
- 	            Row row = sheet.getRow(i); 	         
- 	            if(row==null)
- 	               rows++;
- 	            else {
- 	               Object[] ob = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
- 	               model.addRow(ob);   
- 	             
- 	            }
+       Showrender();
+       HeaderSetting();
+       
+       try {
+             FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
+             XSSFWorkbook workbook = new XSSFWorkbook(fis);
+             Sheet sheet = workbook.getSheetAt(0);
+             int rows = sheet.getPhysicalNumberOfRows();
+             
+             for(int i=1;i<rows;i++) {
+                Row row = sheet.getRow(i);             
+                if(row==null)
+                   rows++;
+                else {
+                   Object[] ob = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
+                   model.addRow(ob);   
+                 
+                }
 
- 	   		} 
- 	       
- 	      fis.close();
- 	   	}
- 	   	catch (Exception e){
- 	   			e.printStackTrace();
- 	   	} 
-	    
-	    
+             } 
+           
+          fis.close();
+          }
+          catch (Exception e){
+                e.printStackTrace();
+          } 
+       
+       
 }
 
     public void RefreshTable() {
-    	table.setBackground(Color.WHITE);
-	    table.setAutoCreateRowSorter(true);
-    	DefaultTableModel model = new DefaultTableModel(rowData, column) {				
-			public boolean isCellEditable(int row, int column) {
-				if(column == 0) {
-					return true;
-				}
-				return false;
-			}
-		};
-		table.setModel(model);
-		
-	    
+       table.setBackground(Color.WHITE);
+       table.setAutoCreateRowSorter(true);
+       DefaultTableModel model = new DefaultTableModel(rowData, column) {            
+         public boolean isCellEditable(int row, int column) {
+            if(column == 0) {
+               return true;
+            }
+            return false;
+         }
+      };
+      table.setModel(model);
+      
+       
 
-	    table.revalidate();
-	    table.repaint();
-		
-	    TableRowSorter tablesorter = new TableRowSorter(table.getModel());
-	    table.setRowSorter(tablesorter);
-		    
-		HeaderSetting_2();
-		HeaderSetting();
-		    try {
-	  	         FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
-	  	         XSSFWorkbook workbook = new XSSFWorkbook(fis);
-	  	         Sheet sheet = workbook.getSheetAt(0);
-	  	         int rows = sheet.getPhysicalNumberOfRows();
-	  	         
-	  	         for(int i=1;i<rows;i++) {
-	  	            Row row = sheet.getRow(i); 	         
-	  	            if(row==null)
-	  	               rows++;
-	  	            else {
-	  	               Object[] ob = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
-	  	               model.addRow(ob);   
-	  	             
-	  	            }
+       table.revalidate();
+       table.repaint();
+      
+       TableRowSorter tablesorter = new TableRowSorter(table.getModel());
+       table.setRowSorter(tablesorter);
+          
+      HeaderSetting_2();
+      HeaderSetting();
+          try {
+                 FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
+                 XSSFWorkbook workbook = new XSSFWorkbook(fis);
+                 Sheet sheet = workbook.getSheetAt(0);
+                 int rows = sheet.getPhysicalNumberOfRows();
+                 
+                 for(int i=1;i<rows;i++) {
+                    Row row = sheet.getRow(i);             
+                    if(row==null)
+                       rows++;
+                    else {
+                       Object[] ob = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
+                       model.addRow(ob);   
+                     
+                    }
 
-	  	   		} 
-	  	       
-	  	      fis.close();
-	  	   	}
-	  	   	catch (Exception e){
-	  	   			e.printStackTrace();
-	  	   	}  
-	}
+                 } 
+               
+              fis.close();
+              }
+              catch (Exception e){
+                    e.printStackTrace();
+              }  
+   }
       
     public void TableSetting(){
-  	   try {
-  	         FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
-  	         XSSFWorkbook workbook = new XSSFWorkbook(fis);
-  	         Sheet sheet = workbook.getSheetAt(0);
-  	         int rows = sheet.getPhysicalNumberOfRows();
-  	         
-  	         for(int i=1;i<rows;i++) {
-  	            Row row = sheet.getRow(i); 	         
-  	            if(row==null)
-  	               rows++;
-  	            else {
-  	               Object[] ob = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
-  	               model.addRow(ob);   
-  	             
-  	            }
+        try {
+              FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
+              XSSFWorkbook workbook = new XSSFWorkbook(fis);
+              Sheet sheet = workbook.getSheetAt(0);
+              int rows = sheet.getPhysicalNumberOfRows();
+              
+              for(int i=1;i<rows;i++) {
+                 Row row = sheet.getRow(i);             
+                 if(row==null)
+                    rows++;
+                 else {
+                    Object[] ob = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
+                    model.addRow(ob);   
+                  
+                 }
 
-  	   		} 
-  	       
-  	      fis.close();
-  	   	}
-  	   	catch (Exception e){
-  	   			e.printStackTrace();
-  	   	}   
+              } 
+            
+           fis.close();
+           }
+           catch (Exception e){
+                 e.printStackTrace();
+           }   
      }
      
-    DefaultTableCellRenderer dtcr1 = new DefaultTableCellRenderer(){		
-	      public Component getTableCellRendererComponent
-	      (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
-	      {
-	         chk = new JCheckBox();
-	         chk.setSelected(((Boolean)value).booleanValue());
-	         chk.setHorizontalAlignment(JLabel.CENTER);
-	         return chk;	         
-	      }
+    DefaultTableCellRenderer dtcr1 = new DefaultTableCellRenderer(){      
+         public Component getTableCellRendererComponent
+         (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+         {
+            chk = new JCheckBox();
+            chk.setSelected(((Boolean)value).booleanValue());
+            chk.setHorizontalAlignment(JLabel.CENTER);
+            return chk;            
+         }
     };
-	public Todolist(final String Subject_Name) {    
-    		this.Subject_Name = Subject_Name;
-    		
-    		this.addWindowListener(new WindowAdapter(){ 
+   public Todolist(final String Subject_Name) {    
+          this.Subject_Name = Subject_Name;
+          
+          this.addWindowListener(new WindowAdapter(){ 
                 public void windowClosing(WindowEvent e) { 
-                	Back re = new Back();
-                	re.back();
+                   Back re = new Back();
+                   re.back();
                 }
             });
-    		
-    	Color navy = new Color(0,32,96);
-	    
-    		
-	    JLabel Title_Label = new JLabel(Subject_Name + " To do LIST");
-	    Title_Label.setFont(new Font("HYï¿½ß°ï¿½ï¿½",Font.BOLD,30));
-	    Title_Label.setForeground(navy);
-	    this.add(Title_Label);
-	    
-	    Add_Button = new JButton("ï¿½ï¿½ï¿½");
-	    Add_Button.setBackground(Color.white);
-	    Add_Button.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,20));
-	    
-	    Delete_Button = new JButton("ï¿½ï¿½ï¿½ï¿½");
-	    Delete_Button.setBackground(Color.white);
-	    Delete_Button.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,20));
-	    
-	    Change_Button = new JButton("ï¿½ï¿½ï¿½ï¿½");
-	    Change_Button.setBackground(Color.white);
-	    Change_Button.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,20));
-	    
-	    Hide_Button = new JButton("ìˆ¨ê¸°ê¸°");
-	    Hide_Button.setBackground(Color.white);
-	    Hide_Button.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,20));
-	    
-	    add(Add_Button);
-	    add(Delete_Button);
-	    add(Change_Button);
-	    add(Hide_Button);
-	    	    
-	    model = new DefaultTableModel(rowData,column)
-	    	{    	
-	    		public boolean isCellEditable(int rowData, int column)
-	    		{ 
-	    			if(column>0) {
-	    				return false; 
-	    						}
-	    		else {
-	    			return true;
-	    			}
-	    			
-	    		}
-	    	};
-	    	
-	    table= new JTable(model);
-	    JScrollPane scrollpane =new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED );
-	    this.add(scrollpane);
-	    table.setRowSorter(new TableRowSorter(model)); 
-	    
-	    HeaderSetting_2();
-	   
-	    
-	    HeaderSetting();
-	   
-	    
-	   
-	    TableSetting();
-	      
-	    
-	    this.setLayout(null);
-	    Add_Button.setBounds(368,160,80,30);
-	    Delete_Button.setBounds(458,160,80,30);
-	    Change_Button.setBounds(548,160,80,30);
-	    Hide_Button.setBounds(238,160,120,30);
-	    scrollpane.setBounds(10, 200, 620, 200);
-	    Title_Label.setBounds(100, 50, 450, 40);
+          
+       Color navy = new Color(0,32,96);
+       
+             
+         
+          
+       JLabel Title_Label = new JLabel(Subject_Name + " To do LIST");
+       Title_Label.setFont(new Font("HY°ß°íµñ",Font.BOLD,30));
+       Title_Label.setForeground(navy);
+       this.add(Title_Label);
+       
+       Add_Button = new JButton("µî·Ï");
+       Add_Button.setBackground(Color.white);
+       Add_Button.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,20));
+       
+       Delete_Button = new JButton("»èÁ¦");
+       Delete_Button.setBackground(Color.white);
+       Delete_Button.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,20));
+       
+       Change_Button = new JButton("¼öÁ¤");
+       Change_Button.setBackground(Color.white);
+       Change_Button.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,20));
+       
+       Hide_Button = new JButton("¼û±â±â");
+       Hide_Button.setBackground(Color.white);
+       Hide_Button.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,20));
+       
+       add(Add_Button);
+       add(Delete_Button);
+       add(Change_Button);
+       add(Hide_Button);
+              
+       model = new DefaultTableModel(rowData,column)
+          {       
+             public boolean isCellEditable(int rowData, int column)
+             { 
+                if(column>0) {
+                   return false; 
+                         }
+             else {
+                return true;
+                }
+                
+             }
+          };
+          
+       table= new JTable(model);
+       JScrollPane scrollpane =new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED );
+       this.add(scrollpane);
+       table.setRowSorter(new TableRowSorter(model)); 
+      
+           
+       HeaderSetting();
+       
+       HeaderSetting_2();         
 
-	    
-	    setSize(650,750);
-	    setVisible(false);
-	    
-	    Hide_Button.addActionListener(new ActionListener(){
-		   	public void actionPerformed(ActionEvent e) {
-		   		JButton b = (JButton)e.getSource();
-		   		
-		   		if(b.getText().equals("ìˆ¨ê¸°ê¸°")) {
+       TableSetting();
+         
+       
+       this.setLayout(null);
+       Add_Button.setBounds(368,160,80,30);
+       Delete_Button.setBounds(458,160,80,30);
+       Change_Button.setBounds(548,160,80,30);
+       Hide_Button.setBounds(238,160,120,30);
+       scrollpane.setBounds(10, 200, 620, 200);
+       Title_Label.setBounds(100, 50, 450, 40);
 
-		   		Hide_Button.setText("ë³´ì—¬ì£¼ê¸°"); 
-		   		RefreshTable_1();
-		   		}
-		   		else {
-		   			
-	   			b.setText("ìˆ¨ê¸°ê¸°");
-		   		RefreshTable_2();
-		   		}		 
-		   }
-	    });
-	    
-   
-	   
-	    Add_Button.addActionListener(new ActionListener(){
-		   	public void actionPerformed(ActionEvent arg0) {
-		   		
-		   	setVisible(false);
-		   	RT = new Register_Todolist(Subject_Name);
-		   	RT.setVisible(true);
-		   	
-		   }
-	    });
-   
-   
-	    Change_Button.addActionListener(new ActionListener(){
-		   	public void actionPerformed(ActionEvent arg0) {
-		   		
-		   		UIManager UI =new UIManager();
-	   			Color navy = new Color(0,32,96);
-	   			Font message = new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,20);
-	   			UI.put("OptionPane.messageForeground", navy);
-	   			UI.put("OptionPane.messageFont", message);
-		   		
-		   		int SelectedNum = 0;
-				int SelectedRowNum = 0;
-				boolean Select = Boolean.FALSE;
-				for(int i=0; i < table.getRowCount() ; i++) {
-					if(table.getValueAt(i, 0) == Boolean.TRUE) {
-						SelectedNum++;
-						SelectedRowNum = i;
-					}
-				}
-				
-				if(SelectedNum == 0 || SelectedNum > 1) {
-					if(SelectedNum == 0) {
-					JOptionPane.showMessageDialog(null , "ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.", "ï¿½Ë¸ï¿½", JOptionPane.INFORMATION_MESSAGE);	}
-					if(SelectedNum > 1) {
-					JOptionPane.showMessageDialog(null , "ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.", "ï¿½Ë¸ï¿½", JOptionPane.INFORMATION_MESSAGE);}
-				}				
-				
-				
-				else {
-					Select = Boolean.TRUE;
-				}
-				
-				if(Select == Boolean.TRUE) {
-		   		String[] data = new String[5];
-				for(int i = 0; i < 5; i++) {
-					data[i] = table.getValueAt(SelectedRowNum, i+1).toString();
-				}
-		   	 setVisible(false);
-		   	 new Change_Todolist(SelectedRowNum, data, Subject_Name).setVisible(true);
-		   		}
-		   	}
-		   
-		 });
-   
-   
-	   Delete_Button.addActionListener(new ActionListener(){
-		   	public void actionPerformed(ActionEvent arg0) {
-		   		
-		   		UIManager UI =new UIManager();
-	   			Color navy = new Color(0,32,96);
-	   			Font message = new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",Font.BOLD,20);
-	   			UI.put("OptionPane.messageForeground", navy);
-	   			UI.put("OptionPane.messageFont", message);
-	   			
-		   		if(chk.isSelected()) {
-				
-				Vector<Integer> SelectedRowNum = new Vector<Integer>();
-				 
-				for(int i=0; i < table.getRowCount() ; i++) {
-					if(table.getValueAt(i, 0) == Boolean.TRUE) {
-						
-						SelectedRowNum.add(Integer.valueOf(i));
-						
-					}
-				}
-				
-				
-				int SelectedRowNum2 = 0;
-				
-				for(int i=0; i < table.getRowCount() ; i++) {
-					if(table.getValueAt(i, 0) == Boolean.TRUE) {
-						
-						SelectedRowNum2 = i;
-					}
-								
-			}
-				String[] data = new String[6];
-				for(int i = 0; i < 5; i++) {
-					data[i] = table.getValueAt(SelectedRowNum2, i+1).toString();
-				}
-				try {
-					
-						data[5]=Subject_Name;
-					
-						FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
-						XSSFWorkbook workbook = new XSSFWorkbook(fis);
-						Sheet sheet = workbook.getSheetAt(0);
-						
-						
+       
+       setSize(650,750);
+       setVisible(false);
+       
+       Hide_Button.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+               JButton b = (JButton)e.getSource();
+               
+               if(b.getText().equals("¼û±â±â")) {
 
-						int rows = sheet.getPhysicalNumberOfRows();
-						Row row = sheet.createRow(rows);
-						
-						row.createCell(0).setCellValue(data[5]);
-						row.createCell(1).setCellValue(data[0]);
-						row.createCell(2).setCellValue(data[1]);   	   		
-						row.createCell(3).setCellValue(data[2]);   	   			
-						row.createCell(4).setCellValue(data[3]);	   			
-						row.createCell(5).setCellValue(data[4]);
-						
-						
-						
-				
-						
-						
-					FileOutputStream fos = new FileOutputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
-	   				workbook.write(fos);    
-	   				fos.close();
-	   				fis.close();
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				} 
-								
-					try {
-						FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
-						XSSFWorkbook workbook = new XSSFWorkbook(fis);
-						Sheet sheet = workbook.getSheetAt(0);
-						int rows=0;
-						Iterator <Integer> it = SelectedRowNum.iterator();
-						Row row; 
-						Row NextRow = sheet.getRow(0);
-						Cell NextCell = NextRow.getCell(0);
-							
-						while(it.hasNext()) {
-							rows = it.next().intValue()+1;							
-							row = sheet.getRow(rows);
-						
-							row.getCell(0).setCellValue("");
-							row.getCell(1).setCellValue("");
-							row.getCell(2).setCellValue("");
-							row.getCell(3).setCellValue("");
-							row.getCell(4).setCellValue("");
-							row.getCell(5).setCellValue("");
-							
-						}
-		
-						int	NextRowNum=0;
-												
-						for(int searchRow = 1; searchRow < sheet.getPhysicalNumberOfRows();searchRow++) {
-							row = sheet.getRow(searchRow);
-							cell = row.getCell(0);
-							
-							if (cell.getStringCellValue() == ""){
-								for(NextRowNum = searchRow; NextRowNum < sheet.getPhysicalNumberOfRows(); NextRowNum++) {
-									
-									NextRow = sheet.getRow(NextRowNum);
-									NextCell = NextRow.getCell(0);
-									if(NextCell.getStringCellValue() != "") {
-										
-										for(int r = 0; r <row.getPhysicalNumberOfCells(); r++) {
-											NextCell = NextRow.getCell(r);
-											row.getCell(r).setCellValue(NextCell.getStringCellValue());
-											NextCell.setCellValue("");
-										}
-										break;
-									}
-								}
-							}
-						}
-						
-						for(int i=0; i < SelectedRowNum.size() ; i++) {
-							
-							row = sheet.getRow(sheet.getLastRowNum());
-							sheet.removeRow(row);
-						}
-				
-						FileOutputStream fos = new FileOutputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
-						workbook.write(fos);
-						fos.close();
-						fis.close();
-						
-						sortExcel SE = new sortExcel();	
-						SE.sort("./Subject_Dir/ToDolist_Dir/", Subject_Name +".xlsx");
-						   	   					   	   			
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					} 
-					RefreshTable();	
-					
-		   		}
-		   		else {
-		   			JOptionPane.showMessageDialog(null , "ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.","ï¿½Ë¸ï¿½", JOptionPane.INFORMATION_MESSAGE);
-		   		}
-		   	}
-		   
-	   });
+               Hide_Button.setText("º¸¿©ÁÖ±â"); 
+               RefreshTable_1();
+               }
+               else {
+                  
+               b.setText("¼û±â±â");
+               RefreshTable_2();
+               }       
+         }
+       });
+       
+   
+      
+       Add_Button.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent arg0) {
+               
+            setVisible(false);
+            RT = new Register_Todolist(Subject_Name);
+            RT.setVisible(true);
+            
+         }
+       });
+   
+   
+       Change_Button.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent arg0) {
+               
+               UIManager UI =new UIManager();
+               Color navy = new Color(0,32,96);
+               Font message = new Font("¸¼Àº°íµñ",Font.BOLD,20);
+               UI.put("OptionPane.messageForeground", navy);
+               UI.put("OptionPane.messageFont", message);
+               
+               int SelectedNum = 0;
+            int SelectedRowNum = 0;
+            boolean Select = Boolean.FALSE;
+            for(int i=0; i < table.getRowCount() ; i++) {
+               if(table.getValueAt(i, 0) == Boolean.TRUE) {
+                  SelectedNum++;
+                  SelectedRowNum = i;
+               }
+            }
+            
+            if(SelectedNum == 0 || SelectedNum > 1) {
+               if(SelectedNum == 0) {
+               JOptionPane.showMessageDialog(null , "Ç×¸ñÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.", "¾Ë¸²", JOptionPane.INFORMATION_MESSAGE);   }
+               if(SelectedNum > 1) {
+               JOptionPane.showMessageDialog(null , "ÇÏ³ªÀÇ Ç×¸ñ¸¸ ¼±ÅÃÇØÁÖ¼¼¿ä.", "¾Ë¸²", JOptionPane.INFORMATION_MESSAGE);}
+            }            
+            
+            
+            else {
+               Select = Boolean.TRUE;
+            }
+            
+            if(Select == Boolean.TRUE) {
+               String[] data = new String[5];
+            for(int i = 0; i < 5; i++) {
+               data[i] = table.getValueAt(SelectedRowNum, i+1).toString();
+            }
+             setVisible(false);
+             new Change_Todolist(SelectedRowNum, data, Subject_Name).setVisible(true);
+               }
+            }
+         
+       });
+   
+   
+      Delete_Button.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent arg0) {
+               
+               UIManager UI =new UIManager();
+               Color navy = new Color(0,32,96);
+               Font message = new Font("¸¼Àº°íµñ",Font.BOLD,20);
+               UI.put("OptionPane.messageForeground", navy);
+               UI.put("OptionPane.messageFont", message);
+               
+               if(chk.isSelected()) {
+            
+            Vector<Integer> SelectedRowNum = new Vector<Integer>();
+             
+            for(int i=0; i < table.getRowCount() ; i++) {
+               if(table.getValueAt(i, 0) == Boolean.TRUE) {
+                  
+                  SelectedRowNum.add(Integer.valueOf(i));
+                  
+               }
+            }
+            
+            
+            int SelectedRowNum2 = 0;
+            
+            for(int i=0; i < table.getRowCount() ; i++) {
+               if(table.getValueAt(i, 0) == Boolean.TRUE) {
+                  
+                  SelectedRowNum2 = i;
+               }
+                        
+         }
+            String[] data = new String[6];
+            for(int i = 0; i < 5; i++) {
+               data[i] = table.getValueAt(SelectedRowNum2, i+1).toString();
+            }
+            try {
+               
+                  data[5]=Subject_Name;
+               
+                  FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
+                  XSSFWorkbook workbook = new XSSFWorkbook(fis);
+                  Sheet sheet = workbook.getSheetAt(0);
+                  
+                  
 
-	}
+                  int rows = sheet.getPhysicalNumberOfRows();
+                  Row row = sheet.createRow(rows);
+                  
+                  row.createCell(0).setCellValue(data[5]);
+                  row.createCell(1).setCellValue(data[0]);
+                  row.createCell(2).setCellValue(data[1]);               
+                  row.createCell(3).setCellValue(data[2]);                  
+                  row.createCell(4).setCellValue(data[3]);               
+                  row.createCell(5).setCellValue(data[4]);
+                  
+                  
+                  
+            
+                  
+                  
+               FileOutputStream fos = new FileOutputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
+                  workbook.write(fos);    
+                  fos.close();
+                  fis.close();
+            } catch (Exception ex) {
+               ex.printStackTrace();
+            } 
+                        
+               try {
+                  FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
+                  XSSFWorkbook workbook = new XSSFWorkbook(fis);
+                  Sheet sheet = workbook.getSheetAt(0);
+                  int rows=0;
+                  Iterator <Integer> it = SelectedRowNum.iterator();
+                  Row row; 
+                  Row NextRow = sheet.getRow(0);
+                  Cell NextCell = NextRow.getCell(0);
+                     
+                  while(it.hasNext()) {
+                     rows = it.next().intValue()+1;                     
+                     row = sheet.getRow(rows);
+                  
+                     row.getCell(0).setCellValue("");
+                     row.getCell(1).setCellValue("");
+                     row.getCell(2).setCellValue("");
+                     row.getCell(3).setCellValue("");
+                     row.getCell(4).setCellValue("");
+                     row.getCell(5).setCellValue("");
+                     
+                  }
+      
+                  int   NextRowNum=0;
+                                    
+                  for(int searchRow = 1; searchRow < sheet.getPhysicalNumberOfRows();searchRow++) {
+                     row = sheet.getRow(searchRow);
+                     cell = row.getCell(0);
+                     
+                     if (cell.getStringCellValue() == ""){
+                        for(NextRowNum = searchRow; NextRowNum < sheet.getPhysicalNumberOfRows(); NextRowNum++) {
+                           
+                           NextRow = sheet.getRow(NextRowNum);
+                           NextCell = NextRow.getCell(0);
+                           if(NextCell.getStringCellValue() != "") {
+                              
+                              for(int r = 0; r <row.getPhysicalNumberOfCells(); r++) {
+                                 NextCell = NextRow.getCell(r);
+                                 row.getCell(r).setCellValue(NextCell.getStringCellValue());
+                                 NextCell.setCellValue("");
+                              }
+                              break;
+                           }
+                        }
+                     }
+                  }
+                  
+                  for(int i=0; i < SelectedRowNum.size() ; i++) {
+                     
+                     row = sheet.getRow(sheet.getLastRowNum());
+                     sheet.removeRow(row);
+                  }
+            
+                  FileOutputStream fos = new FileOutputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
+                  workbook.write(fos);
+                  fos.close();
+                  fis.close();
+                  
+                  sortExcel SE = new sortExcel();   
+                  SE.sort("./Subject_Dir/ToDolist_Dir/", Subject_Name +".xlsx");
+                                                            
+               } catch (Exception ex) {
+                  ex.printStackTrace();
+               } 
+               RefreshTable();   
+               
+               }
+               else {
+                  JOptionPane.showMessageDialog(null , "Ç×¸ñÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.","¾Ë¸²", JOptionPane.INFORMATION_MESSAGE);
+               }
+            }
+         
+      });
+
+   }
     
 }
