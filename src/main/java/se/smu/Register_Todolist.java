@@ -34,7 +34,7 @@ public class Register_Todolist extends JFrame{
 	    this.add(Todo_Label);
 	    final JTextField Todo_text = new JTextField("입력해주세요");
 	    this.add(Todo_text);
-	          
+	    this.add(new JTextField(30));      
 
 	    JLabel Deadline_Label = new JLabel("마감 기한 :");
 	    Deadline_Label.setFont(new Font("맑은고딕",Font.BOLD,15));

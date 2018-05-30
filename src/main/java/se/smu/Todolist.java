@@ -48,8 +48,7 @@ public class Todolist extends JFrame{
    
     public String[] column = {"V", "할 일", "마감 기한", "실제 마감일", "완료 여부", "중요도"};
     public Object rowData[][];
-    
-    
+       
     private String Subject_Name = new String();
     
     

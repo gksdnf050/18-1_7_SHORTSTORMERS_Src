@@ -39,6 +39,7 @@ public class Change_Todolist extends JFrame {
 	    
 	    final JTextField Todo_text = new JTextField("입력해주세요");
 	    this.add(Todo_text);
+	    this.add(new JTextField(30));
 	    JLabel Actual_Label = new JLabel("실제 마감일 :");
 	    Actual_Label.setFont(new Font("맑은고딕",Font.BOLD,15));
 	    this.add(Actual_Label);
@@ -155,7 +156,7 @@ public class Change_Todolist extends JFrame {
 	    this.add(Done_Button);
 	    
 	    this.setLayout(null);
-	     Todo_Label.setBounds(80, 150, 450, 40);
+	    
 	    Month_Label2.setBounds(280, 350, 450, 40);
 	    Todo_text.setBounds(180,150,350,40);
 	    Day_combo.setBounds(350,250,80,40);
@@ -242,7 +243,6 @@ public class Change_Todolist extends JFrame {
    	  });			
        
   
-
       Cancel_Button.addActionListener(new ActionListener(){
     	   	public void actionPerformed(ActionEvent arg0) {
     	   	setVisible(false);
