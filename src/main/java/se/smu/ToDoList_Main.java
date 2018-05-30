@@ -1,6 +1,7 @@
 package se.smu;
 
 import java.util.*;
+import java.util.regex.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -43,9 +44,9 @@ class Add_Change_Panel extends JPanel{
 	
 	public ToDoList_Main win;
 	
-	private Font TitleFont = new Font("HY°ß°íµñ",Font.BOLD, 30);
-	private Font ButtonFont = new Font("¸¼Àº °íµñ",Font.BOLD, 20);
-	private Font SubFont = new Font("¸¼Àº °íµñ",Font.BOLD, 15);
+	private Font TitleFont = new Font("HYê²¬ê³ ë”•",Font.BOLD, 30);
+	private Font ButtonFont = new Font("ë§‘ì€ ê³ ë”•",Font.BOLD, 20);
+	private Font SubFont = new Font("ë§‘ì€ ê³ ë”•",Font.BOLD, 15);
 	
 	private Color MainColor = new Color(0, 32, 96);
 	
@@ -58,7 +59,7 @@ class Add_Change_Panel extends JPanel{
 		this.win=win;
 		setLayout(null);
 		
-		Sub_Label = new JLabel("°ú¸ñ ¸í : ");
+		Sub_Label = new JLabel("ê³¼ëª© ëª… : ");
 		Sub_Label.setBounds(100,200,100,40);
 		Sub_Label.setFont(SubFont);
 		add(Sub_Label);
@@ -75,7 +76,7 @@ class Add_Change_Panel extends JPanel{
 		});*/
 		add(Sub_Text);
 		
-		Prof_Label = new JLabel("´ã´ç ±³¼ö : ");
+		Prof_Label = new JLabel("ë‹´ë‹¹ êµìˆ˜ : ");
 		Prof_Label.setBounds(100,260,100,40);
 		Prof_Label.setFont(SubFont);
 		add(Prof_Label);
@@ -92,12 +93,12 @@ class Add_Change_Panel extends JPanel{
 		});*/
 		add(Prof_Text);
 		
-		Day_Label = new JLabel("¿äÀÏ : ");
+		Day_Label = new JLabel("ìš”ì¼ : ");
 		Day_Label.setBounds(100,360,100,40);
 		Day_Label.setFont(SubFont);
 		add(Day_Label);
 		
-		String[] Days = {"¿ù","È­","¼ö","¸ñ","±İ","Åä","ÀÏ"}; 
+		String[] Days = {"ì›”","í™”","ìˆ˜","ëª©","ê¸ˆ","í† ","ì¼"}; 
 		Day_Combo = new JComboBox<String>(Days);
 		/*Day_Combo.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -109,7 +110,7 @@ class Add_Change_Panel extends JPanel{
 		Day_Combo.setFont(SubFont);
 		add(Day_Combo);
 		
-		Time_Label = new JLabel("½Ã°£ : ");
+		Time_Label = new JLabel("ì‹œê°„ : ");
 		Time_Label.setBounds(350,360,100,50);
 		Time_Label.setFont(SubFont);
 		add(Time_Label);
@@ -126,7 +127,7 @@ class Add_Change_Panel extends JPanel{
 		});*/
 		add(Time_Text);
 		
-		Year_Label = new JLabel("¼ö°­ ³âµµ : ");
+		Year_Label = new JLabel("ìˆ˜ê°• ë…„ë„ : ");
 		Year_Label.setBounds(100,460,100,40);
 		Year_Label.setFont(SubFont);
 		add(Year_Label);
@@ -149,12 +150,12 @@ class Add_Change_Panel extends JPanel{
 		add(Year_Combo);
 		
 		
-		Sem_Label = new JLabel("ÇĞ±â : ");
+		Sem_Label = new JLabel("í•™ê¸° : ");
 		Sem_Label.setBounds(350,460,100,40);
 		Sem_Label.setFont(SubFont);
 		add(Sem_Label);
 		
-		String[] Sems = {"1ÇĞ±â","2ÇĞ±â"}; 
+		String[] Sems = {"1í•™ê¸°","2í•™ê¸°"}; 
 		Sem_Combo = new JComboBox<String>(Sems);
 		/*Sem_Combo.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
@@ -166,8 +167,8 @@ class Add_Change_Panel extends JPanel{
 		Sem_Combo.setFont(SubFont);
 		add(Sem_Combo);		
 
-		//È®ÀÎ ¹öÆ°
-		Reg_Button = new JButton("È®ÀÎ");
+		//í™•ì¸ ë²„íŠ¼
+		Reg_Button = new JButton("í™•ì¸");
 		Reg_Button.setSize(150,50);
 		Reg_Button.setLocation(180,600);
 		Reg_Button.setFont(ButtonFont);
@@ -175,21 +176,21 @@ class Add_Change_Panel extends JPanel{
 		add(Reg_Button);
 				
 				
-		//Ãë¼Ò ¹öÆ°
-		Cancel_Button = new JButton("Ãë¼Ò");
+		//ì·¨ì†Œ ë²„íŠ¼
+		Cancel_Button = new JButton("ì·¨ì†Œ");
 		Cancel_Button.setSize(150,50);
 		Cancel_Button.setLocation(370,600);
 		Cancel_Button.setFont(ButtonFont);
 		Cancel_Button.addActionListener(new CancelActionListener());
 		add(Cancel_Button);
-		
+		setBackground(Color.WHITE);
 		setBounds(0,0,650,750);
 		
 	}
 	
 	public Add_Change_Panel(ToDoList_Main win, String PanelName) {
 		if(PanelName == "Add_Panel") {
-			Title_Label = new JLabel("¼ö°­ °ú¸ñ µî·Ï");
+			Title_Label = new JLabel("ìˆ˜ê°• ê³¼ëª© ë“±ë¡");
 			Title_Label.setFont(TitleFont);
 			Title_Label.setForeground(MainColor);
 			Title_Label.setBounds(240,40,400,60);
@@ -235,7 +236,7 @@ class Add_Change_Panel extends JPanel{
 		Sem_Combo.repaint();
 	}
 	
-	//µî·Ï¹öÆ° ActionListener
+	//ë“±ë¡ë²„íŠ¼ ActionListener
 	class OkActionListener extends JFrame implements ActionListener{
 		private JTextField Sub_Text;
 		private JTextField Prof_Text;
@@ -265,26 +266,35 @@ class Add_Change_Panel extends JPanel{
 			Reg_Info[5] = Sem_Combo.getSelectedItem().toString();
 			
 			
-			//ÀÎÀÚ È®ÀÎ
-			addFlag = Boolean.FALSE;
+			//ì¸ì í™•ì¸
 			for(int i = 0; i < 6; i++) {
 				if(Reg_Info[i].equals("")) {
-					JOptionPane.showMessageDialog(null , "ºóÄ­À» ¸ğµÎ ÀÔ·ÂÇØÁÖ¼¼¿ä.", "¾Ë¸²", JOptionPane.INFORMATION_MESSAGE);
-					
+					JOptionPane.showMessageDialog(null , "ë¹ˆì¹¸ì„ ëª¨ë‘ ì…ë ¥í•´ì£¼ì„¸ìš”.", "ì•Œë¦¼", JOptionPane.INFORMATION_MESSAGE);
+					addFlag = Boolean.FALSE;
+					break;
+				}
+				if(!Pattern.matches("^[ã„±-ã…ê°€-í£0-9a-zA-Z]*$", Reg_Info[i]) && i != 3) {
+					JOptionPane.showMessageDialog(null , "íŠ¹ìˆ˜ ë¬¸ìëŠ” ì…ë ¥í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.", "ì•Œë¦¼", JOptionPane.INFORMATION_MESSAGE);
+					addFlag = Boolean.FALSE;
+					break;
+				}
+				if(!Pattern.matches("^\\d{1,2}+[-]+\\d{1,2}$", Reg_Info[i]) && i == 3) {
+					JOptionPane.showMessageDialog(null , "'ì‹œê°„-ì‹œê°„'ì˜ í˜•íƒœë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”.", "ì•Œë¦¼", JOptionPane.INFORMATION_MESSAGE);
+					addFlag = Boolean.FALSE;
 					break;
 				}
 				addFlag = Boolean.TRUE;
 			}
 			if(addFlag == Boolean.TRUE) {
-				// ¿¢¼¿¿¡ Ãß°¡
+				// ì—‘ì…€ì— ì¶”ê°€
 				String FilePath = "./Subject_Dir/";			
 				String FilePath2 = "./Subject_Dir/Todolist_Dir/";			
 				
-				// ToDoList ¿¢¼¿ »ı¼º
+				// ToDoList ì—‘ì…€ ìƒì„±
 				File destFile = new File(FilePath2 + Reg_Info[0] + ".xlsx");
 				File OriFile = new File(FilePath2 + PreName + ".xlsx");
 				
-				//Ãâ·Â
+				//ì¶œë ¥
 				FileInputStream inputStream;
 				FileOutputStream outFile;
 				
@@ -295,12 +305,12 @@ class Add_Change_Panel extends JPanel{
 						Sheet sheet=workbook.createSheet();
 						sheet.createRow(0);
 						Row row = sheet.createRow(0);
-						row.createCell(0).setCellValue("°ú¸ñ");
-						row.createCell(1).setCellValue("ÇÒ ÀÏ");
-						row.createCell(2).setCellValue("¸¶°¨ ±âÇÑ");
-						row.createCell(3).setCellValue("½ÇÁ¦ ¸¶°¨ÀÏ");
-						row.createCell(4).setCellValue("¿Ï·á ¿©ºÎ");
-						row.createCell(5).setCellValue("Áß¿äµµ");
+						row.createCell(0).setCellValue("ê³¼ëª©");
+						row.createCell(1).setCellValue("í•  ì¼");
+						row.createCell(2).setCellValue("ë§ˆê° ê¸°í•œ");
+						row.createCell(3).setCellValue("ì‹¤ì œ ë§ˆê°ì¼");
+						row.createCell(4).setCellValue("ì™„ë£Œ ì—¬ë¶€");
+						row.createCell(5).setCellValue("ì¤‘ìš”ë„");
 						
 						
 						try {
@@ -371,28 +381,28 @@ class Mainpage extends JPanel{
 	
 	private JLabel Id_Label;
 	
-	private JButton Add_Button = new JButton("µî·Ï");
-	private JButton Change_Button = new JButton("¼öÁ¤");
-	private JButton Delete_Button = new JButton("»èÁ¦");
-	private JButton ShowAll_Button = new JButton("ÀüÃ¼ To Do List Á¶È¸");
+	private JButton Add_Button = new JButton("ë“±ë¡");
+	private JButton Change_Button = new JButton("ìˆ˜ì •");
+	private JButton Delete_Button = new JButton("ì‚­ì œ");
+	private JButton ShowAll_Button = new JButton("ì „ì²´ To Do List ì¡°íšŒ");
 	private JButton TrashCan_Button = new JButton();
 	private JLabel Title_Label = new JLabel();
 	private JScrollPane Subject_Scroll;
 	
-	private Font TitleFont = new Font("HY°ß°íµñ",Font.BOLD, 30);
-	private Font ButtonFont = new Font("¸¼Àº °íµñ",Font.BOLD, 20);
-	private Font SubFont = new Font("¸¼Àº °íµñ",Font.BOLD, 15);
+	private Font TitleFont = new Font("HYê²¬ê³ ë”•",Font.BOLD, 30);
+	private Font ButtonFont = new Font("ë§‘ì€ ê³ ë”•",Font.BOLD, 20);
+	private Font SubFont = new Font("ë§‘ì€ ê³ ë”•",Font.BOLD, 15);
 	
 	private Color MainColor = new Color(0, 32, 96);
 	
 	private ImageIcon TrashCan_Icon = new ImageIcon("./TrashCan.png");
 	
-	//Ãß°¡ JTable·Î ±¸Çö
+	//ì¶”ê°€ JTableë¡œ êµ¬í˜„
 	private JTable Subject_Table;
-	private final String [] col = {"V", "°ú¸ñ", "±³¼ö", "¿äÀÏ", "½Ã°£", "¼ö°­³âµµ", "ÇĞ±â"};
+	private final String [] col = {"V", "ê³¼ëª©", "êµìˆ˜", "ìš”ì¼", "ì‹œê°„", "ìˆ˜ê°•ë…„ë„", "í•™ê¸°"};
 	private Object [][] datas;
 	
-	//¿¢¼¿ ÀĞ±â º¯¼ö
+	//ì—‘ì…€ ì½ê¸° ë³€ìˆ˜
 	private Row row;
 	private Cell cell;
 	String FilePath = "./Subject_Dir/";
@@ -410,7 +420,7 @@ class Mainpage extends JPanel{
 		setLayout(null);
 		
 		model = new DefaultTableModel(datas, col);
-		//Å×ÀÌºí
+		//í…Œì´ë¸”
 		Subject_Table = new JTable(model) {
 			@Override
 			public Class getColumnClass(int column) {
@@ -434,7 +444,7 @@ class Mainpage extends JPanel{
 				}
 			}
 		};
-		//Çì´õ ÆùÆ®
+
 		JTableHeader header = Subject_Table.getTableHeader();
 		DefaultTableCellRenderer renderer = (DefaultTableCellRenderer)header.getDefaultRenderer();
 		renderer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -444,7 +454,7 @@ class Mainpage extends JPanel{
 		header.setForeground(Color.WHITE);
 		header.setFont(SubFont);
 		
-		//ÄÃ·³ Å©±â, ÀÌµ¿º¯°æ ºÒ°¡
+		//ì»¬ëŸ¼ í¬ê¸°, ì´ë™ë³€ê²½ ë¶ˆê°€
 		header.setReorderingAllowed(false);
 		header.setResizingAllowed(false);
 		
@@ -457,18 +467,18 @@ class Mainpage extends JPanel{
 		Id_Label.setBounds(25,100,150,40);
 		add(Id_Label);
 		
-		// Á¦¸ñ
-		Title_Label = new JLabel("¼ö°­ °ú¸ñ LIST");
+		// ì œëª©
+		Title_Label = new JLabel("ìˆ˜ê°• ê³¼ëª© LIST");
 		Title_Label.setFont(TitleFont);
 		Title_Label.setForeground(MainColor);
-		Title_Label.setBounds(240,40,400,60);
+		Title_Label.setBounds(210,40,400,60);
 		add(Title_Label);
 		
 		JPanel p1 = new JPanel();
 		p1.setLayout(new FlowLayout());
 		
 		
-		// ¹öÆ°
+		// ë²„íŠ¼
 		Add_Button.addActionListener(new RegActionListener());
 		Change_Button.addActionListener(new ChangeActionListener());	 
 		Delete_Button.addActionListener(new DeleteActionListener());
@@ -482,14 +492,15 @@ class Mainpage extends JPanel{
 		p1.add(Add_Button);
 		p1.add(Change_Button);
 		p1.add(Delete_Button);
-		p1.setBounds(350,100,270,50);
+		p1.setBackground(Color.WHITE);
+		p1.setBounds(357,100,270,50);
 		add(p1);
 		
 		
 
 		
 		
-		//½ºÅ©·Ñ Ãß°¡ 
+		//ìŠ¤í¬ë¡¤ ì¶”ê°€ 
 		Subject_Scroll = new JScrollPane(Subject_Table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		Subject_Scroll.setBounds(25,150,600,400);
 		Subject_Scroll.getVerticalScrollBar().setVisible(true);
@@ -504,7 +515,7 @@ class Mainpage extends JPanel{
 		ShowAll_Button.setBounds(25, 600, 220, 50);
 		ShowAll_Button.addActionListener(new ShowAllActionListener());
 		
-		TrashCan_Button.setBounds(500, 570, 100, 100);
+		TrashCan_Button.setBounds(508, 570, 100, 100);
 		Image originalImage = TrashCan_Icon.getImage();
 		Image changedImage = originalImage.getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 		ImageIcon finIcon = new ImageIcon(changedImage);
@@ -515,7 +526,7 @@ class Mainpage extends JPanel{
 		add(ShowAll_Button);
 		add(TrashCan_Button);
 		
-		
+		setBackground(Color.WHITE);
 		
 	}
 	/*
@@ -538,7 +549,7 @@ class Mainpage extends JPanel{
 	
 	
 	public void RefreshSubjectTable() {
-		// ¿¢¼¿·ÎºÎÅÍ Á¤º¸ ÀĞ±â
+		// ì—‘ì…€ë¡œë¶€í„° ì •ë³´ ì½ê¸°
 		try {
 			DefaultTableModel model = new DefaultTableModel(datas, col) {;
 				@Override
@@ -560,7 +571,7 @@ class Mainpage extends JPanel{
 				row=sheet.getRow(i);
 				if(row != null) {
 					// cell for
-					ReadData[0]=Boolean.FALSE;  // Ã¼Å©¹Ú½º
+					ReadData[0]=Boolean.FALSE;  // ì²´í¬ë°•ìŠ¤
 					for(int j=0;j<cells;j++) {
 						cell = row.getCell(j);
 						if(cell !=null) {
@@ -590,28 +601,28 @@ class Mainpage extends JPanel{
 			model.addRow(ReadData);
 				
 		}
-		//½ºÆ®¸µ ÄÃ·³ ¼Ó¼º
+		//ìŠ¤íŠ¸ë§ ì»¬ëŸ¼ ì†ì„±
 		DefaultTableCellRenderer dtcr2 = new DefaultTableCellRenderer();
 		dtcr2.setHorizontalAlignment(SwingConstants.CENTER);
 		dtcr2.setFont(SubFont);
 		Subject_Table.getColumn("V").setPreferredWidth(40);
-		Subject_Table.getColumn("°ú¸ñ").setCellRenderer(dtcr2);
-		Subject_Table.getColumn("°ú¸ñ").setPreferredWidth(150);
-		Subject_Table.getColumn("±³¼ö").setCellRenderer(dtcr2);
-		Subject_Table.getColumn("¿äÀÏ").setCellRenderer(dtcr2);
-		Subject_Table.getColumn("½Ã°£").setCellRenderer(dtcr2);
-		Subject_Table.getColumn("¼ö°­³âµµ").setCellRenderer(dtcr2);
-		Subject_Table.getColumn("ÇĞ±â").setCellRenderer(dtcr2);
+		Subject_Table.getColumn("ê³¼ëª©").setCellRenderer(dtcr2);
+		Subject_Table.getColumn("ê³¼ëª©").setPreferredWidth(150);
+		Subject_Table.getColumn("êµìˆ˜").setCellRenderer(dtcr2);
+		Subject_Table.getColumn("ìš”ì¼").setCellRenderer(dtcr2);
+		Subject_Table.getColumn("ì‹œê°„").setCellRenderer(dtcr2);
+		Subject_Table.getColumn("ìˆ˜ê°•ë…„ë„").setCellRenderer(dtcr2);
+		Subject_Table.getColumn("í•™ê¸°").setCellRenderer(dtcr2);
 		Subject_Table.setRowHeight(50);
 		Subject_Table.setFont(SubFont);
 		
 		
-		// Å×ÀÌºí Á¤·Ä
+		// í…Œì´ë¸” ì •ë ¬
 		Subject_Table.setBackground(Color.WHITE);
 		Subject_Table.setAutoCreateRowSorter(true);
 		TableRowSorter tablesorter = new TableRowSorter(Subject_Table.getModel());
 		Subject_Table.setRowSorter(tablesorter);
-		// Å×ÀÌºí »õ·Î°íÄ§
+		// í…Œì´ë¸” ìƒˆë¡œê³ ì¹¨
 		Subject_Table.revalidate();
 		Subject_Table.repaint();
 		
@@ -619,13 +630,13 @@ class Mainpage extends JPanel{
 			e.printStackTrace();		
 		}					
 	}
-	// Á¤·Ä ÈÄ ÀÛ¾÷À» À§ÇÔ
-	// Á¤·ÄÇß´Ù¸é Subject_TableÀÇ ÇöÀç »óÅÂ·Î Subject_List.xlsx ¼öÁ¤
+	// ì •ë ¬ í›„ ì‘ì—…ì„ ìœ„í•¨
+	// ì •ë ¬í–ˆë‹¤ë©´ Subject_Tableì˜ í˜„ì¬ ìƒíƒœë¡œ Subject_List.xlsx ìˆ˜ì •
 	void RefreshSubjectExel() {
 		if(Subject_Table.getRowCount() > 1) {
 			String FilePath = "./Subject_Dir/";			
 			File destFile = new File(FilePath +"Subject_List.xlsx");
-			//Ãâ·Â
+			//ì¶œë ¥
 			FileOutputStream outFile;
 			try {
 				FileInputStream inputStream = new FileInputStream(destFile);
@@ -664,13 +675,13 @@ class Mainpage extends JPanel{
 		destFile.delete();
 	}
 	
-	// µî·Ï, ¼öÁ¤, »èÁ¦ , ÈŞÁöÅë ¹öÆ° ActionListener
+	// ë“±ë¡, ìˆ˜ì •, ì‚­ì œ , íœ´ì§€í†µ ë²„íŠ¼ ActionListener
 	class RegActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			RefreshSubjectExel();
 			
 			int SelectedRowNum = Subject_Table.getRowCount();
-			String [] S_Reg_Info = {"","","¿ù", "", "2018", "1ÇĞ±â"};
+			String [] S_Reg_Info = {"","","ì›”", "", "2018", "1í•™ê¸°"};
 			win.change("Add_Panel", SelectedRowNum, S_Reg_Info);
 		}
 	}
@@ -687,7 +698,7 @@ class Mainpage extends JPanel{
 				}
 			}
 			if(SelectedNum == 0 || SelectedNum > 1) {
-				JOptionPane.showMessageDialog(null , "ÇÏ³ªÀÇ °ú¸ñÀ» ¼±ÅÃÇØÁÖ¼¼¿ä." , "¾Ë¸²", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null , "í•˜ë‚˜ì˜ ê³¼ëª©ì„ ì„ íƒí•´ì£¼ì„¸ìš”." , "ì•Œë¦¼", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
 				Select_Flag = Boolean.TRUE;
@@ -720,7 +731,7 @@ class Mainpage extends JPanel{
 			}
 			
 			if(SelectedNum == 0) {
-				JOptionPane.showMessageDialog(null , "ÇÏ³ª ÀÌ»óÀÇ °ú¸ñÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.", "¾Ë¸²", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null , "í•˜ë‚˜ ì´ìƒì˜ ê³¼ëª©ì„ ì„ íƒí•´ì£¼ì„¸ìš”.", "ì•Œë¦¼", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
 				Select_Flag = Boolean.TRUE;
@@ -728,11 +739,11 @@ class Mainpage extends JPanel{
 			
 			if(Select_Flag == Boolean.TRUE) {
 				
-				// ¿¢¼¿¼±ÅÃ
+				// ì—‘ì…€ì„ íƒ
 				String FilePath = "./Subject_Dir/";			
 				String FilePath2 = "./Subject_Dir/Todolist_Dir/";			
 				
-				//Ãâ·Â
+				//ì¶œë ¥
 				FileOutputStream outFile;
 				try {
 					FileInputStream inputStream = new FileInputStream(FilePath + "Subject_List.xlsx");
@@ -745,10 +756,10 @@ class Mainpage extends JPanel{
 						rows = it.next().intValue()+1;
 						row = sheet.getRow(rows);
 						
-						//To Do List ¿¢¼¿ »èÁ¦ 
+						//To Do List ì—‘ì…€ ì‚­ì œ 
 						RemoveFile(FilePath2, sheet.getRow(rows).getCell(0).getStringCellValue());
 						
-						//¼±ÅÃÇÑ °ú¸ñÀÇ Row ""À¸·Î ÃÊ±âÈ­ (Subject_List.xlsx)
+						//ì„ íƒí•œ ê³¼ëª©ì˜ Row ""ìœ¼ë¡œ ì´ˆê¸°í™” (Subject_List.xlsx)
 						row.getCell(0).setCellValue("");
 						row.getCell(1).setCellValue("");
 						row.getCell(2).setCellValue("");
@@ -757,14 +768,14 @@ class Mainpage extends JPanel{
 						row.getCell(5).setCellValue("");
 					}
 					
-					// °ø¹éÀ¸·Î ¸¸µé°í ÆÄÀÏ ´İ±â
+					// ê³µë°±ìœ¼ë¡œ ë§Œë“¤ê³  íŒŒì¼ ë‹«ê¸°
 					outFile = new FileOutputStream(FilePath + "Subject_List.xlsx");
 					workbook.write(outFile);	
 					outFile.close();
 					workbook.close();
 					
 					
-					// °ø¹é Á¤·Ä
+					// ê³µë°± ì •ë ¬
 					sortExcel SE = new sortExcel();	
 					SE.sort(FilePath, "Subject_List.xlsx");
 					
@@ -789,7 +800,7 @@ class Mainpage extends JPanel{
 		}
 	}
 	
-	// °ú¸ñ ´õºíÅ¬¸¯½Ã ToDoList ÆäÀÌÁö ÀüÈ¯ ¸¶¿ì½º¸®½º³Ê
+	// ê³¼ëª© ë”ë¸”í´ë¦­ì‹œ ToDoList í˜ì´ì§€ ì „í™˜ ë§ˆìš°ìŠ¤ë¦¬ìŠ¤ë„ˆ
 	private class SelectSubjectMouseListener extends MouseAdapter {
 		public void mouseClicked(MouseEvent e) {
 			JTable t = (JTable)e.getSource();
@@ -819,24 +830,24 @@ class sortExcel{
 			Row NextRow = sheet.getRow(0);
 			Cell NextCell = NextRow.getCell(0);
 			NextCell = NextRow.getCell(0);
-			// Subject_List.xlsx Á¤¸®
-			// ¿¢¼¿ ÆÄÀÏ ¼øÈ¸
+			// Subject_List.xlsx ì •ë¦¬
+			// ì—‘ì…€ íŒŒì¼ ìˆœíšŒ
 			Cell cell;
 			for(int searchRow = 1; searchRow < sheet.getPhysicalNumberOfRows();searchRow++) {
 				row = sheet.getRow(searchRow);
 				cell = row.getCell(0);
-				// RowÀÇ Ã¹¹øÂ° CellÀÌ °ø¹éÀÌ¸é ´ÙÀ½ °ø¹éÀÌ ¾Æ´Ñ Row Ã£±â
+				// Rowì˜ ì²«ë²ˆì§¸ Cellì´ ê³µë°±ì´ë©´ ë‹¤ìŒ ê³µë°±ì´ ì•„ë‹Œ Row ì°¾ê¸°
 				System.out.println("cell : " + cell.getStringCellValue());
 				
 				if (cell.getStringCellValue() == ""){
-					System.out.println("°ø¹é row ¹ß°ß");
+					System.out.println("ê³µë°± row ë°œê²¬");
 					for(int NextRowNum = searchRow; NextRowNum < sheet.getPhysicalNumberOfRows(); NextRowNum++) {
-						// °ø¹éÀÏ °æ¿ì ´ÙÀ½ °ø¹éÀÌ ¾Æ´Ñ ¼¿ Ã£±â
+						// ê³µë°±ì¼ ê²½ìš° ë‹¤ìŒ ê³µë°±ì´ ì•„ë‹Œ ì…€ ì°¾ê¸°
 						NextRow = sheet.getRow(NextRowNum);
 						NextCell = NextRow.getCell(0);
 						if(NextCell.getStringCellValue() != "") {
-							// ´ÙÀ½ °ø¹éÀÌ ¾Æ´Ñ ¼¿À» °ø¹éÀÌ¿´´ø ¼¿·Î ÀÌµ¿
-							System.out.println("°ø¹éÀÌ ¾Æ´Ñ ´ÙÀ½ row ¹ß°ß ÈÄ ÀÌµ¿");
+							// ë‹¤ìŒ ê³µë°±ì´ ì•„ë‹Œ ì…€ì„ ê³µë°±ì´ì˜€ë˜ ì…€ë¡œ ì´ë™
+							System.out.println("ê³µë°±ì´ ì•„ë‹Œ ë‹¤ìŒ row ë°œê²¬ í›„ ì´ë™");
 							for(int r = 0; r <row.getPhysicalNumberOfCells(); r++) {
 								NextCell = NextRow.getCell(r);
 								row.getCell(r).setCellValue(NextCell.getStringCellValue());
@@ -847,7 +858,7 @@ class sortExcel{
 					}
 				}
 			}
-			// ¿¢¼¿ ±æÀÌ ÁÙÀÌ±â
+			// ì—‘ì…€ ê¸¸ì´ ì¤„ì´ê¸°
 			for(int i=0; i < sheet.getPhysicalNumberOfRows() ; i++) {
 				row = sheet.getRow(sheet.getLastRowNum());
 				cell = row.getCell(0);
@@ -882,7 +893,7 @@ public class ToDoList_Main extends JFrame{
 	
 	
 	public void change(String panelName)	{
-		// °ú¸ñ ÆäÀÌÁö ÀüÈ¯
+		// ê³¼ëª© í˜ì´ì§€ ì „í™˜
 		if(panelName.equals("Mainpage")) {
 			getContentPane().removeAll();
 			getContentPane().add(MP);
@@ -891,16 +902,16 @@ public class ToDoList_Main extends JFrame{
 			revalidate();
 			repaint();
 		}
-		//ÀüÃ¼ To Do Listº¸±â ÀüÈ¯
+		//ì „ì²´ To Do Listë³´ê¸° ì „í™˜
 		else if(panelName.equals("ShowAll_Todo")) {
-			this.setVisible(false);
-			this.SA = new ShowAll_Todo(this);
+			//this.setVisible(true);
+			this.SA = new ShowAll_Todo();
 			SA.setVisible(true);
 		}
 		
 		
 	}
-	// Æ¯Á¤ °ú¸ñÀÇ To Do Listº¸±â ÀüÈ¯
+	// íŠ¹ì • ê³¼ëª©ì˜ To Do Listë³´ê¸° ì „í™˜
 	public void change(String panelName, String Subject_Name) {
 		if(panelName.equals("ToDoList")) {
 			this.setVisible(false);
@@ -912,10 +923,10 @@ public class ToDoList_Main extends JFrame{
 		}
 	}
 	
-	// ¼öÁ¤ ÆäÀÌÁö ÀüÈ¯
+	// ìˆ˜ì • í˜ì´ì§€ ì „í™˜
 	public void change(String panelName, int SelectedRowNum, String[] Reg_Info) {
-		//¼±ÅÃµÈ °ú¸ñÀÇ ÁÙ¼ö Àü´Ş
-		//Ãß°¡ È­¸é ÀüÈ¯
+		//ì„ íƒëœ ê³¼ëª©ì˜ ì¤„ìˆ˜ ì „ë‹¬
+		//ì¶”ê°€ í™”ë©´ ì „í™˜
 		if(panelName.equals("Add_Panel")) {	
 			AP.setPanelName("Add_Panel");
 			AP.setRegInfo(Reg_Info);
@@ -926,7 +937,7 @@ public class ToDoList_Main extends JFrame{
 			revalidate();
 			repaint();
 		}
-		// ¼öÁ¤ ÆäÀÌÁö ÀüÈ¯
+		// ìˆ˜ì • í˜ì´ì§€ ì „í™˜
 		else if(panelName.equals("Change_Panel")) {			
 			AP.setRowNum(SelectedRowNum);
 		
@@ -934,7 +945,7 @@ public class ToDoList_Main extends JFrame{
 			AP.setPanelName("Change_Panel");
 			AP.setPreName(Reg_Info[0]);
 			AP.ChangeMod(Reg_Info);
-			AP.ChangeTitle("¼ö°­ °ú¸ñ ¼öÁ¤");
+			AP.ChangeTitle("ìˆ˜ê°• ê³¼ëª© ìˆ˜ì •");
 			AP.repaint();
 			getContentPane().removeAll();
 			getContentPane().add(AP);
@@ -945,7 +956,7 @@ public class ToDoList_Main extends JFrame{
 	
 	
 	public static void main(String [] args) {
-		// ÆÄÀÏÀÌ °æ·Î¿¡ ¾øÀ¸¸é »ı¼º
+		// íŒŒì¼ì´ ê²½ë¡œì— ì—†ìœ¼ë©´ ìƒì„±
 		String FilePath = "./Subject_Dir/";
 		String FilePath2 = "./Subject_Dir/ToDolist_Dir/";
 		File destdir = new File(FilePath);
@@ -972,20 +983,20 @@ public class ToDoList_Main extends JFrame{
 				sheet2.createRow(0);
 				
 				Row row = sheet.createRow(0);
-				row.createCell(0).setCellValue("°ú¸ñ");
-				row.createCell(1).setCellValue("±³¼ö");
-				row.createCell(2).setCellValue("¿äÀÏ");
-				row.createCell(3).setCellValue("½Ã°£");
-				row.createCell(4).setCellValue("¼ö°­³âµµ");
-				row.createCell(5).setCellValue("ÇĞ±â");
+				row.createCell(0).setCellValue("ê³¼ëª©");
+				row.createCell(1).setCellValue("êµìˆ˜");
+				row.createCell(2).setCellValue("ìš”ì¼");
+				row.createCell(3).setCellValue("ì‹œê°„");
+				row.createCell(4).setCellValue("ìˆ˜ê°•ë…„ë„");
+				row.createCell(5).setCellValue("í•™ê¸°");
 				
 				Row row2 = sheet2.createRow(0);
-				row2.createCell(0).setCellValue("°ú¸ñ");
-				row2.createCell(1).setCellValue("ÇÒ ÀÏ");
-				row2.createCell(2).setCellValue("¸¶°¨ ±âÇÑ");
-				row2.createCell(3).setCellValue("½ÇÁ¦ ¸¶°¨ÀÏ");
-				row2.createCell(4).setCellValue("¿Ï·á ¿©ºÎ");
-				row2.createCell(5).setCellValue("Áß¿äµµ");
+				row2.createCell(0).setCellValue("ê³¼ëª©");
+				row2.createCell(1).setCellValue("í•  ì¼");
+				row2.createCell(2).setCellValue("ë§ˆê° ê¸°í•œ");
+				row2.createCell(3).setCellValue("ì‹¤ì œ ë§ˆê°ì¼");
+				row2.createCell(4).setCellValue("ì™„ë£Œ ì—¬ë¶€");
+				row2.createCell(5).setCellValue("ì¤‘ìš”ë„");
 				
 				
 				FileOutputStream outFile;
@@ -1008,10 +1019,10 @@ public class ToDoList_Main extends JFrame{
 			ex.getMessage();
 		}
 		
-		// GUI ½ÃÀÛ
+		// GUI ì‹œì‘
 		ToDoList_Main test = new ToDoList_Main();
 		
-		test.setTitle("To Do List Program");
+		//test.setTitle("To Do List Program");
 		test.Log = new Login(test);
 		test.AP = new Add_Change_Panel(test, "Add_Panel");
 		test.MP = new Mainpage(test);
@@ -1019,10 +1030,10 @@ public class ToDoList_Main extends JFrame{
 		test.add(test.Log);
 		//test.MP.RefreshSubjectTable();
 		test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		test.setBackground(Color.WHITE);
 	    test.setSize(650, 750);
 	    test.setVisible(true);
 	    test.setResizable(false);
 	    //as
 	}
 }
-
