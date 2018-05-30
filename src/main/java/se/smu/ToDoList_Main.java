@@ -434,7 +434,6 @@ class Mainpage extends JPanel{
 				}
 			}
 		};
-		
 		//헤더 폰트
 		JTableHeader header = Subject_Table.getTableHeader();
 		DefaultTableCellRenderer renderer = (DefaultTableCellRenderer)header.getDefaultRenderer();

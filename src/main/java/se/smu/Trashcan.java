@@ -183,8 +183,7 @@ public class Trashcan extends JFrame {
 			}
 		}
 	}
-	
-	
+		
 	class MyActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			JButton b = (JButton)e.getSource();

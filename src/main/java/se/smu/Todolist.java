@@ -28,9 +28,9 @@ class Back {
    test.add(test.MP);
    test.MP.RefreshSubjectTable();
    test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-test.setSize(650, 750);
-test.setVisible(true);
-test.setResizable(false);
+   test.setSize(650, 750);
+   test.setVisible(true);
+   test.setResizable(false);
    }
 }
 
@@ -41,14 +41,13 @@ public class Todolist extends JFrame{
    private Register_Todolist RT;
    private JButton Add_Button;
    private JButton Delete_Button;
-   private JButton Change_Button;
-   
+   private JButton Change_Button;   
    private Cell cell;  
  
-      private JTable table; 
-      DefaultTableModel model;
+   	private JTable table; 
+    DefaultTableModel model;
    
-      public String[] column = {"V", "할 일", "마감 기한", "실제 마감일", "완료 여부", "중요도"};
+    public String[] column = {"V", "할 일", "마감 기한", "실제 마감일", "완료 여부", "중요도"};
     public Object rowData[][];
     
     
@@ -105,7 +104,7 @@ public class Todolist extends JFrame{
           this.Subject_Name = Subject_Name;          
     }
     
-    public void Hiderender() {
+    /*   public void Hiderender() {
        
        chk = new JCheckBox();
        table.getColumn("V").setCellRenderer(dtcr1);       
@@ -131,6 +130,8 @@ public class Todolist extends JFrame{
          column5.setCellRenderer(myRenderer);
          
          table.getTableHeader().setFont(new Font("맑은고딕",Font.BOLD,15));
+         table.revalidate();
+      table.repaint();
     }
     public void Showrender() {
        
@@ -158,9 +159,11 @@ public class Todolist extends JFrame{
       column5.setCellRenderer(renderer);
       
       table.getTableHeader().setFont(new Font("맑은고딕",Font.BOLD,15));
+      table.revalidate();
+      table.repaint();
     }
     public void RefreshTable_1() {
-      
+       
        table.setModel(model);
        DefaultTableModel model = new DefaultTableModel(rowData, column) {            
           public boolean isCellEditable(int row, int column) {
@@ -184,34 +187,13 @@ public class Todolist extends JFrame{
         
         
         Hiderender();   
-      HeaderSetting();
+        HeaderSetting();
       
-      try {
-            FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
-            XSSFWorkbook workbook = new XSSFWorkbook(fis);
-            Sheet sheet = workbook.getSheetAt(0);
-            int rows = sheet.getPhysicalNumberOfRows();
-            
-            for(int i=1;i<rows;i++) {
-               Row row = sheet.getRow(i);             
-               if(row==null)
-                  rows++;
-               else {
-                  Object[] ob = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
-                  model.addRow(ob);   
-                
-               }
-
-            } 
-          
-         fis.close();
-         }
-         catch (Exception e){
-               e.printStackTrace();
-         } 
+      
    }
     
     public void RefreshTable_2() {
+       
        table.setModel(model);
        table.setBackground(Color.WHITE);
        table.setAutoCreateRowSorter(true);
@@ -231,36 +213,14 @@ public class Todolist extends JFrame{
 
        table.revalidate();
        table.repaint();
-    
+       
        Showrender();
        HeaderSetting();
        
-       try {
-             FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
-             XSSFWorkbook workbook = new XSSFWorkbook(fis);
-             Sheet sheet = workbook.getSheetAt(0);
-             int rows = sheet.getPhysicalNumberOfRows();
-             
-             for(int i=1;i<rows;i++) {
-                Row row = sheet.getRow(i);             
-                if(row==null)
-                   rows++;
-                else {
-                   Object[] ob = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
-                   model.addRow(ob);   
-                 
-                }
-
-             } 
-           
-          fis.close();
-          }
-          catch (Exception e){
-                e.printStackTrace();
-          } 
        
        
-}
+       
+}*/
 
     public void RefreshTable() {
        table.setBackground(Color.WHITE);
@@ -310,7 +270,7 @@ public class Todolist extends JFrame{
               }  
    }
       
-    public void TableSetting(){
+  /*  public void TableSetting(){
         try {
               FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
               XSSFWorkbook workbook = new XSSFWorkbook(fis);
@@ -334,7 +294,7 @@ public class Todolist extends JFrame{
            catch (Exception e){
                  e.printStackTrace();
            }   
-     }
+     } */
      
     DefaultTableCellRenderer dtcr1 = new DefaultTableCellRenderer(){      
          public Component getTableCellRendererComponent
@@ -357,10 +317,7 @@ public class Todolist extends JFrame{
             });
           
        Color navy = new Color(0,32,96);
-       
-             
-         
-          
+               
        JLabel Title_Label = new JLabel(Subject_Name + " To do LIST");
        Title_Label.setFont(new Font("HY견고딕",Font.BOLD,30));
        Title_Label.setForeground(navy);
@@ -411,7 +368,7 @@ public class Todolist extends JFrame{
        
        HeaderSetting_2();         
 
-       TableSetting();
+       RefreshTable();
          
        
        this.setLayout(null);
@@ -419,27 +376,73 @@ public class Todolist extends JFrame{
        Delete_Button.setBounds(458,160,80,30);
        Change_Button.setBounds(548,160,80,30);
        Hide_Button.setBounds(238,160,120,30);
-       scrollpane.setBounds(10, 200, 620, 200);
-       Title_Label.setBounds(100, 50, 450, 40);
+       scrollpane.setBounds(10, 200, 620, 350);
+       Title_Label.setBounds(160, 50, 450, 40);
+       Container c = this.getContentPane();
+       c.setBackground(Color.white);
+
+
+
+    
 
        
        setSize(650,750);
-       setVisible(false);
+      
        
        Hide_Button.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-               JButton b = (JButton)e.getSource();
+               JButton Hide_Button = (JButton)e.getSource();
                
-               if(b.getText().equals("숨기기")) {
-
-               Hide_Button.setText("보여주기"); 
-               RefreshTable_1();
+               if(Hide_Button.getText().equals("숨기기")) {   
+            	   Hide_Button.setText("보여주기");
+            	   model = (DefaultTableModel)table.getModel();
+              		model.setNumRows(0);
+              		
+            	 try {
+            	FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
+				XSSFWorkbook workbook = new XSSFWorkbook(fis);
+				Sheet sheet = workbook.getSheetAt(0);   
+			
+           		int rows = sheet.getPhysicalNumberOfRows();
+           		for(int i=1;i<rows;i++) {
+           			Row row = sheet.getRow(i);           			
+           			if(row.getCell(4).toString().equals("완료"))
+           				continue;          			
+           			else {
+           				Object[] obj = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)};
+           				model.addRow(obj);
+           			}
+           		}                
+           		fis.close();
+                   }
+                   catch (Exception ex){
+                         ex.printStackTrace();
+                   }                
                }
-               else {
-                  
-               b.setText("숨기기");
-               RefreshTable_2();
-               }       
+               else {                  
+            Hide_Button.setText("숨기기");
+               
+               model = (DefaultTableModel)table.getModel();
+               model.setNumRows(0);
+         		
+       	 try {
+       	FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
+			XSSFWorkbook workbook = new XSSFWorkbook(fis);
+			Sheet sheet = workbook.getSheetAt(0);   
+       	
+			
+      		int rows = sheet.getPhysicalNumberOfRows();
+      		for(int i=1;i<rows;i++) {
+      			Row row = sheet.getRow(i);      			
+      				Object[] obj = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
+  				model.addRow(obj);
+      		}                
+      		fis.close();
+              }
+              catch (Exception ex){
+                    ex.printStackTrace();
+              }      
+               	}       
          }
        });
        
@@ -465,7 +468,7 @@ public class Todolist extends JFrame{
                UI.put("OptionPane.messageForeground", navy);
                UI.put("OptionPane.messageFont", message);
                
-               int SelectedNum = 0;
+            int SelectedNum = 0;
             int SelectedRowNum = 0;
             boolean Select = Boolean.FALSE;
             for(int i=0; i < table.getRowCount() ; i++) {
@@ -481,8 +484,7 @@ public class Todolist extends JFrame{
                if(SelectedNum > 1) {
                JOptionPane.showMessageDialog(null , "하나의 항목만 선택해주세요.", "알림", JOptionPane.INFORMATION_MESSAGE);}
             }            
-            
-            
+                        
             else {
                Select = Boolean.TRUE;
             }
@@ -508,9 +510,24 @@ public class Todolist extends JFrame{
                Font message = new Font("맑은고딕",Font.BOLD,20);
                UI.put("OptionPane.messageForeground", navy);
                UI.put("OptionPane.messageFont", message);
-               
-               if(chk.isSelected()) {
-            
+               int SelectedNum = 0;
+               boolean Select = Boolean.FALSE;
+               for(int i=0; i < table.getRowCount() ; i++) {
+                   if(table.getValueAt(i, 0) == Boolean.TRUE) {
+                      SelectedNum++;
+                   }
+               }
+            if(SelectedNum == 0 || SelectedNum > 1) {if(SelectedNum == 0) {
+                JOptionPane.showMessageDialog(null , "항목을 선택해주세요.", "알림", JOptionPane.INFORMATION_MESSAGE);   }
+                if(SelectedNum > 1) {
+                JOptionPane.showMessageDialog(null , "하나의 항목만 선택해주세요.", "알림", JOptionPane.INFORMATION_MESSAGE);}
+             }            
+                          
+             else {
+                Select = Boolean.TRUE;
+             }
+             
+           if(Select == Boolean.TRUE) {
             Vector<Integer> SelectedRowNum = new Vector<Integer>();
              
             for(int i=0; i < table.getRowCount() ; i++) {
@@ -520,8 +537,7 @@ public class Todolist extends JFrame{
                   
                }
             }
-            
-            
+                        
             int SelectedRowNum2 = 0;
             
             for(int i=0; i < table.getRowCount() ; i++) {
@@ -542,8 +558,6 @@ public class Todolist extends JFrame{
                   FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
                   XSSFWorkbook workbook = new XSSFWorkbook(fis);
                   Sheet sheet = workbook.getSheetAt(0);
-                  
-                  
 
                   int rows = sheet.getPhysicalNumberOfRows();
                   Row row = sheet.createRow(rows);
@@ -555,11 +569,7 @@ public class Todolist extends JFrame{
                   row.createCell(4).setCellValue(data[3]);               
                   row.createCell(5).setCellValue(data[4]);
                   
-                  
-                  
-            
-                  
-                  
+              
                FileOutputStream fos = new FileOutputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
                   workbook.write(fos);    
                   fos.close();
@@ -615,8 +625,7 @@ public class Todolist extends JFrame{
                      }
                   }
                   
-                  for(int i=0; i < SelectedRowNum.size() ; i++) {
-                     
+                  for(int i=0; i < SelectedRowNum.size() ; i++) {                    
                      row = sheet.getRow(sheet.getLastRowNum());
                      sheet.removeRow(row);
                   }
@@ -632,16 +641,9 @@ public class Todolist extends JFrame{
                } catch (Exception ex) {
                   ex.printStackTrace();
                } 
-               RefreshTable();   
-               
-               }
-               else {
-                  JOptionPane.showMessageDialog(null , "항목을 선택해주세요.","알림", JOptionPane.INFORMATION_MESSAGE);
-               }
+               RefreshTable();        
+            	}
             }
-         
       });
-
    }
-    
 }
