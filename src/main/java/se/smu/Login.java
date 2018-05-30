@@ -26,7 +26,7 @@ public class Login extends JPanel{
 	
 	public Login(ToDoList_Main win) {
 		this.win = win;
-		
+		this.setBackground(Color.WHITE);
 		setLayout(null);
 		Font default_font = new Font("¸¼Àº °íµñ",Font.BOLD,20);
 		Color default_color = new Color(0,32,96);		

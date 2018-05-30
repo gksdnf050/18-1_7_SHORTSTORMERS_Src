@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -47,7 +48,7 @@ public class Trashcan extends JFrame {
 		}
 		
 		setLayout(null);
-		
+		getContentPane().setBackground(Color.WHITE);
 		JLabel Title_label = new JLabel("휴지통");
 		Title_label.setFont(new Font("HY견고딕",Font.BOLD,30));
 		Title_label.setForeground(default_color);
@@ -188,29 +189,36 @@ public class Trashcan extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			JButton b = (JButton)e.getSource();
 			if(b.getText().equals("영구 삭제")){
-				
+				boolean check = false;
 				for(int i=0;i<model.getRowCount();i++) {
 					if(Table.getModel().getValueAt(i, 0).equals(true)) {
 						int j=0;
+						check=true;
 						while(sheet.getRow(j)==null || !sheet.getRow(j).getCell(0).equals(Table.getModel().getValueAt(i, 1))) 
 							j++;
 						sheet.removeRow(sheet.getRow(j));	
 					}
 				}
-				try {
-					TableReset();
-					FileOutputStream fos = new FileOutputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
-					workbook.write(fos);
-					fos.close();
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				} 
+				if(check==false)
+					JOptionPane.showMessageDialog(null , "아무것도 선택되지 않았습니다.");
+				else {
+					try {
+						TableReset();
+						FileOutputStream fos = new FileOutputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
+						workbook.write(fos);
+						fos.close();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					} 
+				}
 			}
 			
 			else {
+				boolean check = false;
 				for(int i=0;i<model.getRowCount();i++) {
 					if(Table.getModel().getValueAt(i, 0).equals(true)) {
 						int index=0;
+						check=true;
 						String Subject = Table.getModel().getValueAt(i, 1).toString();
 						FileInputStream fis2;
 						FileOutputStream fos2;
@@ -250,15 +258,19 @@ public class Trashcan extends JFrame {
 						} 
 					}
 				}
-				try {
-					TableReset();
-					FileOutputStream fos = new FileOutputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
-					workbook.write(fos);
-					fos.close();
-					
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}		
+				if(check==false)
+					JOptionPane.showMessageDialog(null , "아무것도 선택되지 않았습니다.");
+				else {
+					try {
+						TableReset();
+						FileOutputStream fos = new FileOutputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
+						workbook.write(fos);
+						fos.close();
+						
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
 			}
 		}	
 	}
