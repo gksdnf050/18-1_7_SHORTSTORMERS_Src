@@ -109,8 +109,7 @@ public class Change_Todolist extends JFrame {
 	    JLabel Month_Label2 = new JLabel("¿ù");
 	    Month_Label2.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
 	    this.add(Month_Label2);
-	    
-	   
+	    	   
 	    JLabel IsDone_Label = new JLabel("¿Ï·á ¿©ºÎ ");
 	    IsDone_Label.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
 	    this.add(IsDone_Label);
