@@ -215,9 +215,11 @@ public class Trashcan extends JFrame {
 			}
 			
 			else {
+				boolean check = false;
 				for(int i=0;i<model.getRowCount();i++) {
 					if(Table.getModel().getValueAt(i, 0).equals(true)) {
 						int index=0;
+						check=true;
 						String Subject = Table.getModel().getValueAt(i, 1).toString();
 						FileInputStream fis2;
 						FileOutputStream fos2;
@@ -257,15 +259,19 @@ public class Trashcan extends JFrame {
 						} 
 					}
 				}
-				try {
-					TableReset();
-					FileOutputStream fos = new FileOutputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
-					workbook.write(fos);
-					fos.close();
-					
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}		
+				if(check==false)
+					JOptionPane.showMessageDialog(null , "아무것도 선택되지 않았습니다.");
+				else {
+					try {
+						TableReset();
+						FileOutputStream fos = new FileOutputStream("./Subject_Dir/ToDolist_Dir/Trashcan.xlsx");
+						workbook.write(fos);
+						fos.close();
+						
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
 			}
 		}	
 	}
