@@ -48,7 +48,7 @@ public class Trashcan extends JFrame {
 		}
 		
 		setLayout(null);
-		
+		getContentPane().setBackground(Color.WHITE);
 		JLabel Title_label = new JLabel("»ﬁ¡ˆ≈Î");
 		Title_label.setFont(new Font("HY∞ﬂ∞ÌµÒ",Font.BOLD,30));
 		Title_label.setForeground(default_color);
