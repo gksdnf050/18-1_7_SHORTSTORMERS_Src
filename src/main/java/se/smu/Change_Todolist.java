@@ -155,7 +155,7 @@ public class Change_Todolist extends JFrame {
 	    Done_Button.setBackground(Color.white);
 	    this.add(Done_Button);	    
 	    this.setLayout(null);
-	    //Todo_Label.setBounds(80, 150, 450, 40);
+	    Todo_Label.setBounds(80, 150, 450, 40);
 	    Month_Label2.setBounds(280, 350, 450, 40);
 	    Todo_text.setBounds(180,150,350,40);
 	    Day_combo.setBounds(350,250,80,40);
