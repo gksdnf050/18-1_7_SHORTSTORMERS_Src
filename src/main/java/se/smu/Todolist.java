@@ -279,21 +279,23 @@ public class Todolist extends JFrame{
                    }                
                }
                else {                  
-            Hide_Button.setText("¼û±â±â");
+            
                
-               model = (DefaultTableModel)table.getModel();
-               model.setNumRows(0);
+               
          		
        	 try {
-       	FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
+       		Hide_Button.setText("¼û±â±â");
+       		FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
 			XSSFWorkbook workbook = new XSSFWorkbook(fis);
+			model = (DefaultTableModel)table.getModel();
+            model.setNumRows(0);
 			Sheet sheet = workbook.getSheetAt(0);   
        	
-			
-      		int rows = sheet.getPhysicalNumberOfRows();
+			int rows = sheet.getPhysicalNumberOfRows();
+      		
       		for(int i=1;i<rows;i++) {
       			Row row = sheet.getRow(i);      			
-      				Object[] obj = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
+      			Object[] obj = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)} ;
   				model.addRow(obj);
       		}                
       		fis.close();
