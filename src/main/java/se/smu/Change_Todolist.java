@@ -39,7 +39,6 @@ public class Change_Todolist extends JFrame {
 	    
 	    final JTextField Todo_text = new JTextField("입력해주세요");
 	    this.add(Todo_text);
-	    
 	    JLabel Actual_Label = new JLabel("실제 마감일 :");
 	    Actual_Label.setFont(new Font("맑은고딕",Font.BOLD,15));
 	    this.add(Actual_Label);
