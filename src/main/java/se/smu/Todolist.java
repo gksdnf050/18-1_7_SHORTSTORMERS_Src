@@ -34,7 +34,6 @@ class Back {
    }
 }
 
-
 public class Todolist extends JFrame{
    private JCheckBox chk;
    private JButton Hide_Button;
