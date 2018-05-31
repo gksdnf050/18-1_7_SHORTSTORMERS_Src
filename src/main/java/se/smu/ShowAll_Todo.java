@@ -94,7 +94,7 @@ public class ShowAll_Todo extends JFrame {
         header.setFont(new Font("맑은고딕",Font.BOLD,15));
         tableArea.setFont(new Font("맑은고딕",Font.PLAIN,15)); //헤더와 각 셀 폰트와 크기설정
         
-        header.setPreferredSize(new Dimension(100,20)); // 헤더높이조절
+        header.setPreferredSize(new Dimension(100,25)); // 헤더높이조절
         tableArea.setRowHeight(30); // 셀높이조절
         
         tableArea.getColumnModel().getColumn(0).setPreferredWidth(100); // 셀너비조절
