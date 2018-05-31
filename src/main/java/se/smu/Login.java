@@ -75,7 +75,7 @@ public class Login extends JPanel{
 			String ID = id.getText();
 			String PW = new String(pw.getPassword());
 			if(ID.equals("") || PW.equals(""))
-				JOptionPane.showMessageDialog(null , "아이디와 비밀번호는 필수입력사항입니다.");
+				JOptionPane.showMessageDialog(null , "필수 입력 사항입니다.");
 			else if(ID.equals("stormers") && PW.equals("stormers")) {
 				SavedID = "stormers";
 				win.change("Mainpage");
