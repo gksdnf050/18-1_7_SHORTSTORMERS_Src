@@ -2,7 +2,6 @@ package se.smu;
 
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -46,7 +45,7 @@ public class Todolist extends JFrame{
    	private JTable table; 
     DefaultTableModel model;
    
-    public String[] column = {"V", "ÇÒ ÀÏ", "¸¶°¨ ±âÇÑ", "½ÇÁ¦ ¸¶°¨ÀÏ", "¿Ï·á ¿©ºÎ", "Áß¿äµµ"};
+    public String[] column = {"V", "í•  ì¼", "ë§ˆê° ê¸°í•œ", "ì‹¤ì œ ë§ˆê°ì¼", "ì™„ë£Œ ì—¬ë¶€", "ì¤‘ìš”ë„"};
     public Object rowData[][];
        
     private String Subject_Name = new String();
@@ -61,29 +60,29 @@ public class Todolist extends JFrame{
        
        DefaultTableCellRenderer Todo = new DefaultTableCellRenderer();
        Todo.setHorizontalAlignment(SwingConstants.CENTER);
-       table.getColumn("ÇÒ ÀÏ").setCellRenderer(Todo);
+       table.getColumn("í•  ì¼").setCellRenderer(Todo);
        
     
        DefaultTableCellRenderer Dead = new DefaultTableCellRenderer();
        Dead.setHorizontalAlignment(SwingConstants.CENTER);
-       table.getColumn("¸¶°¨ ±âÇÑ").setCellRenderer(Dead);
+       table.getColumn("ë§ˆê° ê¸°í•œ").setCellRenderer(Dead);
        
        
        DefaultTableCellRenderer Actual = new DefaultTableCellRenderer();
        Actual.setHorizontalAlignment(SwingConstants.CENTER);
-       table.getColumn("½ÇÁ¦ ¸¶°¨ÀÏ").setCellRenderer(Actual);
+       table.getColumn("ì‹¤ì œ ë§ˆê°ì¼").setCellRenderer(Actual);
        
        DefaultTableCellRenderer Done = new DefaultTableCellRenderer();
        Done.setHorizontalAlignment(SwingConstants.CENTER);
-       table.getColumn("¿Ï·á ¿©ºÎ").setCellRenderer(Done);
+       table.getColumn("ì™„ë£Œ ì—¬ë¶€").setCellRenderer(Done);
        
        
        DefaultTableCellRenderer Import = new DefaultTableCellRenderer();
        Import.setHorizontalAlignment(SwingConstants.CENTER);
-       table.getColumn("Áß¿äµµ").setCellRenderer(Import);
+       table.getColumn("ì¤‘ìš”ë„").setCellRenderer(Import);
        
        
-       table.getTableHeader().setFont(new Font("¸¼Àº°íµñ",Font.BOLD,15));
+       table.getTableHeader().setFont(new Font("ë§‘ì€ê³ ë”•",Font.BOLD,15));
     }
     
     public void HeaderSetting() {
@@ -176,25 +175,25 @@ public class Todolist extends JFrame{
        Color navy = new Color(0,32,96);
                
        JLabel Title_Label = new JLabel(Subject_Name + " To do LIST");
-       Title_Label.setFont(new Font("HY°ß°íµñ",Font.BOLD,30));
+       Title_Label.setFont(new Font("HYê²¬ê³ ë”•",Font.BOLD,30));
        Title_Label.setForeground(navy);
        this.add(Title_Label);
        
-       Add_Button = new JButton("µî·Ï");
+       Add_Button = new JButton("ë“±ë¡");
        Add_Button.setBackground(Color.white);
-       Add_Button.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,20));
+       Add_Button.setFont(new Font("ë§‘ì€ê³ ë”•",Font.BOLD,20));
        
-       Delete_Button = new JButton("»èÁ¦");
+       Delete_Button = new JButton("ì‚­ì œ");
        Delete_Button.setBackground(Color.white);
-       Delete_Button.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,20));
+       Delete_Button.setFont(new Font("ë§‘ì€ê³ ë”•",Font.BOLD,20));
        
-       Change_Button = new JButton("¼öÁ¤");
+       Change_Button = new JButton("ìˆ˜ì •");
        Change_Button.setBackground(Color.white);
-       Change_Button.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,20));
+       Change_Button.setFont(new Font("ë§‘ì€ê³ ë”•",Font.BOLD,20));
        
-       Hide_Button = new JButton("¼û±â±â");
+       Hide_Button = new JButton("ìˆ¨ê¸°ê¸°");
        Hide_Button.setBackground(Color.white);
-       Hide_Button.setFont(new Font("¸¼Àº°íµñ",Font.BOLD,20));
+       Hide_Button.setFont(new Font("ë§‘ì€ê³ ë”•",Font.BOLD,20));
        
        add(Add_Button);
        add(Delete_Button);
@@ -250,8 +249,8 @@ public class Todolist extends JFrame{
             public void actionPerformed(ActionEvent e) {
                JButton Hide_Button = (JButton)e.getSource();
                
-               if(Hide_Button.getText().equals("¼û±â±â")) {   
-            	   Hide_Button.setText("º¸¿©ÁÖ±â");
+               if(Hide_Button.getText().equals("ìˆ¨ê¸°ê¸°")) {   
+            	   Hide_Button.setText("ë³´ì—¬ì£¼ê¸°");
             	   model = (DefaultTableModel)table.getModel();
               		model.setNumRows(0);
               		
@@ -263,7 +262,7 @@ public class Todolist extends JFrame{
            		int rows = sheet.getPhysicalNumberOfRows();
            		for(int i=1;i<rows;i++) {
            			Row row = sheet.getRow(i);           			
-           			if(row.getCell(4).toString().equals("¿Ï·á"))
+           			if(row.getCell(4).toString().equals("ì™„ë£Œ"))
            				continue;          			
            			else {
            				Object[] obj = {false,row.getCell(1),row.getCell(2),row.getCell(3),row.getCell(4),row.getCell(5)};
@@ -282,7 +281,7 @@ public class Todolist extends JFrame{
                
          		
        	 try {
-       		Hide_Button.setText("¼û±â±â");
+       		Hide_Button.setText("ìˆ¨ê¸°ê¸°");
        		FileInputStream fis = new FileInputStream("./Subject_Dir/ToDolist_Dir/"+ Subject_Name +".xlsx");
 			XSSFWorkbook workbook = new XSSFWorkbook(fis);
 			model = (DefaultTableModel)table.getModel();
@@ -323,7 +322,7 @@ public class Todolist extends JFrame{
                
                UIManager UI =new UIManager();
                Color navy = new Color(0,32,96);
-               Font message = new Font("¸¼Àº°íµñ",Font.BOLD,20);
+               Font message = new Font("ë§‘ì€ê³ ë”•",Font.BOLD,20);
                UI.put("OptionPane.messageForeground", navy);
                UI.put("OptionPane.messageFont", message);
                
@@ -339,9 +338,9 @@ public class Todolist extends JFrame{
             
             if(SelectedNum == 0 || SelectedNum > 1) {
                if(SelectedNum == 0) {
-               JOptionPane.showMessageDialog(null , "Ç×¸ñÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.", "¾Ë¸²", JOptionPane.INFORMATION_MESSAGE);   }
+               JOptionPane.showMessageDialog(null , "í•­ëª©ì„ ì„ íƒí•´ì£¼ì„¸ìš”.", "ì•Œë¦¼", JOptionPane.INFORMATION_MESSAGE);   }
                if(SelectedNum > 1) {
-               JOptionPane.showMessageDialog(null , "ÇÏ³ªÀÇ Ç×¸ñ¸¸ ¼±ÅÃÇØÁÖ¼¼¿ä.", "¾Ë¸²", JOptionPane.INFORMATION_MESSAGE);}
+               JOptionPane.showMessageDialog(null , "í•˜ë‚˜ì˜ í•­ëª©ë§Œ ì„ íƒí•´ì£¼ì„¸ìš”.", "ì•Œë¦¼", JOptionPane.INFORMATION_MESSAGE);}
             }            
                         
             else {
@@ -366,7 +365,7 @@ public class Todolist extends JFrame{
                
                UIManager UI =new UIManager();
                Color navy = new Color(0,32,96);
-               Font message = new Font("¸¼Àº°íµñ",Font.BOLD,20);
+               Font message = new Font("ë§‘ì€ê³ ë”•",Font.BOLD,20);
                UI.put("OptionPane.messageForeground", navy);
                UI.put("OptionPane.messageFont", message);
                int SelectedNum = 0;
@@ -377,9 +376,9 @@ public class Todolist extends JFrame{
                    }
                }
             if(SelectedNum == 0 || SelectedNum > 1) {if(SelectedNum == 0) {
-                JOptionPane.showMessageDialog(null , "Ç×¸ñÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.", "¾Ë¸²", JOptionPane.INFORMATION_MESSAGE);   }
+                JOptionPane.showMessageDialog(null , "í•­ëª©ì„ ì„ íƒí•´ì£¼ì„¸ìš”.", "ì•Œë¦¼", JOptionPane.INFORMATION_MESSAGE);   }
                 if(SelectedNum > 1) {
-                JOptionPane.showMessageDialog(null , "ÇÏ³ªÀÇ Ç×¸ñ¸¸ ¼±ÅÃÇØÁÖ¼¼¿ä.", "¾Ë¸²", JOptionPane.INFORMATION_MESSAGE);}
+                JOptionPane.showMessageDialog(null , "í•˜ë‚˜ì˜ í•­ëª©ë§Œ ì„ íƒí•´ì£¼ì„¸ìš”.", "ì•Œë¦¼", JOptionPane.INFORMATION_MESSAGE);}
              }            
                           
              else {

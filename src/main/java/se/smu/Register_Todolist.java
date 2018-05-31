@@ -198,7 +198,7 @@ public class Register_Todolist extends JFrame{
     	   			boolean Done = Boolean.FALSE;
     	   			data[5] = Subject_Name;
     			
-    				if(data[0].equals("월일") || data[1].equals("월일") || data[2].equals("입력해주세요") || data[3].equals("") ||data[4].equals("") ) {
+    				if(Todo[0].equals("") || Todo[1].equals("") ||Todo[2].equals("") || Todo[3].equals("") ||data[2].equals("입력해주세요") || data[3].equals("") ||data[4].equals("") ) {
     					JOptionPane.showMessageDialog(null , "필수 입력 사항입니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
     					    					
     				}

@@ -193,15 +193,17 @@ public class Change_Todolist extends JFrame {
 			data[3] = Done_Combo.getSelectedItem().toString();
    			Color navy = new Color(0,32,96);
    			UI.put("OptionPane.messageForeground", navy);
-   			
-			if(data[0].equals("월일") || data[1].equals("월일") || data[2].equals("입력해주세요") || data[3].equals("") ||data[4].equals("")) {
+   			for(int i=0;i<1;i++) {
+			if(Todo[i].equals("") || data[i+2].equals("입력해주세요") || data[i+4].equals("") || Todo[i+3].equals("") ||
+					Todo[i+1].equals("") || data[i+3].equals("") ||Todo[i+2].equals("")) {
 				JOptionPane.showMessageDialog(null , "필수 입력 사항입니다.", "알림", JOptionPane.INFORMATION_MESSAGE);    									
 			}
-			else if(data[0].equals("2월30일") || data[0].equals("2월31일") || data[1].equals("2월30일") || data[1].equals("2월31일")) {
+			else if(data[i].equals("2월30일") || data[i+1].equals("2월31일") || 
+					data[i+1].equals("2월30일") || data[i].equals("2월31일")) {
 				JOptionPane.showMessageDialog(null , "날짜를 다시 선택해주세요.", "알림", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else change = Boolean.TRUE;
-		
+   			}
 		if(change == Boolean.TRUE) {						
 						try {
    	   		
