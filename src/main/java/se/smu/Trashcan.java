@@ -201,7 +201,7 @@ public class Trashcan extends JFrame {
 					}
 				}
 				if(check==false)
-					JOptionPane.showMessageDialog(null , "아무것도 선택되지 않았습니다.");
+					JOptionPane.showMessageDialog(null , "항목을 선택해주세요.");
 				else {
 					try {
 						TableReset();
