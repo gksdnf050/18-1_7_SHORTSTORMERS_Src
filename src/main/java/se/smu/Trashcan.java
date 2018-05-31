@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -188,6 +189,11 @@ public class Trashcan extends JFrame {
 	
 	class MyActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+            UIManager UI =new UIManager();
+            Color navy = new Color(0,32,96);
+            Font message = new Font("∏º¿∫∞ÌµÒ",Font.BOLD,20);
+            UI.put("OptionPane.messageForeground", navy);
+            UI.put("OptionPane.messageFont", message);
 			JButton b = (JButton)e.getSource();
 			if(b.getText().equals("øµ±∏ ªË¡¶")){
 				boolean check = false;
