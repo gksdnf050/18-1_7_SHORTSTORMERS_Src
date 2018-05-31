@@ -710,7 +710,7 @@ class Mainpage extends JPanel{
 				JOptionPane.showMessageDialog(null , "항목을 선택해주세요." , "알림", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else if(SelectedNum > 1) {
-				JOptionPane.showMessageDialog(null , "하나의 과목을 선택해주세요." , "알림", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null , "하나의 항목만 선택해주세요." , "알림", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
 				Select_Flag = Boolean.TRUE;
