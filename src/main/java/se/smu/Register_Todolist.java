@@ -202,7 +202,9 @@ public class Register_Todolist extends JFrame{
     					JOptionPane.showMessageDialog(null , "필수 입력 사항입니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
     					    					
     				}
-    				else if(data[0].equals("2월30일") || data[0].equals("2월31일") || data[1].equals("2월30일") || data[1].equals("2월31일")) {
+    				else if(data[0].equals("2월30일") || data[0].equals("2월31일") || data[1].equals("2월30일") || data[1].equals("2월31일") ||
+    						data[0].equals("4월31일") || data[1].equals("4월31일") || data[0].equals("6월31일") || data[1].equals("6월31일") ||
+    						data[0].equals("9월31일") || data[1].equals("9월31일") || data[0].equals("11월31일")|| data[1].equals("11월31일")) {
     					JOptionPane.showMessageDialog(null , "날짜를 다시 선택해주세요.", "알림", JOptionPane.INFORMATION_MESSAGE);
     				}
     				else Done = Boolean.TRUE;
