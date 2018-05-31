@@ -1,7 +1,6 @@
 package se.smu;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,7 +53,7 @@ public class Trashcan extends JFrame {
 		Title_label.setFont(new Font("HY견고딕",Font.BOLD,30));
 		Title_label.setForeground(default_color);
 		
-		Title_label.setBounds(275, 25, 200, 50);
+		Title_label.setBounds(260, 25, 200, 50);
 		jscollPane.setBounds(50,100,550,270);
 		restore.setBounds(170,400,130,40);
 		remove.setBounds(350,400,130,40);
@@ -123,8 +122,6 @@ public class Trashcan extends JFrame {
 		JTableHeader header = Table.getTableHeader();
 		header.setBackground(default_color);
 		header.setForeground(new Color(255,255,255));
-		header.setPreferredSize(new Dimension(100,20));
-		header.setResizingAllowed(false); 
 		
 		Table.getColumnModel().getColumn(0).setPreferredWidth(20);
 		Table.getColumnModel().getColumn(1).setPreferredWidth(120);
@@ -187,7 +184,8 @@ public class Trashcan extends JFrame {
 			}
 		}
 	}
-		
+	
+	
 	class MyActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			JButton b = (JButton)e.getSource();
@@ -262,7 +260,7 @@ public class Trashcan extends JFrame {
 					}
 				}
 				if(check==false)
-					JOptionPane.showMessageDialog(null , "아무것도 선택되지 않았습니다.");
+					JOptionPane.showMessageDialog(null , "항목을 선택해주세요.");
 				else {
 					try {
 						TableReset();
