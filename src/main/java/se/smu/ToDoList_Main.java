@@ -264,12 +264,16 @@ class Add_Change_Panel extends JPanel{
 			Reg_Info[3] = Time_Text.getText();
 			Reg_Info[4] = Year_Combo.getSelectedItem().toString();
 			Reg_Info[5] = Sem_Combo.getSelectedItem().toString();
-			
+            UIManager UI =new UIManager();
+            Color navy = new Color(0,32,96);
+            Font message = new Font("맑은고딕",Font.BOLD,20);
+            UI.put("OptionPane.messageForeground", navy);
+            UI.put("OptionPane.messageFont", message);
 			
 			//인자 확인
 			for(int i = 0; i < 6; i++) {
 				if(Reg_Info[i].equals("")) {
-					JOptionPane.showMessageDialog(null , "빈칸을 모두 입력해주세요.", "알림", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null , "필수 입력 사항입니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
 					addFlag = Boolean.FALSE;
 					break;
 				}
@@ -690,6 +694,11 @@ class Mainpage extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			int SelectedNum = 0;
 			int SelectedRowNum = 0;
+            UIManager UI =new UIManager();
+            Color navy = new Color(0,32,96);
+            Font message = new Font("맑은고딕",Font.BOLD,20);
+            UI.put("OptionPane.messageForeground", navy);
+            UI.put("OptionPane.messageFont", message);
 			boolean Select_Flag = Boolean.FALSE;
 			for(int i=0; i < Subject_Table.getRowCount() ; i++) {
 				if(Subject_Table.getValueAt(i, 0) == Boolean.TRUE) {
@@ -697,7 +706,10 @@ class Mainpage extends JPanel{
 					SelectedRowNum = i;
 				}
 			}
-			if(SelectedNum == 0 || SelectedNum > 1) {
+			if(SelectedNum == 0) {
+				JOptionPane.showMessageDialog(null , "항목을 선택해주세요." , "알림", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else if(SelectedNum > 1) {
 				JOptionPane.showMessageDialog(null , "하나의 과목을 선택해주세요." , "알림", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
@@ -721,6 +733,11 @@ class Mainpage extends JPanel{
 			RefreshSubjectExel();
 
 			int SelectedNum = 0;
+            UIManager UI =new UIManager();
+            Color navy = new Color(0,32,96);
+            Font message = new Font("맑은고딕",Font.BOLD,20);
+            UI.put("OptionPane.messageForeground", navy);
+            UI.put("OptionPane.messageFont", message);
 			Vector<Integer> SelectedRowNum = new Vector<Integer>();
 			boolean Select_Flag = Boolean.FALSE;
 			for(int i=0; i < Subject_Table.getRowCount() ; i++) {
@@ -731,7 +748,7 @@ class Mainpage extends JPanel{
 			}
 			
 			if(SelectedNum == 0) {
-				JOptionPane.showMessageDialog(null , "하나 이상의 과목을 선택해주세요.", "알림", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null , "항목을 선택해주세요.", "알림", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
 				Select_Flag = Boolean.TRUE;
