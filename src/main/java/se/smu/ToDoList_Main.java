@@ -956,6 +956,7 @@ public class ToDoList_Main extends JFrame{
 			AP.setRegInfo(Reg_Info);
 			AP.ChangeMod(Reg_Info);
 			AP.changeRegText("Add_Panel");
+			AP.ChangeTitle("수강 과목 등록");
 			AP.repaint();
 			getContentPane().removeAll();
 			getContentPane().add(AP);
