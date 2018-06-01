@@ -384,14 +384,17 @@ public class Todolist extends JFrame{
                       SelectedNum++;
                    }
                }
-            if(SelectedNum == 0 || SelectedNum > 1) {if(SelectedNum == 0) {
+            if(SelectedNum == 0 || SelectedNum > 1) {
+            	if(SelectedNum == 0) {
                 JOptionPane.showMessageDialog(null , "항목을 선택해주세요.", "알림", JOptionPane.INFORMATION_MESSAGE);   }
                 if(SelectedNum > 1) {
                 JOptionPane.showMessageDialog(null , "하나의 항목만 선택해주세요.", "알림", JOptionPane.INFORMATION_MESSAGE);}
              }            
                           
-             else {
-                Select = Boolean.TRUE;
+             else if(Hide_Button.getText().equals("보여주기")){
+            	 JOptionPane.showMessageDialog(null , "숨겨진 항목이 있습니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
+             } else {
+            	 Select = Boolean.TRUE;
              }
              
            if(Select == Boolean.TRUE) {
