@@ -2,9 +2,6 @@
 자바 swing으로 ToDoList 프로그램 만들기
 
 
-문서
-
-
 https://github.com/gksdnf050/18-1_7_SHORTSTORMERS_Doc
 
 
